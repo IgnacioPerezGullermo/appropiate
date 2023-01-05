@@ -1,12 +1,13 @@
-version: '3.3'
+version: '4.12'
 
 services:
   database: 
     image: postgres:13
+    container_name: appropiatedb
     environment: 
-      - POSTGRES_DB=appropiate_db
-      - POSTGRES_USER=devs
-      - POSTGRES_PASSWORD=appropiate2023
+      - POSTGRES_USER=nacho
+      - POSTGRES_PASSWORD=nacho
+      - POSTGRES_DB=my_db
     ports: 
       - '5432:5432'
     volumes: 

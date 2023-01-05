@@ -6,33 +6,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ClientService = exports.AppService = void 0;
+exports.BrokersService = void 0;
 const common_1 = require("@nestjs/common");
-let AppService = class AppService {
-    getHello() {
-        return 'Hello World!';
+let BrokersService = class BrokersService {
+    create(createBrokerDto) {
+        return 'This action adds a new broker';
+    }
+    findAll() {
+        return `This action returns all brokers`;
+    }
+    findOne(id) {
+        return `This action returns a #${id} broker`;
+    }
+    update(id, updateBrokerDto) {
+        return `This action updates a #${id} broker`;
+    }
+    remove(id) {
+        return `This action removes a #${id} broker`;
     }
 };
-AppService = __decorate([
+BrokersService = __decorate([
     (0, common_1.Injectable)()
-], AppService);
-exports.AppService = AppService;
-let ClientService = class ClientService {
-    getClients() {
-        return 'Aqui mostrariamos los clientes que tenemos';
-    }
-    postClient() {
-        return 'Aqui agregamos un usuario nuevo';
-    }
-    patchClient() {
-        return 'Aqui cambiamos un usuario existente';
-    }
-    deleteClient() {
-        return 'Aqui eliminamos a un usuario';
-    }
-};
-ClientService = __decorate([
-    (0, common_1.Injectable)()
-], ClientService);
-exports.ClientService = ClientService;
-//# sourceMappingURL=app.service.js.map
+], BrokersService);
+exports.BrokersService = BrokersService;
+//# sourceMappingURL=brokers.service.js.map
