@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  database: 
+    image: postgres:13
+    environment: 
+      - POSTGRES_DB=appropiate_db
+      - POSTGRES_USER=devs
+      - POSTGRES_PASSWORD=appropiate2023
+    ports: 
+      - '5432:5432'
+    volumes: 
+      - ./postgres_data:/var/lib/postgresql
+volumes:
+  postgresql-volume:
+    external: true
