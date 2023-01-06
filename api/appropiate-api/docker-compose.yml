@@ -8,10 +8,10 @@ services:
       - POSTGRES_USER=nacho
       - POSTGRES_PASSWORD=nacho
       - POSTGRES_DB=my_db
+
     ports: 
-      - '5433'
+      - 5433:5432
     volumes: 
-      - ./postgres_data:/var/lib/postgresql
+      - postgres_data:/var/lib/postgresql/data
 volumes:
-  postgresql-volume:
-    external: true
+  postgres_data: {}

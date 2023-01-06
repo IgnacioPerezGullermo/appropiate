@@ -10,10 +10,10 @@ exports.databaseProviders = [
             const sequelize = new sequelize_typescript_1.Sequelize({
                 dialect: 'postgres',
                 host: 'localhost',
-                port: 5432,
-                username: 'postgres',
-                password: 'LB20071997',
-                database: 'appropiatedb',
+                port: 5433,
+                username: 'nacho',
+                password: 'nacho',
+                database: 'my_db',
             });
             sequelize.addModels([client_entity_1.Client]);
             await sequelize.sync();
