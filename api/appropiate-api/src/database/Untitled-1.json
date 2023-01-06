@@ -1,0 +1,261 @@
+[
+  {
+    "Id": "f034e72f1730e46b6256d5a1e93d79b60a77c70944fb5fd38ddd82f6ced4f873",
+    "Created": "2023-01-06T15:16:35.010081Z",
+    "Path": "docker-entrypoint.sh",
+    "Args": ["postgres"],
+    "State": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 3567,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2023-01-06T15:16:40.6280548Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "Image": "sha256:9a26a0154be3568a962e1a9d46ab26fb103a438361dda754db379f910e73222c",
+    "ResolvConfPath": "/var/lib/docker/containers/f034e72f1730e46b6256d5a1e93d79b60a77c70944fb5fd38ddd82f6ced4f873/resolv.conf",
+    "HostnamePath": "/var/lib/docker/containers/f034e72f1730e46b6256d5a1e93d79b60a77c70944fb5fd38ddd82f6ced4f873/hostname",
+    "HostsPath": "/var/lib/docker/containers/f034e72f1730e46b6256d5a1e93d79b60a77c70944fb5fd38ddd82f6ced4f873/hosts",
+    "LogPath": "/var/lib/docker/containers/f034e72f1730e46b6256d5a1e93d79b60a77c70944fb5fd38ddd82f6ced4f873/f034e72f1730e46b6256d5a1e93d79b60a77c70944fb5fd38ddd82f6ced4f873-json.log",
+    "Name": "/appropiatedb",
+    "RestartCount": 0,
+    "Driver": "overlay2",
+    "Platform": "linux",
+    "MountLabel": "",
+    "ProcessLabel": "",
+    "AppArmorProfile": "",
+    "ExecIDs": null,
+    "HostConfig": {
+      "Binds": [
+        "C:\\Users\\leand\\Desktop\\Proyecto\\appropiate\\api\\appropiate-api\\postgres_data:/var/lib/postgresql:rw"
+      ],
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {}
+      },
+      "NetworkMode": "appropiate-api_default",
+      "PortBindings": {
+        "5433/tcp": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "0"
+          }
+        ]
+      },
+      "RestartPolicy": {
+        "Name": "",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "CapAdd": null,
+      "CapDrop": null,
+      "CgroupnsMode": "host",
+      "Dns": null,
+      "DnsOptions": null,
+      "DnsSearch": null,
+      "ExtraHosts": [],
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": false,
+      "SecurityOpt": null,
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "ConsoleSize": [0, 0],
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 0,
+      "NanoCpus": 0,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": null,
+      "BlkioDeviceReadBps": null,
+      "BlkioDeviceWriteBps": null,
+      "BlkioDeviceReadIOps": null,
+      "BlkioDeviceWriteIOps": null,
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": null,
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "KernelMemory": 0,
+      "KernelMemoryTCP": 0,
+      "MemoryReservation": 0,
+      "MemorySwap": 0,
+      "MemorySwappiness": null,
+      "OomKillDisable": false,
+      "PidsLimit": null,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "volume",
+          "Source": "34560a2e8254afec4ecb06faea18ff314aa1348440187691e523ff1dacca2a70",
+          "Target": "/var/lib/postgresql/data"
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/asound",
+        "/proc/acpi",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "GraphDriver": {
+      "Data": {
+        "LowerDir": "/var/lib/docker/overlay2/c4885b7244c67e14016b0f87af2d25439a553b6d484c3a824adf80f1567bbf83-init/diff:/var/lib/docker/overlay2/68be5c7738526d7e99af5a000837674319baef18ba50bf4f5be7bfca75feafc4/diff:/var/lib/docker/overlay2/c97dc21a6303d2b647b293a0338e48c0c24fd0208a7399bdab20aa5a6bee2937/diff:/var/lib/docker/overlay2/e1049c5fe3280a6e29856749df5c17543c928b33e2a4631cd3d39aca5a1575e5/diff:/var/lib/docker/overlay2/ae13df033b6f6b45821675afc89b00dee04e8f5720e6aaaf744246a9c55a4c8f/diff:/var/lib/docker/overlay2/22ae85aac61ca7cc4a64e359fdbf68bf548931e40b95e2bd36aff379c268d10a/diff:/var/lib/docker/overlay2/db614a8fcf16146fbbaa2a50644161d01ea9cad6ca80fb14e3c0762733b266b9/diff:/var/lib/docker/overlay2/a064b435c8d67b8cca859a856311a6a766191cec0877a2950bf6fcf55f24a269/diff:/var/lib/docker/overlay2/9d3070a9780bfd0613cd3d21e121db0f63b7ab014b47635339b18aff41300ecb/diff:/var/lib/docker/overlay2/cfe491c979908b1df5138829201081e0e72ecabbd6d482af547a83dd0f54f581/diff:/var/lib/docker/overlay2/028b62cea58cbf5315274f8b0f5ffc8957e6c2f7ce0367bb318338c941c2e4b9/diff:/var/lib/docker/overlay2/aec64f108f95bf2f29d348b9f22b953fd2e646db60bcd6fd494f687484f1e461/diff:/var/lib/docker/overlay2/a07356f11a530d5ed325eb8e0740d628a31aca500f4b2bb3c2f0884ba97f8335/diff:/var/lib/docker/overlay2/645be9254a88c5d8ef0a7aa2482d53e14417c7d7cadb9ee9ddda38e0557f714f/diff",
+        "MergedDir": "/var/lib/docker/overlay2/c4885b7244c67e14016b0f87af2d25439a553b6d484c3a824adf80f1567bbf83/merged",
+        "UpperDir": "/var/lib/docker/overlay2/c4885b7244c67e14016b0f87af2d25439a553b6d484c3a824adf80f1567bbf83/diff",
+        "WorkDir": "/var/lib/docker/overlay2/c4885b7244c67e14016b0f87af2d25439a553b6d484c3a824adf80f1567bbf83/work"
+      },
+      "Name": "overlay2"
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "C:\\Users\\leand\\Desktop\\Proyecto\\appropiate\\api\\appropiate-api\\postgres_data",
+        "Destination": "/var/lib/postgresql",
+        "Mode": "rw",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "volume",
+        "Name": "34560a2e8254afec4ecb06faea18ff314aa1348440187691e523ff1dacca2a70",
+        "Source": "/var/lib/docker/volumes/34560a2e8254afec4ecb06faea18ff314aa1348440187691e523ff1dacca2a70/_data",
+        "Destination": "/var/lib/postgresql/data",
+        "Driver": "local",
+        "Mode": "z",
+        "RW": true,
+        "Propagation": ""
+      }
+    ],
+    "Config": {
+      "Hostname": "f034e72f1730",
+      "Domainname": "",
+      "User": "",
+      "AttachStdin": false,
+      "AttachStdout": true,
+      "AttachStderr": true,
+      "ExposedPorts": {
+        "5432/tcp": {},
+        "5433/tcp": {}
+      },
+      "Tty": false,
+      "OpenStdin": false,
+      "StdinOnce": false,
+      "Env": [
+        "POSTGRES_PASSWORD=nacho",
+        "POSTGRES_DB=my_db",
+        "POSTGRES_USER=nacho",
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/13/bin",
+        "GOSU_VERSION=1.14",
+        "LANG=en_US.utf8",
+        "PG_MAJOR=13",
+        "PG_VERSION=13.9-1.pgdg110+1",
+        "PGDATA=/var/lib/postgresql/data"
+      ],
+      "Cmd": ["postgres"],
+      "Image": "postgres:13",
+      "Volumes": {
+        "/var/lib/postgresql": {},
+        "/var/lib/postgresql/data": {}
+      },
+      "WorkingDir": "",
+      "Entrypoint": ["docker-entrypoint.sh"],
+      "OnBuild": null,
+      "Labels": {
+        "com.docker.compose.config-hash": "edd231fd697c7caa2339a98c4667c22a2bba10746470e4902b4aaba56e1c4e7f",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "",
+        "com.docker.compose.image": "sha256:9a26a0154be3568a962e1a9d46ab26fb103a438361dda754db379f910e73222c",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "appropiate-api",
+        "com.docker.compose.project.config_files": "C:\\Users\\leand\\Desktop\\Proyecto\\appropiate\\api\\appropiate-api\\docker-compose.yml",
+        "com.docker.compose.project.working_dir": "C:\\Users\\leand\\Desktop\\Proyecto\\appropiate\\api\\appropiate-api",
+        "com.docker.compose.service": "database",
+        "com.docker.compose.version": "2.10.2"
+      },
+      "StopSignal": "SIGINT"
+    },
+    "NetworkSettings": {
+      "Bridge": "",
+      "SandboxID": "f883f9c2b41853ea23ba1e1d530ddc5617ec245380ec559d5389ca453308de5f",
+      "HairpinMode": false,
+      "LinkLocalIPv6Address": "",
+      "LinkLocalIPv6PrefixLen": 0,
+      "Ports": {
+        "5432/tcp": null,
+        "5433/tcp": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "59859"
+          }
+        ]
+      },
+      "SandboxKey": "/var/run/docker/netns/f883f9c2b418",
+      "SecondaryIPAddresses": null,
+      "SecondaryIPv6Addresses": null,
+      "EndpointID": "",
+      "Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "IPAddress": "",
+      "IPPrefixLen": 0,
+      "IPv6Gateway": "",
+      "MacAddress": "",
+      "Networks": {
+        "appropiate-api_default": {
+          "IPAMConfig": null,
+          "Links": null,
+          "Aliases": ["appropiatedb", "database", "f034e72f1730"],
+          "NetworkID": "47c3974c8350bf733c2aeca224572d04e5073177bf65337f471edd114debb937",
+          "EndpointID": "9f3715bda0d04fbea954ca9e3ea3b8b606332b3849cddbbf9f84463110dcdcde",
+          "Gateway": "172.19.0.1",
+          "IPAddress": "172.19.0.2",
+          "IPPrefixLen": 16,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "MacAddress": "02:42:ac:13:00:02",
+          "DriverOpts": null
+        }
+      }
+    }
+  }
+]
