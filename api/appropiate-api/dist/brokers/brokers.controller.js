@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BrokersController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const brokers_service_1 = require("./brokers.service");
 const create_broker_dto_1 = require("./dto/create-broker.dto");
 const update_broker_dto_1 = require("./dto/update-broker.dto");
@@ -73,6 +74,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BrokersController.prototype, "remove", null);
 BrokersController = __decorate([
+    (0, swagger_1.ApiTags)('Brokers'),
     (0, common_1.Controller)('brokers'),
     __metadata("design:paramtypes", [brokers_service_1.BrokersService])
 ], BrokersController);

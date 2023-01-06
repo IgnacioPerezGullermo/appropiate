@@ -1,8 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { PropiertiesService } from './propierties.service';
 import { CreatePropiertyDto } from './dto/create-propierty.dto';
 import { UpdatePropiertyDto } from './dto/update-propierty.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Propierties')
 @Controller('propierties')
 export class PropiertiesController {
   constructor(private readonly propiertiesService: PropiertiesService) {}
@@ -23,7 +33,10 @@ export class PropiertiesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePropiertyDto: UpdatePropiertyDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updatePropiertyDto: UpdatePropiertyDto,
+  ) {
     return this.propiertiesService.update(+id, updatePropiertyDto);
   }
 

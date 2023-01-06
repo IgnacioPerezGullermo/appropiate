@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const posts_service_1 = require("./posts.service");
 const create_post_dto_1 = require("./dto/create-post.dto");
 const update_post_dto_1 = require("./dto/update-post.dto");
+const swagger_1 = require("@nestjs/swagger");
 let PostsController = class PostsController {
     constructor(postsService) {
         this.postsService = postsService;
@@ -73,6 +74,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], PostsController.prototype, "remove", null);
 PostsController = __decorate([
+    (0, swagger_1.ApiTags)('Posts'),
     (0, common_1.Controller)('posts'),
     __metadata("design:paramtypes", [posts_service_1.PostsService])
 ], PostsController);
