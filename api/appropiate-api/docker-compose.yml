@@ -9,7 +9,7 @@ services:
       - POSTGRES_PASSWORD=nacho
       - POSTGRES_DB=my_db
     ports: 
-      - '5432:5432'
+      - '5433'
     volumes: 
       - ./postgres_data:/var/lib/postgresql
 volumes:
