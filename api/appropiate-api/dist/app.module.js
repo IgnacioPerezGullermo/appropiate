@@ -12,11 +12,12 @@ const clients_module_1 = require("./clients/clients.module");
 const brokers_module_1 = require("./brokers/brokers.module");
 const propierties_module_1 = require("./propierties/propierties.module");
 const posts_module_1 = require("./posts/posts.module");
+const appointment_module_1 = require("./appointment/appointment.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [clients_module_1.ClientsModule, brokers_module_1.BrokersModule, propierties_module_1.PropiertiesModule, posts_module_1.PostsModule],
+        imports: [clients_module_1.ClientsModule, brokers_module_1.BrokersModule, propierties_module_1.PropiertiesModule, posts_module_1.PostsModule, appointment_module_1.AppointmentModule],
         controllers: [],
         providers: [],
     })

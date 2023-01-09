@@ -4,9 +4,10 @@ import { databaseProviders } from './database/database.providers';
 import { BrokersModule } from './brokers/brokers.module';
 import { PropiertiesModule } from './propierties/propierties.module';
 import { PostsModule } from './posts/posts.module';
+import { AppointmentModule } from './appointment/appointment.module';
 
 @Module({
-  imports: [ClientsModule, BrokersModule, PropiertiesModule, PostsModule],
+  imports: [ClientsModule, BrokersModule, PropiertiesModule, PostsModule, AppointmentModule],
   controllers: [],
   providers: [],
 })

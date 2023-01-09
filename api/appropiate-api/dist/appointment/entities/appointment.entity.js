@@ -9,24 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Client = void 0;
+exports.Appointment = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-let Client = class Client extends sequelize_typescript_1.Model {
+const broker_entity_1 = require("../../brokers/entities/broker.entity");
+let Appointment = class Appointment extends sequelize_typescript_1.Model {
 };
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], Client.prototype, "name", void 0);
+], Appointment.prototype, "title", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], Client.prototype, "password", void 0);
+], Appointment.prototype, "date", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => broker_entity_1.Broker),
+    __metadata("design:type", Array)
+], Appointment.prototype, "broker", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], Client.prototype, "email", void 0);
-Client = __decorate([
+], Appointment.prototype, "client", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], Appointment.prototype, "type", void 0);
+Appointment = __decorate([
     sequelize_typescript_1.Table
-], Client);
-exports.Client = Client;
-//# sourceMappingURL=client.entity.js.map
+], Appointment);
+exports.Appointment = Appointment;
+//# sourceMappingURL=appointment.entity.js.map
