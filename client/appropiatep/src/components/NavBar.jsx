@@ -22,8 +22,9 @@ export const NavBar = () => {
       left={'0%'}
       top={'0%'}
       borderBottom={'1px solid black'}
+      bg={'brand.800'}
     >
-      <Text pos={'absolute'} left={'5vw'} top={'1vh'} fontSize={'3vw'}>
+      <Text pos={'absolute'} left={'5vw'} top={'1vh'} fontSize={'paddings.100'}>
         Logo
       </Text>
       <Wrap pos={'absolute'} right={'5%'} h={'10.7vh'} top={'0%'} pt={'3vh'}>

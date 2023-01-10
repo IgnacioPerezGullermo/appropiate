@@ -1,11 +1,11 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { BrokersService } from './brokers.service';
@@ -29,16 +29,16 @@ export class BrokersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.brokersService.findOne(+id);
+    return this.brokersService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateBrokerDto: UpdateBrokerDto) {
-    return this.brokersService.update(+id, updateBrokerDto);
+    return this.brokersService.update(id, updateBrokerDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.brokersService.remove(+id);
+    return this.brokersService.remove(id);
   }
 }

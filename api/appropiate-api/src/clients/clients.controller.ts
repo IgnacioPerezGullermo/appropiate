@@ -1,11 +1,11 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ClientsService } from './clients.service';
@@ -29,16 +29,21 @@ export class ClientsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.clientsService.findOne(+id);
+    return this.clientsService.findById(id);
+  }
+
+  @Get(':username')
+  findByUser(@Param('username') username: string) {
+    return this.clientsService.findOneByUsername(username);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
-    return this.clientsService.update(+id, updateClientDto);
+    return this.clientsService.update(id, updateClientDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.clientsService.remove(+id);
+    return this.clientsService.remove(id);
   }
 }

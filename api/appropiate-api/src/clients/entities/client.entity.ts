@@ -1,13 +1,35 @@
-import { Table, Column, Model } from 'sequelize-typescript';
+import {
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  Model,
+  Table,
+} from 'sequelize-typescript';
+import { Appointment } from 'src/appointment/entities/appointment.entity';
+import { AgeRange } from './agerange.entity';
 
 @Table
 export class Client extends Model {
-  @Column
-  name: string;
+  @Column({
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4,
+    primaryKey: true,
+  })
+  id: string;
 
   @Column
-  age: number;
+  username: string;
 
   @Column
-  breed: string;
+  password: string;
+
+  @Column
+  email: string;
+
+  @HasMany(() => Appointment)
+  appointment: Appointment[];
+
+  @ForeignKey(() => AgeRange)
+  AgeRangeId: string;
 }

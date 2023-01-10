@@ -20,7 +20,7 @@ export const Landing = () => {
       bg
     >
       <Box
-        bg={'blue.300'}
+        bg={'brand.700'}
         pos={'absolute'}
         w={'100vw'}
         h={'35vh'}
@@ -41,7 +41,7 @@ export const Landing = () => {
           left={'45vw'}
           onClick={() => navigate('/register')}
         >
-          Registrate ya!
+          Regístrate ya!
         </Button>
       </Box>
     </Box>

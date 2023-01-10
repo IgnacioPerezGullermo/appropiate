@@ -5,15 +5,13 @@ import * as ReactDOM from 'react-dom/client';
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
   brand: {
-    900: '#9a395d',
-    800: '#153e75',
-    700: '#2a69ac',
+    900: '#5C19CB',
+    800: '#D3E5EF',
+    700: '#2A809F',
   },
-};
-const paddings = {
   paddings: {
-    100: '2vw',
+    100: '3vw',
   },
 };
 
-export const theme = extendTheme({ colors, paddings });
+export const theme = extendTheme({ colors });

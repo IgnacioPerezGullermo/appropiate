@@ -1,4 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
+import { Appointment } from 'src/appointment/entities/appointment.entity';
+import { Broker } from 'src/brokers/entities/broker.entity';
 import { Client } from '../clients/entities/client.entity';
 
 export const databaseProviders = [
@@ -13,7 +15,7 @@ export const databaseProviders = [
         password: 'nacho',
         database: 'my_db',
       });
-      sequelize.addModels([Client]);
+      sequelize.addModels([Broker, Client, Appointment]);
       await sequelize.sync();
       return sequelize;
     },
