@@ -1,13 +1,13 @@
 import {
   Column,
-  ForeignKey,
   DataType,
+  ForeignKey,
   HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
 import { Col } from 'sequelize/types/utils';
-import { Appointment } from 'src/appointment/entities/appointment.entity';
+import { Appointment } from '../../appointment/entities/appointment.entity';
 @Table
 export class Broker extends Model {
   @Column({
