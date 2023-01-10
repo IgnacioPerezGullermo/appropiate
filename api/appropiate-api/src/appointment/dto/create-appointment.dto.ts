@@ -1,18 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  Length,
-} from 'class-validator';
-import { IsBefore, IsDate } from 'sequelize-typescript';
-import { Broker } from 'src/brokers/entities/broker.entity';
-import { Client } from 'src/clients/entities/client.entity';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-const currentTime = Date.now();
-const today = new Date(currentTime);
+// const currentTime = Date.now();
+// const today = new Date(currentTime);
 export class CreateAppointmentDto {
   @ApiProperty()
   @IsString()

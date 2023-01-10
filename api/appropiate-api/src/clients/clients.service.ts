@@ -76,6 +76,7 @@ export class ClientsService {
     client.email = updateClientDto.email || client.email;
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const data = await client.save();
     } catch (err) {
       throw new InternalServerErrorException(

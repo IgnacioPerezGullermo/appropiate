@@ -26,6 +26,7 @@ export class AuthService {
     }
 
     // tslint:disable-next-line: no-string-literal
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...result } = client['dataValues'];
     //console.log(result);
     return result;
@@ -44,6 +45,7 @@ export class AuthService {
       password: pass,
     });
     //console.log(newClient);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...result } = newClient['dataValues'];
 
     const token = await this.generateToken(result);
