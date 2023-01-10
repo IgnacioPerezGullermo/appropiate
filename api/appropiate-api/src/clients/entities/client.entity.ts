@@ -1,13 +1,26 @@
-import { Table, Column, Model, HasMany } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  Model,
+  Table,
+} from 'sequelize-typescript';
 import { Appointment } from 'src/appointment/entities/appointment.entity';
+import { AgeRange } from './agerange.entity';
 
 @Table
 export class Client extends Model {
-  @Column({ primaryKey: true })
-  id: number;
+  @Column({
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4,
+    primaryKey: true,
+  })
+  id: string;
 
   @Column
-  name: string;
+  username: string;
 
   @Column
   password: string;
@@ -17,4 +30,7 @@ export class Client extends Model {
 
   @HasMany(() => Appointment)
   appointment: Appointment[];
+
+  @ForeignKey(() => AgeRange)
+  AgeRangeId: string;
 }

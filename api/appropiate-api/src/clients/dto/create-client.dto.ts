@@ -1,7 +1,21 @@
-//import { Input } from "@chakra-ui/react";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsEmail, IsNotEmpty, IsString, Length } from 'class-validator';
 
 export class CreateClientDto {
-  // @Input('name')
-  // @Input('email')
-  // @Input('password')
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  readonly username: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  @Length(8, 20)
+  readonly password: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  @IsEmail()
+  readonly email: string;
 }
