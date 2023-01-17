@@ -25,7 +25,7 @@ __decorate([
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], Broker.prototype, "name", void 0);
+], Broker.prototype, "username", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
@@ -40,7 +40,7 @@ __decorate([
 ], Broker.prototype, "type", void 0);
 __decorate([
     sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Broker.prototype, "tel", void 0);
 __decorate([
     (0, sequelize_typescript_1.HasMany)(() => appointment_entity_1.Appointment),

@@ -7,6 +7,6 @@ export declare class AppointmentController {
     create(createAppointmentDto: CreateAppointmentDto): Promise<void>;
     findAll(): Promise<import("./entities/appointment.entity").Appointment[]>;
     findOne(id: string): Promise<import("./entities/appointment.entity").Appointment>;
-    update(id: string, updateAppointmentDto: UpdateAppointmentDto): string;
-    remove(id: string): string;
+    update(id: string, updateAppointmentDto: UpdateAppointmentDto): Promise<void>;
+    remove(id: string): Promise<void>;
 }

@@ -1,5 +1,4 @@
-import { PartialType, ApiProperty } from '@nestjs/swagger';
-import { CreateBrokerDto } from './create-broker.dto';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 import {
   IsEmail,
   IsNotEmpty,
@@ -8,12 +7,13 @@ import {
   IsString,
   Length,
 } from 'class-validator';
+import { CreateBrokerDto } from './create-broker.dto';
 
 export class UpdateBrokerDto extends PartialType(CreateBrokerDto) {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  readonly name?: string;
+  readonly username?: string;
 
   @ApiProperty()
   @IsString()
@@ -34,6 +34,6 @@ export class UpdateBrokerDto extends PartialType(CreateBrokerDto) {
 
   @ApiProperty()
   @IsNumber()
-  @Length(10)
-  readonly tel?: number;
+  @Length(12)
+  readonly tel?: string;
 }

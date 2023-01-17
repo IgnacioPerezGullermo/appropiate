@@ -7,6 +7,6 @@ export declare class AppointmentService {
     create(createAppointmentDto: CreateAppointmentDto): Promise<void>;
     findAll(): Promise<Appointment[]>;
     findOne(id: string): Promise<Appointment>;
-    update(id: number, updateAppointmentDto: UpdateAppointmentDto): string;
-    remove(id: number): string;
+    update(id: string, updateAppointmentDto: UpdateAppointmentDto): Promise<void>;
+    remove(id: string): Promise<void>;
 }

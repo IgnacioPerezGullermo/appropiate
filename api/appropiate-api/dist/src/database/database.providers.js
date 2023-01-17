@@ -4,7 +4,7 @@ exports.databaseProviders = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const appointment_entity_1 = require("../appointment/entities/appointment.entity");
 const broker_entity_1 = require("../brokers/entities/broker.entity");
-const client_entity_1 = require("../clients/entities/client.entity");
+const user_entity_1 = require("../clients/entities/user.entity");
 exports.databaseProviders = [
     {
         provide: 'SEQUELIZE',
@@ -17,7 +17,7 @@ exports.databaseProviders = [
                 password: 'nacho',
                 database: 'my_db',
             });
-            sequelize.addModels([broker_entity_1.Broker, client_entity_1.Client, appointment_entity_1.Appointment]);
+            sequelize.addModels([broker_entity_1.Broker, user_entity_1.User, appointment_entity_1.Appointment]);
             await sequelize.sync();
             return sequelize;
         },

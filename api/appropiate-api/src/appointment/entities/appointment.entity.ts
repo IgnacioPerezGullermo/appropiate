@@ -7,7 +7,7 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { Broker } from 'src/brokers/entities/broker.entity';
-import { Client } from 'src/clients/entities/client.entity';
+import { User } from 'src/clients/entities/user.entity';
 
 @Table
 export class Appointment extends Model {
@@ -22,7 +22,10 @@ export class Appointment extends Model {
   title: string;
 
   @Column
-  date: Date;
+  date: string;
+
+  @Column
+  startsAt: string;
 
   @BelongsTo(() => Broker)
   broker: Broker;
@@ -31,13 +34,19 @@ export class Appointment extends Model {
   @Column({ type: DataType.UUID, field: 'broker_id' })
   brokerId: string;
 
-  @BelongsTo(() => Client)
-  client: Client;
+  @BelongsTo(() => User)
+  user: User;
 
-  @ForeignKey(() => Client)
-  @Column({ type: DataType.UUID, field: 'client_id' })
-  clientId: string;
+  @ForeignKey(() => User)
+  @Column({ type: DataType.UUID, field: 'user_id' })
+  userId: string;
 
   @Column
   type: string;
+
+  @Column
+  description: string;
+
+  @Column
+  googleId: string;
 }

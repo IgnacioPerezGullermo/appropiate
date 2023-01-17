@@ -1,16 +1,30 @@
 import { JwtService } from '@nestjs/jwt';
-import { ClientsService } from 'src/clients/clients.service';
+import { BrokersService } from 'src/brokers/brokers.service';
+import { UserService } from 'src/clients/user.service';
 export declare class AuthService {
-    private readonly clientService;
+    private readonly brokerService;
+    private readonly userService;
     private readonly jwtService;
-    constructor(clientService: ClientsService, jwtService: JwtService);
+    constructor(brokerService: BrokersService, userService: UserService, jwtService: JwtService);
     validateUser(username: string, pass: string): Promise<any>;
-    login(client: any): Promise<{
+    validateBroker(username: string, pass: string): Promise<any>;
+    loginClient(client: any): Promise<{
         client: any;
         token: string;
     }>;
-    create(client: any): Promise<{
+    loginBroker(broker: any): Promise<{
+        broker: any;
+        token: string;
+    }>;
+    loginAdmin(admin: any): Promise<{
+        msg: string;
+    }>;
+    createClient(client: any): Promise<{
         user: any;
+        token: string;
+    }>;
+    createBroker(broker: any): Promise<{
+        broker: any;
         token: string;
     }>;
     private generateToken;

@@ -31,6 +31,9 @@ let BrokersController = class BrokersController {
     findOne(id) {
         return this.brokersService.findOne(id);
     }
+    findByUser(username) {
+        return this.brokersService.findOneByUsername(username);
+    }
     update(id, updateBrokerDto) {
         return this.brokersService.update(id, updateBrokerDto);
     }
@@ -59,6 +62,13 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BrokersController.prototype, "findOne", null);
 __decorate([
+    (0, common_1.Get)(':username'),
+    __param(0, (0, common_1.Param)('username')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], BrokersController.prototype, "findByUser", null);
+__decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -75,7 +85,7 @@ __decorate([
 ], BrokersController.prototype, "remove", null);
 BrokersController = __decorate([
     (0, swagger_1.ApiTags)('Brokers'),
-    (0, common_1.Controller)('brokers'),
+    (0, common_1.Controller)('broker'),
     __metadata("design:paramtypes", [brokers_service_1.BrokersService])
 ], BrokersController);
 exports.BrokersController = BrokersController;

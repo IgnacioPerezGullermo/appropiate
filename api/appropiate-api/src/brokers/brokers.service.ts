@@ -20,7 +20,7 @@ export class BrokersService {
   async create(CreateBrokerDto: CreateBrokerDto) {
     try {
       const broker = new Broker();
-      broker.name = CreateBrokerDto.name;
+      broker.username = CreateBrokerDto.username;
       broker.email = CreateBrokerDto.email.trim().toLowerCase();
       broker.password = CreateBrokerDto.password;
       broker.type = CreateBrokerDto.type;
@@ -28,6 +28,7 @@ export class BrokersService {
 
       const brokerData = await broker.save();
       console.log(brokerData);
+      return brokerData;
     } catch (error) {
       console.log(error);
       if (error.code === 11000) {
@@ -63,6 +64,9 @@ export class BrokersService {
       ],
     });
   }
+  async findOneByUsername(username: string) {
+    return await this.brokerRepository.findOne<Broker>({ where: { username } });
+  }
 
   async update(id: string, updateBrokerDto: UpdateBrokerDto) {
     const broker = await this.brokerRepository.findByPk<Broker>(id);
@@ -70,7 +74,7 @@ export class BrokersService {
       throw new BadRequestException(`User does not exist in db `);
     }
 
-    broker.name = updateBrokerDto.name || broker.name;
+    broker.username = updateBrokerDto.username || broker.username;
     broker.email = updateBrokerDto.email || broker.email;
     broker.tel = updateBrokerDto.tel || broker.tel;
     broker.type = updateBrokerDto.type || broker.type;
@@ -84,7 +88,7 @@ export class BrokersService {
     }
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} broker`;
+  async remove(id: string) {
+    return await this.brokerRepository.destroy({ where: { id } });
   }
 }

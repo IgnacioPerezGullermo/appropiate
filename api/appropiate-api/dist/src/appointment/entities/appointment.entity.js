@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Appointment = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const broker_entity_1 = require("../../brokers/entities/broker.entity");
-const client_entity_1 = require("../../clients/entities/client.entity");
+const user_entity_1 = require("../../clients/entities/user.entity");
 let Appointment = class Appointment extends sequelize_typescript_1.Model {
 };
 __decorate([
@@ -29,8 +29,12 @@ __decorate([
 ], Appointment.prototype, "title", void 0);
 __decorate([
     sequelize_typescript_1.Column,
-    __metadata("design:type", Date)
+    __metadata("design:type", String)
 ], Appointment.prototype, "date", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], Appointment.prototype, "startsAt", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => broker_entity_1.Broker),
     __metadata("design:type", broker_entity_1.Broker)
@@ -41,18 +45,26 @@ __decorate([
     __metadata("design:type", String)
 ], Appointment.prototype, "brokerId", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => client_entity_1.Client),
-    __metadata("design:type", client_entity_1.Client)
-], Appointment.prototype, "client", void 0);
+    (0, sequelize_typescript_1.BelongsTo)(() => user_entity_1.User),
+    __metadata("design:type", user_entity_1.User)
+], Appointment.prototype, "user", void 0);
 __decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => client_entity_1.Client),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.UUID, field: 'client_id' }),
+    (0, sequelize_typescript_1.ForeignKey)(() => user_entity_1.User),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.UUID, field: 'user_id' }),
     __metadata("design:type", String)
-], Appointment.prototype, "clientId", void 0);
+], Appointment.prototype, "userId", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
 ], Appointment.prototype, "type", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], Appointment.prototype, "description", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], Appointment.prototype, "googleId", void 0);
 Appointment = __decorate([
     sequelize_typescript_1.Table
 ], Appointment);
