@@ -1,13 +1,16 @@
 import { Model } from 'sequelize-typescript';
 import { Broker } from 'src/brokers/entities/broker.entity';
-import { Client } from 'src/clients/entities/client.entity';
+import { User } from 'src/clients/entities/user.entity';
 export declare class Appointment extends Model {
     id: string;
     title: string;
-    date: Date;
+    date: string;
+    startsAt: string;
     broker: Broker;
     brokerId: string;
-    client: Client;
-    clientId: string;
+    user: User;
+    userId: string;
     type: string;
+    description: string;
+    googleId: string;
 }

@@ -13,9 +13,9 @@ exports.JwtStrategy = void 0;
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
 const passport_jwt_1 = require("passport-jwt");
-const clients_service_1 = require("../clients/clients.service");
+const user_service_1 = require("../clients/user.service");
 let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy) {
-    constructor(clientService) {
+    constructor(userService) {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
@@ -23,10 +23,10 @@ let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(pas
             issuer: 'accounts.examplesoft.com',
             audience: 'yoursite.net',
         });
-        this.clientService = clientService;
+        this.userService = userService;
     }
     async validate(payload) {
-        const user = await this.clientService.findById(payload.id);
+        const user = await this.userService.findById(payload.id);
         if (!user) {
             throw new common_1.UnauthorizedException('You are not authorized to perform the operation');
         }
@@ -35,7 +35,7 @@ let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(pas
 };
 JwtStrategy = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [clients_service_1.ClientsService])
+    __metadata("design:paramtypes", [user_service_1.UserService])
 ], JwtStrategy);
 exports.JwtStrategy = JwtStrategy;
 //# sourceMappingURL=jwt.strategy.js.map

@@ -19,7 +19,7 @@ __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateBrokerDto.prototype, "name", void 0);
+], CreateBrokerDto.prototype, "username", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)(),
@@ -43,8 +43,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.Length)(10),
-    __metadata("design:type", Number)
+    (0, class_validator_1.Length)(12),
+    __metadata("design:type", String)
 ], CreateBrokerDto.prototype, "tel", void 0);
 exports.CreateBrokerDto = CreateBrokerDto;
 //# sourceMappingURL=create-broker.dto.js.map

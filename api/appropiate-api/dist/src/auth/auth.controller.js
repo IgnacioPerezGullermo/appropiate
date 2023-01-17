@@ -15,37 +15,75 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const create_client_dto_1 = require("../clients/dto/create-client.dto");
+const create_broker_dto_1 = require("../brokers/dto/create-broker.dto");
+const create_user_dto_1 = require("../clients/dto/create-user.dto");
+const admin_entity_1 = require("../clients/entities/admin.entity");
 const auth_service_1 = require("./auth.service");
 const local_auth_guard_1 = require("./local-auth.guard");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
     }
-    async login(req) {
-        return await this.authService.login(req.user);
+    async loginClient(req) {
+        console.log(req.user);
+        return await this.authService.loginClient(req.user);
     }
-    async signup(client) {
-        return await this.authService.create(client);
+    async signupClient(user) {
+        return await this.authService.createClient(user);
+    }
+    async loginAdmin(admin) {
+        return await this.authService.loginAdmin(admin);
+    }
+    async loginBroker(req) {
+        console.log(req);
+        return await this.authService.loginBroker(req.user);
+    }
+    async signupBroker(broker) {
+        return await this.authService.createBroker(broker);
     }
 };
 __decorate([
     (0, swagger_1.ApiTags)('Auth'),
     (0, common_1.UseGuards)(local_auth_guard_1.LocalAuthGuard),
-    (0, common_1.Post)('login'),
+    (0, common_1.Post)('clients/login'),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], AuthController.prototype, "login", null);
+], AuthController.prototype, "loginClient", null);
 __decorate([
     (0, swagger_1.ApiTags)('Auth'),
-    (0, common_1.Post)('signup'),
+    (0, common_1.Post)('clients/signup'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_client_dto_1.CreateClientDto]),
+    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
-], AuthController.prototype, "signup", null);
+], AuthController.prototype, "signupClient", null);
+__decorate([
+    (0, swagger_1.ApiTags)('Auth'),
+    (0, common_1.Post)('admin/login'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [admin_entity_1.Admin]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "loginAdmin", null);
+__decorate([
+    (0, swagger_1.ApiTags)('Auth'),
+    (0, common_1.UseGuards)(local_auth_guard_1.LocalAuthGuard),
+    (0, common_1.Post)('broker/login'),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "loginBroker", null);
+__decorate([
+    (0, swagger_1.ApiTags)('Auth'),
+    (0, common_1.Post)('broker/signup'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_broker_dto_1.CreateBrokerDto]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "signupBroker", null);
 AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

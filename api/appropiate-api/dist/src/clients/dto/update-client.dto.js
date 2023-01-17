@@ -9,31 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateClientDto = void 0;
+exports.UpdateUserDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-const create_client_dto_1 = require("./create-client.dto");
-class UpdateClientDto extends (0, swagger_1.PartialType)(create_client_dto_1.CreateClientDto) {
+const create_user_dto_1 = require("./create-user.dto");
+class UpdateUserDto extends (0, swagger_1.PartialType)(create_user_dto_1.CreateUserDto) {
 }
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], UpdateClientDto.prototype, "name", void 0);
+], UpdateUserDto.prototype, "name", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.Length)(8, 20),
     __metadata("design:type", String)
-], UpdateClientDto.prototype, "password", void 0);
+], UpdateUserDto.prototype, "password", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
-], UpdateClientDto.prototype, "email", void 0);
-exports.UpdateClientDto = UpdateClientDto;
+], UpdateUserDto.prototype, "email", void 0);
+exports.UpdateUserDto = UpdateUserDto;
 //# sourceMappingURL=update-client.dto.js.map

@@ -12,9 +12,7 @@ export class CreateBrokerDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  readonly name: string;
-
-  readonly date: Date;
+  readonly username: string;
 
   @ApiProperty()
   @IsString()
@@ -35,6 +33,6 @@ export class CreateBrokerDto {
 
   @ApiProperty()
   @IsNumber()
-  @Length(10)
-  readonly tel: number;
+  @Length(12)
+  readonly tel: string;
 }

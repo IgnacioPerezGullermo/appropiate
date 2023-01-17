@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateBrokerDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
-const create_broker_dto_1 = require("./create-broker.dto");
 const class_validator_1 = require("class-validator");
+const create_broker_dto_1 = require("./create-broker.dto");
 class UpdateBrokerDto extends (0, swagger_1.PartialType)(create_broker_dto_1.CreateBrokerDto) {
 }
 __decorate([
@@ -20,7 +20,7 @@ __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], UpdateBrokerDto.prototype, "name", void 0);
+], UpdateBrokerDto.prototype, "username", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)(),
@@ -44,8 +44,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.Length)(10),
-    __metadata("design:type", Number)
+    (0, class_validator_1.Length)(12),
+    __metadata("design:type", String)
 ], UpdateBrokerDto.prototype, "tel", void 0);
 exports.UpdateBrokerDto = UpdateBrokerDto;
 //# sourceMappingURL=update-broker.dto.js.map

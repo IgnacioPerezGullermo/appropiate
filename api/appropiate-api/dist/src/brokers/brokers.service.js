@@ -24,13 +24,14 @@ let BrokersService = class BrokersService {
     async create(CreateBrokerDto) {
         try {
             const broker = new broker_entity_1.Broker();
-            broker.name = CreateBrokerDto.name;
+            broker.username = CreateBrokerDto.username;
             broker.email = CreateBrokerDto.email.trim().toLowerCase();
             broker.password = CreateBrokerDto.password;
             broker.type = CreateBrokerDto.type;
             broker.tel = CreateBrokerDto.tel;
             const brokerData = await broker.save();
             console.log(brokerData);
+            return brokerData;
         }
         catch (error) {
             console.log(error);
@@ -60,12 +61,15 @@ let BrokersService = class BrokersService {
             ],
         });
     }
+    async findOneByUsername(username) {
+        return await this.brokerRepository.findOne({ where: { username } });
+    }
     async update(id, updateBrokerDto) {
         const broker = await this.brokerRepository.findByPk(id);
         if (!broker) {
             throw new common_1.BadRequestException(`User does not exist in db `);
         }
-        broker.name = updateBrokerDto.name || broker.name;
+        broker.username = updateBrokerDto.username || broker.username;
         broker.email = updateBrokerDto.email || broker.email;
         broker.tel = updateBrokerDto.tel || broker.tel;
         broker.type = updateBrokerDto.type || broker.type;
@@ -76,8 +80,8 @@ let BrokersService = class BrokersService {
             throw new common_1.InternalServerErrorException(`Can't update User - check server logs`);
         }
     }
-    remove(id) {
-        return `This action removes a #${id} broker`;
+    async remove(id) {
+        return await this.brokerRepository.destroy({ where: { id } });
     }
 };
 BrokersService = __decorate([

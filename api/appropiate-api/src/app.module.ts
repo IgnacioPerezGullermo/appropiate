@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
-import { ClientsModule } from './clients/clients.module';
-import { databaseProviders } from './database/database.providers';
-import { BrokersModule } from './brokers/brokers.module';
-import { PropiertiesModule } from './propierties/propierties.module';
-import { PostsModule } from './posts/posts.module';
 import { AppointmentModule } from './appointment/appointment.module';
 import { AuthModule } from './auth/auth.module';
+import { BrokersModule } from './brokers/brokers.module';
+import { UserModule } from './clients/user.module';
+import { databaseProviders } from './database/database.providers';
+import { PostsModule } from './posts/posts.module';
+import { PropiertiesModule } from './propierties/propierties.module';
 
 @Module({
   imports: [
-    ClientsModule,
+    UserModule,
     BrokersModule,
     PropiertiesModule,
     PostsModule,

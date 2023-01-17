@@ -13,7 +13,7 @@ import { CreateBrokerDto } from './dto/create-broker.dto';
 import { UpdateBrokerDto } from './dto/update-broker.dto';
 
 @ApiTags('Brokers')
-@Controller('brokers')
+@Controller('broker')
 export class BrokersController {
   constructor(private readonly brokersService: BrokersService) {}
 
@@ -30,6 +30,11 @@ export class BrokersController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.brokersService.findOne(id);
+  }
+
+  @Get(':username')
+  findByUser(@Param('username') username: string) {
+    return this.brokersService.findOneByUsername(username);
   }
 
   @Patch(':id')

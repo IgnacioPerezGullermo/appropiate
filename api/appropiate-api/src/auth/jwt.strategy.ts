@@ -1,11 +1,11 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { ClientsService } from 'src/clients/clients.service';
+import { UserService } from 'src/clients/user.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private readonly clientService: ClientsService) {
+  constructor(private readonly userService: UserService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
@@ -17,7 +17,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: any) {
     // check if user in the token actually exist
-    const user = await this.clientService.findById(payload.id);
+    const user = await this.userService.findById(payload.id);
     if (!user) {
       throw new UnauthorizedException(
         'You are not authorized to perform the operation',

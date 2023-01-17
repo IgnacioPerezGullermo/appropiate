@@ -31,10 +31,10 @@ let AppointmentController = class AppointmentController {
         return this.appointmentService.findOne(id);
     }
     update(id, updateAppointmentDto) {
-        return this.appointmentService.update(+id, updateAppointmentDto);
+        return this.appointmentService.update(id, updateAppointmentDto);
     }
     remove(id) {
-        return this.appointmentService.remove(+id);
+        return this.appointmentService.remove(id);
     }
 };
 __decorate([

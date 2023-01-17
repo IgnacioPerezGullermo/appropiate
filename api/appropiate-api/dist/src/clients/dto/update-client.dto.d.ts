@@ -1,6 +1,6 @@
-import { CreateClientDto } from './create-client.dto';
-declare const UpdateClientDto_base: import("@nestjs/common").Type<Partial<CreateClientDto>>;
-export declare class UpdateClientDto extends UpdateClientDto_base {
+import { CreateUserDto } from './create-user.dto';
+declare const UpdateUserDto_base: import("@nestjs/common").Type<Partial<CreateUserDto>>;
+export declare class UpdateUserDto extends UpdateUserDto_base {
     readonly name?: string;
     readonly password?: string;
     readonly email?: string;

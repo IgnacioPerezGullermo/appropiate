@@ -10,7 +10,15 @@ export class CreateAppointmentDto {
   readonly title: string;
 
   @ApiProperty()
-  readonly date: Date;
+  @IsString()
+  @IsNotEmpty()
+  readonly description: string;
+
+  @ApiProperty()
+  readonly date: string;
+
+  @ApiProperty()
+  readonly starstAt: string;
 
   @ApiProperty()
   @IsString()
@@ -26,4 +34,7 @@ export class CreateAppointmentDto {
   @IsString()
   @IsNotEmpty()
   readonly type: string;
+
+  @IsString()
+  readonly googleId?: string;
 }

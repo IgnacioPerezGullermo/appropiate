@@ -7,7 +7,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { Client } from './client.entity';
+import { User } from './user.entity';
 
 @Table
 export class AgeRange extends Model {

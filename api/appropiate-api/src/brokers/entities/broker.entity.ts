@@ -6,7 +6,6 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { Col } from 'sequelize/types/utils';
 import { Appointment } from '../../appointment/entities/appointment.entity';
 @Table
 export class Broker extends Model {
@@ -18,7 +17,7 @@ export class Broker extends Model {
   id: string;
 
   @Column
-  name: string;
+  username: string;
 
   @Column
   email: string;
@@ -30,7 +29,7 @@ export class Broker extends Model {
   type: string;
 
   @Column
-  tel: number;
+  tel: string;
 
   @HasMany(() => Appointment)
   appointment: Appointment[];
