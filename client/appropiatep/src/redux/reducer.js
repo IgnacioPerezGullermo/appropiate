@@ -1,8 +1,10 @@
 import {
-  AUTH_USER_LOGIN,
-  AUTH_USER_SIGNIN,
   AUTH_BROKER_LOGIN,
   AUTH_BROKER_SIGNIN,
+  AUTH_USER_LOGIN,
+  AUTH_USER_SIGNIN,
+  CLEAR_CREATED_BROKER,
+  GET_BROKERS,
 } from './types';
 
 const initialState = {
@@ -10,6 +12,8 @@ const initialState = {
   authToken: '',
   authBroker: [],
   clientAppointments: [],
+  createdBroker: [],
+  brokers: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -32,11 +36,20 @@ export default function rootReducer(state = initialState, action) {
         authBroker: action.payload.client,
         authToken: action.payload.token,
       };
-    case AUTH_USER_SIGNIN:
+    case AUTH_BROKER_SIGNIN:
       return {
         ...state,
-        authBroker: action.payload.user,
-        authToken: action.payload.token,
+        createdBroker: action.payload.user,
+      };
+    case CLEAR_CREATED_BROKER:
+      return {
+        ...state,
+        createdBroker: action.payload,
+      };
+    case GET_BROKERS:
+      return {
+        ...state,
+        brokers: action.payload,
       };
     default:
       return state;

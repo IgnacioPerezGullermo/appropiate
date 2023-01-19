@@ -68,7 +68,11 @@ let AppointmentService = class AppointmentService {
                     dateTime: end,
                     timeZone: 'America/Santiago',
                 },
-                attendees: [{ email: 'nacho71197@hotmail.com' }],
+                attendees: [
+                    { email: 'nacho71197@hotmail.com' },
+                    { email: 'mariajesus@appropiate.cl' },
+                    { email: 'info@appropiate.cl' },
+                ],
                 colorId: '4',
                 visibility: 'private',
             };

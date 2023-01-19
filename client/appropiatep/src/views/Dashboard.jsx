@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { authBrokerLogin } from '../redux/action';
+import { authAdminLogin } from '../redux/action';
 
 export const Dashboard = () => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ export const Dashboard = () => {
               username: values.username,
               password: values.password,
             };
-            dispatch(authBrokerLogin(broker), []);
+            dispatch(authAdminLogin(broker), []);
             navigate('/panel');
           }}
         >

@@ -27,6 +27,7 @@ let UserService = class UserService {
             user.username = createUserDto.username;
             user.email = createUserDto.email;
             user.password = createUserDto.password;
+            user.type = createUserDto.type;
             const userData = await user.save();
             return userData;
         }
@@ -41,6 +42,16 @@ let UserService = class UserService {
     }
     async findAll() {
         return await this.usersRepository.findAll({
+            include: [
+                {
+                    model: appointment_entity_1.Appointment,
+                },
+            ],
+        });
+    }
+    async findByType(type) {
+        return await this.usersRepository.findAll({
+            where: { type },
             include: [
                 {
                     model: appointment_entity_1.Appointment,

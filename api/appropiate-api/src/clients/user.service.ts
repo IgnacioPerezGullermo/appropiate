@@ -7,7 +7,7 @@ import {
 import { Appointment } from 'src/appointment/entities/appointment.entity';
 import { USER_REPOSITORY } from '../../core/constants';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-client.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -23,6 +23,7 @@ export class UserService {
       user.username = createUserDto.username;
       user.email = createUserDto.email;
       user.password = createUserDto.password;
+      user.type = createUserDto.type;
       const userData = await user.save();
       //console.log(clientData);
       return userData;
@@ -50,7 +51,16 @@ export class UserService {
       ],
     });
   }
-
+  async findByType(type: string) {
+    return await this.usersRepository.findAll({
+      where: { type },
+      include: [
+        {
+          model: Appointment,
+        },
+      ],
+    });
+  }
   async findById(id: string) {
     return await this.usersRepository.findOne({
       where: { id },

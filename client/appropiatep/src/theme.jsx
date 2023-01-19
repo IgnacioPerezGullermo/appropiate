@@ -5,6 +5,7 @@ import * as ReactDOM from 'react-dom/client';
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
   brand: {
+    green: 'green',
     900: '#5C19CB',
     800: '#D3E5EF',
     700: '#2A809F',
