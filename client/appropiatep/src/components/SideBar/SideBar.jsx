@@ -1,15 +1,15 @@
 import {
   Box,
   Button,
-  StackDivider,
   Heading,
+  StackDivider,
   Text,
   VStack,
   Wrap,
 } from '@chakra-ui/react';
 import React from 'react';
 
-export const SideBar = () => {
+export const SideBar = ({ Option, setOption }) => {
   return (
     <Box
       h={'100vh'}
@@ -36,6 +36,9 @@ export const SideBar = () => {
           m={0}
           borderRadius={'10px'}
           colorScheme={'blue'}
+          onClick={() => {
+            setOption('home');
+          }}
         >
           Inicio
         </Button>
@@ -45,6 +48,9 @@ export const SideBar = () => {
           m={0}
           borderRadius={'10px'}
           colorScheme={'blue'}
+          onClick={() => {
+            setOption('createBroker');
+          }}
         >
           Crear Broker
         </Button>
@@ -54,6 +60,9 @@ export const SideBar = () => {
           m={0}
           borderRadius={'10px'}
           colorScheme={'blue'}
+          onClick={() => {
+            setOption('blog');
+          }}
         >
           Blog
         </Button>
@@ -63,6 +72,9 @@ export const SideBar = () => {
           m={0}
           borderRadius={'10px'}
           colorScheme={'blue'}
+          onClick={() => {
+            setOption('appointments');
+          }}
         >
           Asesorias
         </Button>

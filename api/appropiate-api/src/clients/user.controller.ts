@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-client.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
 
 @ApiTags('Users')
@@ -25,6 +25,11 @@ export class UsersController {
   @Get()
   findAll() {
     return this.userService.findAll();
+  }
+
+  @Get(':type')
+  findAllByType(@Param('type') type: string) {
+    return this.userService.findByType(type);
   }
 
   @Get(':id')

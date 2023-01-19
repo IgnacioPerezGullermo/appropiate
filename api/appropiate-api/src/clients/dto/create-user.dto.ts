@@ -18,4 +18,8 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsEmail()
   readonly email: string;
+
+  @ApiProperty()
+  @IsString()
+  readonly type?: string;
 }

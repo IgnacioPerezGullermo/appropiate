@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import React from 'react';
 
-export const Overview = () => {
+export const CreateAppointment = () => {
   return (
     <Box
       bg={'whiteAlpha.400'}
@@ -11,7 +11,7 @@ export const Overview = () => {
       ml={'2.5vw'}
       mt={'4vh'}
     >
-      Overview
+      CreateAppointment
     </Box>
   );
 };

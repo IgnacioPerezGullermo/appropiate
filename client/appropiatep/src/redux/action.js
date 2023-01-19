@@ -1,9 +1,12 @@
 import axios from 'axios';
 import {
+  AUTH_ADMIN_LOGIN,
   AUTH_BROKER_LOGIN,
   AUTH_BROKER_SIGNIN,
   AUTH_USER_LOGIN,
   AUTH_USER_SIGNIN,
+  CLEAR_CREATED_BROKER,
+  GET_BROKERS,
 } from './types';
 
 export function authUserLogin(authInfo) {
@@ -36,14 +39,14 @@ export function authUserSignin(authInfo) {
   };
 }
 
-export function authBrokerLogin(authInfo) {
+export function authAdminLogin(authInfo) {
   return async function (dispatch) {
     try {
       console.log(authInfo);
       let info = await axios.post('/auth/admin/login', authInfo);
       let response = info.data;
       return dispatch({
-        type: AUTH_BROKER_LOGIN,
+        type: AUTH_ADMIN_LOGIN,
         payload: response,
       });
     } catch (error) {
@@ -55,10 +58,39 @@ export function authBrokerLogin(authInfo) {
 export function authBrokerSignin(authInfo) {
   return async function (dispatch) {
     try {
-      let info = await axios.post('/auth/broker/signup', authInfo);
+      let info = await axios.post('/auth/clients/signup', authInfo);
       let response = info.data;
       return dispatch({
         type: AUTH_BROKER_SIGNIN,
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function clearCreatedBroker() {
+  return async function (dispatch) {
+    try {
+      return dispatch({
+        type: CLEAR_CREATED_BROKER,
+        payload: '',
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getBroker() {
+  return async function (dispatch) {
+    try {
+      let info = await axios.get('users/broker');
+      let response = info.data;
+      //console.log(response);
+      return dispatch({
+        type: GET_BROKERS,
         payload: response,
       });
     } catch (error) {
