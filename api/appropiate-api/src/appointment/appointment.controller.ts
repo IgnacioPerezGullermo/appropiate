@@ -6,20 +6,20 @@ import {
   Param,
   Patch,
   Post,
-  Req,
 } from '@nestjs/common';
-import { request } from 'http';
+import { ApiTags } from '@nestjs/swagger';
 import { AppointmentService } from './appointment.service';
 import { CreateAppointmentDto } from './dto/create-appointment.dto';
 import { UpdateAppointmentDto } from './dto/update-appointment.dto';
 
+@ApiTags('appointment')
 @Controller('appointment')
 export class AppointmentController {
   constructor(private readonly appointmentService: AppointmentService) {}
 
   @Post()
-  create(@Body() createAppointmentDto: CreateAppointmentDto) {
-    return this.appointmentService.create(createAppointmentDto);
+  async create(@Body() createAppointmentDto: CreateAppointmentDto) {
+    return await this.appointmentService.create(createAppointmentDto);
   }
 
   @Get()

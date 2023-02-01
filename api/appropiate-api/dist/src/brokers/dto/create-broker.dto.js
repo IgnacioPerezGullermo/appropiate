@@ -19,32 +19,22 @@ __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateBrokerDto.prototype, "username", void 0);
+], CreateBrokerDto.prototype, "lastName", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.Length)(8, 20),
     __metadata("design:type", String)
-], CreateBrokerDto.prototype, "password", void 0);
+], CreateBrokerDto.prototype, "firstName", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
-], CreateBrokerDto.prototype, "email", void 0);
+], CreateBrokerDto.prototype, "profilePicture", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateBrokerDto.prototype, "type", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.Length)(12),
-    __metadata("design:type", String)
-], CreateBrokerDto.prototype, "tel", void 0);
+], CreateBrokerDto.prototype, "userId", void 0);
 exports.CreateBrokerDto = CreateBrokerDto;
 //# sourceMappingURL=create-broker.dto.js.map

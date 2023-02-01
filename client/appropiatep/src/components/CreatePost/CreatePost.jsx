@@ -4,7 +4,9 @@ import React from 'react';
 export const CreatePost = () => {
   return (
     <Box
-      bg={'whiteAlpha.400'}
+      bg={'whiteAlpha.800'}
+      pos={'absolute'}
+      left={'20%'}
       h={'92vh'}
       w={'75vw'}
       borderRadius={'15px'}

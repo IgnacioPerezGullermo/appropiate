@@ -5,6 +5,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { Appointment } from 'src/appointment/entities/appointment.entity';
+import { User } from 'src/users/entities/user.entity';
 import { BROKER_REPOSITORY } from '../../core/constants';
 import { CreateBrokerDto } from './dto/create-broker.dto';
 import { UpdateBrokerDto } from './dto/update-broker.dto';
@@ -17,17 +18,16 @@ export class BrokersService {
     private readonly brokerRepository: typeof Broker,
   ) {}
 
-  async create(CreateBrokerDto: CreateBrokerDto) {
+  async create(createBrokerDto: CreateBrokerDto) {
     try {
       const broker = new Broker();
-      broker.username = CreateBrokerDto.username;
-      broker.email = CreateBrokerDto.email.trim().toLowerCase();
-      broker.password = CreateBrokerDto.password;
-      broker.type = CreateBrokerDto.type;
-      broker.tel = CreateBrokerDto.tel;
+      broker.lastName = createBrokerDto.lastName;
+      broker.firstName = createBrokerDto.firstName;
+      broker.profilePicture = createBrokerDto.profilePicture;
+      broker.userId = createBrokerDto.userId;
 
+      console.log(createBrokerDto, broker);
       const brokerData = await broker.save();
-      console.log(brokerData);
       return brokerData;
     } catch (error) {
       console.log(error);
@@ -48,7 +48,7 @@ export class BrokersService {
     return await this.brokerRepository.findAll<Broker>({
       include: [
         {
-          model: Appointment,
+          model: User,
         },
       ],
     });
@@ -59,7 +59,7 @@ export class BrokersService {
       where: { id },
       include: [
         {
-          model: Appointment,
+          model: User,
         },
       ],
     });
@@ -74,10 +74,10 @@ export class BrokersService {
       throw new BadRequestException(`User does not exist in db `);
     }
 
-    broker.username = updateBrokerDto.username || broker.username;
-    broker.email = updateBrokerDto.email || broker.email;
-    broker.tel = updateBrokerDto.tel || broker.tel;
-    broker.type = updateBrokerDto.type || broker.type;
+    broker.lastName = updateBrokerDto.lastName || broker.lastName;
+    broker.firstName = updateBrokerDto.firstName || broker.firstName;
+    broker.profilePicture =
+      updateBrokerDto.profilePicture || broker.profilePicture;
 
     try {
       const data = await broker.save();

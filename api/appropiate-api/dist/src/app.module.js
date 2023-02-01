@@ -11,20 +11,22 @@ const common_1 = require("@nestjs/common");
 const appointment_module_1 = require("./appointment/appointment.module");
 const auth_module_1 = require("./auth/auth.module");
 const brokers_module_1 = require("./brokers/brokers.module");
-const user_module_1 = require("./clients/user.module");
+const clients_module_1 = require("./clients/clients.module");
 const posts_module_1 = require("./posts/posts.module");
 const propierties_module_1 = require("./propierties/propierties.module");
+const users_module_1 = require("./users/users.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            user_module_1.UserModule,
+            clients_module_1.ClientModule,
             brokers_module_1.BrokersModule,
             propierties_module_1.PropiertiesModule,
             posts_module_1.PostsModule,
             appointment_module_1.AppointmentModule,
             auth_module_1.AuthModule,
+            users_module_1.UsersModule,
         ],
         controllers: [],
         providers: [],

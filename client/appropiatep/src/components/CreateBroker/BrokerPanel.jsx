@@ -1,9 +1,11 @@
 import {
   Avatar,
   Box,
+  Button,
   Grid,
   GridItem,
   Heading,
+  Select,
   Tab,
   TabList,
   TabPanel,
@@ -14,32 +16,36 @@ import {
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBroker } from '../../redux/action';
+import { getBrokers } from '../../redux/brokers/brokersAction';
+import { getUsers } from '../../redux/users/usersAction';
 import { BrokerCreationPanel } from './Components/BrokerCreationPanel';
 import { BrokerForm } from './Components/BrokerForm';
 import { BrokerList } from './Components/BrokerList';
 
 export const BrokerPanel = ({ setOption, Option }) => {
   const dispatch = useDispatch();
+  const { brokers, createdBroker, error, success } = useSelector(
+    (state) => state.brokers
+  );
+  const { users } = useSelector((state) => state.users);
   const [BasicInfoState, setBasicInfoState] = React.useState('pending');
   const [TabIndex, setTabIndex] = React.useState(0);
+  const [SelectedUser, setSelectedUser] = React.useState('');
+  const [Continue, setContinue] = React.useState(false);
   const handleTabChange = (index) => {
     setTabIndex(index);
   };
   React.useEffect(() => {
-    dispatch(getBroker());
+    dispatch(getBrokers());
+    dispatch(getUsers());
   }, [TabIndex]);
-
-  const createdBroker = useSelector((state) => state.createdBroker);
-  const authToken = useSelector((state) => state.authToken);
-  const brokers = useSelector((state) => state.brokers);
   const opciones = {
     weekday: 'long',
     year: 'numeric',
     month: 'short',
     day: 'numeric',
   };
-  console.log(brokers[0]);
+  //console.log(brokers[0]);
   let formatDate = new Date(createdBroker?.createdAt);
   formatDate = formatDate.toLocaleDateString('es-CL', opciones);
   function capitalizeFirstLetter(string) {
@@ -47,9 +53,11 @@ export const BrokerPanel = ({ setOption, Option }) => {
   }
   return (
     <Box
-      bg={'whiteAlpha.400'}
+      bg={'whiteAlpha.800'}
       h={'92vh'}
       w={'75vw'}
+      pos={'absolute'}
+      left={'20%'}
       borderRadius={'15px'}
       ml={'2.5vw'}
       mt={'4vh'}
@@ -62,27 +70,28 @@ export const BrokerPanel = ({ setOption, Option }) => {
       >
         <TabList>
           <Tab
-            bg={'blue.900'}
-            color={'blue.400'}
-            border={'none'}
+            bg={'whiteAlpha.900'}
+            color={'black'}
+            borderBottom={'1px solid gray'}
             borderRadius={'15px 0% 0% 0%'}
-            _selected={{ color: 'white', bg: 'blue.500' }}
+            _selected={{ color: 'white', bg: 'blue.600' }}
+            _hover={{}}
           >
             Brokers Overview
           </Tab>
           <Tab
-            bg={'blue.900'}
-            color={'blue.400'}
-            border={'none'}
-            _selected={{ color: 'white', bg: 'blue.500' }}
+            bg={'whiteAlpha.900'}
+            color={'black'}
+            borderBottom={'1px solid gray'}
+            _selected={{ color: 'white', bg: 'blue.600' }}
           >
             Crear Broker
           </Tab>
           <Tab
-            bg={'blue.900'}
-            color={'blue.400'}
-            border={'none'}
-            _selected={{ color: 'white', bg: 'blue.500' }}
+            bg={'whiteAlpha.900'}
+            color={'black'}
+            borderBottom={'1px solid gray'}
+            _selected={{ color: 'white', bg: 'blue.600' }}
             borderRadius={'0% 15px 0% 0%'}
           >
             Modificar Broker
@@ -94,15 +103,35 @@ export const BrokerPanel = ({ setOption, Option }) => {
             <BrokerList brokers={brokers} />
           </TabPanel>
           <TabPanel>
-            <BrokerCreationPanel
-              id={createdBroker?.id}
-              username={createdBroker?.username}
-              email={createdBroker?.email}
-              createdAt={formatDate}
-              createdBroker={createdBroker}
-              setBasicInfoState={setBasicInfoState}
-              handleTabChange={handleTabChange}
-            ></BrokerCreationPanel>
+            {Continue === false ? (
+              users?.map((user) => {
+                return (
+                  <Box>
+                    <Text>{user.username}</Text>
+                    <Button
+                      onClick={() => {
+                        setSelectedUser(user.id);
+                        setContinue(true);
+                      }}
+                    >
+                      Convertir en Broker
+                    </Button>
+                  </Box>
+                );
+              })
+            ) : (
+              <BrokerCreationPanel
+                setContinue={setContinue}
+                id={createdBroker?.id}
+                username={createdBroker?.username}
+                email={createdBroker?.email}
+                createdAt={formatDate}
+                createdBroker={createdBroker}
+                SelectedUser={SelectedUser}
+                setBasicInfoState={setBasicInfoState}
+                handleTabChange={handleTabChange}
+              ></BrokerCreationPanel>
+            )}
           </TabPanel>
           <TabPanel>
             <p>Form de modificacion</p>

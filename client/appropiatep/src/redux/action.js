@@ -7,6 +7,8 @@ import {
   AUTH_USER_SIGNIN,
   CLEAR_CREATED_BROKER,
   GET_BROKERS,
+  LOG_OUT,
+  SET_SESSION_TYPE,
 } from './types';
 
 export function authUserLogin(authInfo) {
@@ -77,6 +79,38 @@ export function clearCreatedBroker() {
         type: CLEAR_CREATED_BROKER,
         payload: '',
       });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function logOut() {
+  return async function (dispatch) {
+    try {
+      return dispatch({
+        type: LOG_OUT,
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function setSessionType(arg) {
+  return async function (dispatch) {
+    try {
+      if (arg === 'broker') {
+        return dispatch({
+          type: SET_SESSION_TYPE,
+          payload: 'broker',
+        });
+      }
+      if (arg === null) {
+        return dispatch({
+          type: SET_SESSION_TYPE,
+          payload: 'client',
+        });
+      }
     } catch (error) {
       console.log(error);
     }

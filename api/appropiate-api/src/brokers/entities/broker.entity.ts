@@ -1,12 +1,14 @@
 import {
+  BelongsTo,
   Column,
   DataType,
   ForeignKey,
-  HasMany,
+  HasOne,
   Model,
   Table,
 } from 'sequelize-typescript';
-import { Appointment } from '../../appointment/entities/appointment.entity';
+import { User } from 'src/users/entities/user.entity';
+
 @Table
 export class Broker extends Model {
   @Column({
@@ -17,20 +19,18 @@ export class Broker extends Model {
   id: string;
 
   @Column
-  username: string;
+  lastName: string;
 
   @Column
-  email: string;
+  firstName: string;
 
   @Column
-  password: string;
+  profilePicture: string;
 
-  @Column
-  type: string;
+  @BelongsTo(() => User)
+  user: User[];
 
-  @Column
-  tel: string;
-
-  @HasMany(() => Appointment)
-  appointment: Appointment[];
+  @ForeignKey(() => User)
+  @Column({ type: DataType.UUID, field: 'user_id' })
+  userId: string;
 }

@@ -7,6 +7,13 @@ import {
   VStack,
   Wrap,
 } from '@chakra-ui/react';
+import {
+  UilCalendarAlt,
+  UilDocumentLayoutRight,
+  UilHome,
+  UilSignout,
+  UilUserPlus,
+} from '@iconscout/react-unicons';
 import React from 'react';
 
 export const SideBar = ({ Option, setOption }) => {
@@ -14,7 +21,7 @@ export const SideBar = ({ Option, setOption }) => {
     <Box
       h={'100vh'}
       w={'20vw'}
-      bg={'gray.800'}
+      bg={'secondary'}
       pos={'absolute'}
       top={'0%'}
       left={'0%'}
@@ -23,31 +30,33 @@ export const SideBar = ({ Option, setOption }) => {
         Logo
       </Heading>
       <VStack
-        spacing={1}
+        spacing={3}
         h={'auto'}
         w={'18vw'}
         pos={'absolute'}
-        top={'40%'}
+        top={'15%'}
         left={'4%'}
+        justifyContent={'left'}
       >
         <Button
-          width={'18vw'}
-          height={'10vh'}
-          m={0}
-          borderRadius={'10px'}
-          colorScheme={'blue'}
+          id="dashboard"
+          leftIcon={<UilHome />}
+          variant="sidebarButton"
+          bg={Option === 'dashboard' ? 'blue.600' : 'secondary'}
+          color={Option === 'dashboard' ? 'whiteAlpha.900' : 'blackAlpha.900'}
           onClick={() => {
-            setOption('home');
+            setOption('dashboard');
           }}
         >
-          Inicio
+          Dashboard
         </Button>
         <Button
-          width={'18vw'}
-          height={'10vh'}
-          m={0}
-          borderRadius={'10px'}
-          colorScheme={'blue'}
+          leftIcon={<UilUserPlus />}
+          variant="sidebarButton"
+          bg={Option === 'createBroker' ? 'blue.600' : 'secondary'}
+          color={
+            Option === 'createBroker' ? 'whiteAlpha.900' : 'blackAlpha.900'
+          }
           onClick={() => {
             setOption('createBroker');
           }}
@@ -55,11 +64,10 @@ export const SideBar = ({ Option, setOption }) => {
           Crear Broker
         </Button>
         <Button
-          width={'18vw'}
-          height={'10vh'}
-          m={0}
-          borderRadius={'10px'}
-          colorScheme={'blue'}
+          leftIcon={<UilDocumentLayoutRight />}
+          variant="sidebarButton"
+          bg={Option === 'blog' ? 'blue.600' : 'secondary'}
+          color={Option === 'blog' ? 'whiteAlpha.900' : 'blackAlpha.900'}
           onClick={() => {
             setOption('blog');
           }}
@@ -67,27 +75,30 @@ export const SideBar = ({ Option, setOption }) => {
           Blog
         </Button>
         <Button
-          width={'18vw'}
-          height={'10vh'}
-          m={0}
-          borderRadius={'10px'}
-          colorScheme={'blue'}
+          leftIcon={<UilCalendarAlt />}
+          variant="sidebarButton"
+          bg={Option === 'appointments' ? 'blue.600' : 'secondary'}
+          color={
+            Option === 'appointments' ? 'whiteAlpha.900' : 'blackAlpha.900'
+          }
           onClick={() => {
             setOption('appointments');
           }}
         >
           Asesorias
-        </Button>
-        <Button
-          width={'18vw'}
-          height={'10vh'}
-          m={0}
-          borderRadius={'10px'}
-          colorScheme={'blue'}
-        >
-          Log Out
         </Button>{' '}
       </VStack>
+      <Button
+        variant="logoutButton"
+        pos={'absolute'}
+        bottom={'5%'}
+        left={'35%'}
+        // onClick={() => {
+        //   setAdminLogged(false);
+        // }}
+      >
+        <UilSignout />
+      </Button>
     </Box>
   );
 };
