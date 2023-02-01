@@ -1,6 +1,5 @@
-import { CreateBrokerDto } from 'src/brokers/dto/create-broker.dto';
-import { CreateUserDto } from 'src/clients/dto/create-user.dto';
 import { Admin } from 'src/clients/entities/admin.entity';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthService } from './auth.service';
 export declare class AuthController {
     private authService;
@@ -15,13 +14,5 @@ export declare class AuthController {
     }>;
     loginAdmin(admin: Admin): Promise<{
         msg: string;
-    }>;
-    loginBroker(req: any): Promise<{
-        broker: any;
-        token: string;
-    }>;
-    signupBroker(broker: CreateBrokerDto): Promise<{
-        broker: any;
-        token: string;
     }>;
 }

@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppointmentController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const appointment_service_1 = require("./appointment.service");
 const create_appointment_dto_1 = require("./dto/create-appointment.dto");
 const update_appointment_dto_1 = require("./dto/update-appointment.dto");
@@ -21,8 +22,8 @@ let AppointmentController = class AppointmentController {
     constructor(appointmentService) {
         this.appointmentService = appointmentService;
     }
-    create(createAppointmentDto) {
-        return this.appointmentService.create(createAppointmentDto);
+    async create(createAppointmentDto) {
+        return await this.appointmentService.create(createAppointmentDto);
     }
     findAll() {
         return this.appointmentService.findAll();
@@ -42,7 +43,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_appointment_dto_1.CreateAppointmentDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AppointmentController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
@@ -73,6 +74,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AppointmentController.prototype, "remove", null);
 AppointmentController = __decorate([
+    (0, swagger_1.ApiTags)('appointment'),
     (0, common_1.Controller)('appointment'),
     __metadata("design:paramtypes", [appointment_service_1.AppointmentService])
 ], AppointmentController);

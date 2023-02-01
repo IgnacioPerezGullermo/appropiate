@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Broker = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-const appointment_entity_1 = require("../../appointment/entities/appointment.entity");
+const user_entity_1 = require("../../users/entities/user.entity");
 let Broker = class Broker extends sequelize_typescript_1.Model {
 };
 __decorate([
@@ -25,27 +25,24 @@ __decorate([
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], Broker.prototype, "username", void 0);
+], Broker.prototype, "lastName", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], Broker.prototype, "email", void 0);
+], Broker.prototype, "firstName", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], Broker.prototype, "password", void 0);
+], Broker.prototype, "profilePicture", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], Broker.prototype, "type", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], Broker.prototype, "tel", void 0);
-__decorate([
-    (0, sequelize_typescript_1.HasMany)(() => appointment_entity_1.Appointment),
+    (0, sequelize_typescript_1.BelongsTo)(() => user_entity_1.User),
     __metadata("design:type", Array)
-], Broker.prototype, "appointment", void 0);
+], Broker.prototype, "user", void 0);
+__decorate([
+    (0, sequelize_typescript_1.ForeignKey)(() => user_entity_1.User),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.UUID, field: 'user_id' }),
+    __metadata("design:type", String)
+], Broker.prototype, "userId", void 0);
 Broker = __decorate([
     sequelize_typescript_1.Table
 ], Broker);

@@ -20,32 +20,18 @@ __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], UpdateBrokerDto.prototype, "username", void 0);
+], UpdateBrokerDto.prototype, "lastName", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.Length)(8, 20),
     __metadata("design:type", String)
-], UpdateBrokerDto.prototype, "password", void 0);
+], UpdateBrokerDto.prototype, "firstName", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
-], UpdateBrokerDto.prototype, "email", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], UpdateBrokerDto.prototype, "type", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.Length)(12),
-    __metadata("design:type", String)
-], UpdateBrokerDto.prototype, "tel", void 0);
+], UpdateBrokerDto.prototype, "profilePicture", void 0);
 exports.UpdateBrokerDto = UpdateBrokerDto;
 //# sourceMappingURL=update-broker.dto.js.map

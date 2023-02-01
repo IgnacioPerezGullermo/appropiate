@@ -6,6 +6,7 @@ import {
   Grid,
   GridItem,
   Heading,
+  Icon,
   Skeleton,
   SkeletonCircle,
   SkeletonText,
@@ -16,10 +17,11 @@ import {
   Tabs,
   Text,
 } from '@chakra-ui/react';
+import { UilCheck } from '@iconscout/react-unicons';
 import React from 'react';
-import { BrokerForm } from './BrokerForm';
 import { useDispatch } from 'react-redux';
-import { clearCreatedBroker } from '../../../redux/action';
+import { clearCreatedBroker } from '../../../redux/brokers/brokersAction';
+import { BrokerForm } from './BrokerForm';
 
 export const BrokerCreationPanel = ({
   id,
@@ -27,8 +29,10 @@ export const BrokerCreationPanel = ({
   email,
   createdAt,
   createdBroker,
+  SelectedUser,
   setBasicInfoState,
   handleTabChange,
+  setContinue,
 }) => {
   const dispatch = useDispatch();
   return (
@@ -43,17 +47,18 @@ export const BrokerCreationPanel = ({
       fontWeight="bold"
     >
       <GridItem pl="2" area={'form'}>
-        {createdBroker?.length === 0 ? (
+        {createdBroker?.id === undefined ? (
           <Box
             h={'80vh'}
             w={'99%'}
             mt={'1vh'}
-            bg={'blackAlpha.500'}
+            bg={'white'}
             p={3}
             borderRadius={'15px'}
           >
             <BrokerForm
               createdBroker={createdBroker}
+              SelectedUser={SelectedUser}
               setBasicInfoState={setBasicInfoState}
             />
           </Box>
@@ -62,20 +67,28 @@ export const BrokerCreationPanel = ({
             h={'80vh'}
             w={'99%'}
             mt={'1vh'}
-            bg={'blackAlpha.500'}
+            bg={'white'}
             p={3}
             borderRadius={'15px'}
             textAlign={'center'}
             alignContent={'center'}
           >
-            <Heading mt={'8vh'} mb={'2vh'}>
+            <Box mb={0} alignItems={'center'} ml={'32%'}>
+              <UilCheck size="200" color="#4299E1" />
+            </Box>
+            <Heading mt={'0vh'} mb={'2vh'} color={'blue.400'}>
               Creado con exito
             </Heading>
             <Text mb={'3vh'}>Continua con la siguientes opciones:</Text>
             <Button
               mt={'5vh'}
               mb={'2vh'}
+              bg={'blue.600'}
+              color={'white'}
+              h={'6vh'}
+              _hover={{ bg: 'blue.400', color: 'white' }}
               onClick={() => {
+                setContinue(false);
                 dispatch(clearCreatedBroker());
               }}
             >
@@ -83,12 +96,19 @@ export const BrokerCreationPanel = ({
             </Button>
             <Divider
               orientation="horizontal"
+              variant={'solid'}
+              size={'100px'}
               w={'50%'}
               ml={'25%'}
               marginBlock={'2vh'}
+              colorScheme="blue"
             />
             <Button
               mt={'2vh'}
+              bg={'blue.600'}
+              color={'white'}
+              h={'6vh'}
+              _hover={{ bg: 'blue.400', color: 'white' }}
               onClick={() => {
                 handleTabChange(2);
               }}
@@ -99,12 +119,12 @@ export const BrokerCreationPanel = ({
         )}
       </GridItem>
       <GridItem pl="2" area={'card'}>
-        {createdBroker?.length === 0 ? (
+        {createdBroker?.id === undefined ? (
           <Box
             h={'80vh'}
             w={'99%'}
             mt={'1vh'}
-            bg={'blackAlpha.500'}
+            bg={'white'}
             p={3}
             borderRadius={'15px'}
             textAlign={'center'}
@@ -127,22 +147,39 @@ export const BrokerCreationPanel = ({
               skeletonHeight={'6'}
               w={'40%'}
               ml={'30%'}
+              speed={'1.2'}
+              startColor={'blackAlpha.500'}
+              endColor={'blackAlpha.200'}
             ></SkeletonText>
-            <SkeletonCircle size={'20vh'} ml={'30%'} />
-            <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+            <SkeletonCircle
+              size={'20vh'}
+              ml={'30%'}
+              speed={'1.2'}
+              startColor={'blackAlpha.500'}
+              endColor={'blackAlpha.200'}
+            />
+            <SkeletonText
+              mt="4"
+              noOfLines={4}
+              spacing="4"
+              skeletonHeight="2"
+              speed={'1.2'}
+              startColor={'blackAlpha.500'}
+              endColor={'blackAlpha.200'}
+            />
           </Box>
         ) : (
           <Box
             h={'80vh'}
             w={'28.5vw'}
             mt={'1vh'}
-            bg={'blackAlpha.500'}
+            bg={'white'}
             p={3}
             borderRadius={'15px'}
             textAlign={'center'}
           >
             <Heading textAlign={'center'} mt={'4vh'} color={'blue.400'}>
-              {username.toUpperCase()}
+              {username?.toUpperCase()}
             </Heading>
             <Avatar mt={'0.8vh'} size={'2xl'}></Avatar>
             <Text
@@ -159,7 +196,9 @@ export const BrokerCreationPanel = ({
             <Text fontSize={'1.3vw'} fontWeight={'bold'} color={'blue.400'}>
               Creado el:
             </Text>
-            <Text>{createdAt}</Text>
+            <Text fontSize={'1vw'} mb={'2vh'}>
+              {createdAt !== '' ? createdAt : ''}
+            </Text>
           </Box>
         )}
       </GridItem>

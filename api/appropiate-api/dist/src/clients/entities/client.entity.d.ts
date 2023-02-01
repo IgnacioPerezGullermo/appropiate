@@ -1,10 +1,12 @@
 import { Model } from 'sequelize-typescript';
-import { Appointment } from 'src/appointment/entities/appointment.entity';
+import { User } from 'src/users/entities/user.entity';
 export declare class Client extends Model {
     id: string;
-    username: string;
-    password: string;
-    email: string;
-    appointment: Appointment[];
-    AgeRangeId: string;
+    lastName: string;
+    firstName: string;
+    ageRange: string;
+    basicIncome: number;
+    profilePicture: string;
+    user: User[];
+    userId: string;
 }

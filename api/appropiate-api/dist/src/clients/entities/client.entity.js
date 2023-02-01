@@ -11,8 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Client = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-const appointment_entity_1 = require("../../appointment/entities/appointment.entity");
-const agerange_entity_1 = require("./agerange.entity");
+const user_entity_1 = require("../../users/entities/user.entity");
 let Client = class Client extends sequelize_typescript_1.Model {
 };
 __decorate([
@@ -26,23 +25,31 @@ __decorate([
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], Client.prototype, "username", void 0);
+], Client.prototype, "lastName", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], Client.prototype, "password", void 0);
+], Client.prototype, "firstName", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], Client.prototype, "email", void 0);
+], Client.prototype, "ageRange", void 0);
 __decorate([
-    (0, sequelize_typescript_1.HasMany)(() => appointment_entity_1.Appointment),
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], Client.prototype, "basicIncome", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], Client.prototype, "profilePicture", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasOne)(() => user_entity_1.User),
     __metadata("design:type", Array)
-], Client.prototype, "appointment", void 0);
+], Client.prototype, "user", void 0);
 __decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => agerange_entity_1.AgeRange),
+    (0, sequelize_typescript_1.ForeignKey)(() => user_entity_1.User),
     __metadata("design:type", String)
-], Client.prototype, "AgeRangeId", void 0);
+], Client.prototype, "userId", void 0);
 Client = __decorate([
     sequelize_typescript_1.Table
 ], Client);

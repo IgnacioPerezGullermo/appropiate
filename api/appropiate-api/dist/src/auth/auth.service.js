@@ -25,11 +25,9 @@ const common_1 = require("@nestjs/common");
 const jwt_1 = require("@nestjs/jwt");
 const bcrypt = require("bcrypt");
 const console_1 = require("console");
-const brokers_service_1 = require("../brokers/brokers.service");
-const user_service_1 = require("../clients/user.service");
+const users_service_1 = require("../users/users.service");
 let AuthService = class AuthService {
-    constructor(brokerService, userService, jwtService) {
-        this.brokerService = brokerService;
+    constructor(userService, jwtService) {
         this.userService = userService;
         this.jwtService = jwtService;
     }
@@ -40,39 +38,17 @@ let AuthService = class AuthService {
         }
         const loginClient = client['dataValues'];
         const match = await this.comparePassword(pass, loginClient.password);
-        if (!match) {
-            console.log(match);
+        if (match === false) {
             return null;
         }
         const _a = client['dataValues'], { password } = _a, result = __rest(_a, ["password"]);
-        return result;
-    }
-    async validateBroker(username, pass) {
-        const broker = await this.brokerService.findOneByUsername(username);
-        if (!broker) {
-            console.log('no puedo encontrar al Broker');
-            return null;
-        }
-        console.log(broker);
-        const loginBroker = broker['dataValues'];
-        const match = await this.comparePassword(pass, loginBroker.password);
-        console.log(match);
-        if (!match) {
-            return null;
-        }
-        const _a = broker['dataValues'], { password } = _a, result = __rest(_a, ["password"]);
         return result;
     }
     async loginClient(client) {
         const token = await this.generateToken(client);
         return { client, token };
     }
-    async loginBroker(broker) {
-        const token = await this.generateToken(broker);
-        return { broker, token };
-    }
     async loginAdmin(admin) {
-        console.log(admin.username, process.env.SUPERADMINUSER);
         if (admin.username === process.env.SUPERADMINUSER &&
             admin.password === process.env.SUPERADMINPASS) {
             return { msg: `Bienvenido ${admin.username}` };
@@ -87,14 +63,6 @@ let AuthService = class AuthService {
         const _a = newClient['dataValues'], { password } = _a, result = __rest(_a, ["password"]);
         const token = await this.generateToken(result);
         return { user: result, token };
-    }
-    async createBroker(broker) {
-        const pass = await this.hashPassword(broker.password);
-        const newBroker = await this.brokerService.create(Object.assign(Object.assign({}, broker), { password: pass }));
-        console.log(newBroker);
-        const _a = newBroker['dataValues'], { password } = _a, result = __rest(_a, ["password"]);
-        const token = await this.generateToken(result);
-        return { broker: result, token };
     }
     async generateToken(client) {
         const token = await this.jwtService.signAsync(client);
@@ -112,8 +80,7 @@ let AuthService = class AuthService {
 };
 AuthService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [brokers_service_1.BrokersService,
-        user_service_1.UserService,
+    __metadata("design:paramtypes", [users_service_1.UsersService,
         jwt_1.JwtService])
 ], AuthService);
 exports.AuthService = AuthService;

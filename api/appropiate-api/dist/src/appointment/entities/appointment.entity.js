@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Appointment = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const broker_entity_1 = require("../../brokers/entities/broker.entity");
-const user_entity_1 = require("../../clients/entities/user.entity");
+const client_entity_1 = require("../../clients/entities/client.entity");
 let Appointment = class Appointment extends sequelize_typescript_1.Model {
 };
 __decorate([
@@ -36,23 +36,23 @@ __decorate([
     __metadata("design:type", String)
 ], Appointment.prototype, "startsAt", void 0);
 __decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => client_entity_1.Client),
+    __metadata("design:type", Array)
+], Appointment.prototype, "Client", void 0);
+__decorate([
+    (0, sequelize_typescript_1.ForeignKey)(() => client_entity_1.Client),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.UUID, field: 'client_id' }),
+    __metadata("design:type", String)
+], Appointment.prototype, "clientId", void 0);
+__decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => broker_entity_1.Broker),
-    __metadata("design:type", broker_entity_1.Broker)
-], Appointment.prototype, "broker", void 0);
+    __metadata("design:type", Array)
+], Appointment.prototype, "Broker", void 0);
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => broker_entity_1.Broker),
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.UUID, field: 'broker_id' }),
     __metadata("design:type", String)
 ], Appointment.prototype, "brokerId", void 0);
-__decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => user_entity_1.User),
-    __metadata("design:type", user_entity_1.User)
-], Appointment.prototype, "user", void 0);
-__decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => user_entity_1.User),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.UUID, field: 'user_id' }),
-    __metadata("design:type", String)
-], Appointment.prototype, "userId", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)

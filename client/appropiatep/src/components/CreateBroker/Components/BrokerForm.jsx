@@ -3,31 +3,34 @@ import { Formik, useFormik } from 'formik';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { authBrokerSignin } from '../../../redux/action';
+import { registerBroker } from '../../../redux/brokers/brokersAction';
+import { updateUsers } from '../../../redux/users/usersAction';
 
-export const BrokerForm = ({ createdBroker, setBasicInfoState }) => {
+export const BrokerForm = ({
+  createdBroker,
+  SelectedUser,
+  setBasicInfoState,
+}) => {
   const dispatch = useDispatch();
   const formik = useFormik({
-    initialValues: { username: '', email: '', password: '' },
+    initialValues: {
+      lastName: '',
+      firstName: '',
+      profilePicture: '',
+    },
     validate: (values) => {
       const errors = {};
-      if (!values.email) {
-        errors.email = 'Required';
-      } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-      ) {
-        errors.email = 'Invalid email address';
-      }
       return errors;
     },
     onSubmit: (values, actions) => {
-      const client = {
-        username: values.username,
-        email: values.email,
-        password: values.password,
-        type: 'broker',
+      const broker = {
+        lastName: values.lastName,
+        firstName: values.firstName,
+        profilePicture: values.profilePicture,
+        userId: SelectedUser,
       };
-      console.log(client);
-      dispatch(authBrokerSignin(client), []);
+      console.log(broker);
+      dispatch(registerBroker(broker), []);
       setBasicInfoState('sucess');
     },
   });
@@ -42,40 +45,40 @@ export const BrokerForm = ({ createdBroker, setBasicInfoState }) => {
         >
           Informacion Basica
         </Heading>
-        <FormLabel fontSize={'2vh'} color={'white'}>
-          Nombre de Usuario
+        <FormLabel fontSize={'2vh'} color={'blue.400'}>
+          Apellidos
         </FormLabel>
         <Input
           type="text"
-          name="username"
-          borderColor={'whiteAlpha.300'}
-          bg={'whiteAlpha.200'}
+          variant={'outline'}
+          name="lastName"
+          bg={'blackAlpha.50'}
+          color={'black'}
+          focusBorderColor={'blue.200'}
           size={'md'}
-          color={'whiteAlpha.700'}
           w={'100%'}
           mb={'3vh'}
-          focusBorderColor={'blue.500'}
           onReset={formik.handleReset}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.username}
+          value={formik.values.lastName}
         />
-        <FormLabel fontSize={'2vh'} color={'white'} mt={'0.8em'}>
-          E-Mail
+        <FormLabel fontSize={'2vh'} color={'blue.600'} mt={'0.8em'}>
+          Nombres
         </FormLabel>
         <Input
-          type="email"
-          name="email"
-          borderColor={'whiteAlpha.300'}
-          bg={'whiteAlpha.200'}
+          type="text"
+          name="firstName"
+          variant={'outline'}
+          bg={'blackAlpha.50'}
+          color={'black'}
+          focusBorderColor={'blue.200'}
           size={'md'}
-          color={'whiteAlpha.700'}
           mb={'3vh'}
-          focusBorderColor={'blue.500'}
           onReset={formik.handleReset}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.email}
+          value={formik.values.firstName}
         />
         {
           <Text
@@ -87,33 +90,33 @@ export const BrokerForm = ({ createdBroker, setBasicInfoState }) => {
             {formik.errors.email && formik.touched.email && formik.errors.email}
           </Text>
         }
-        <FormLabel fontSize={'2vh'} color={'white'} mt={'0.8em'}>
-          Password
+        <FormLabel fontSize={'2vh'} color={'blue.400'} mt={'0.8em'}>
+          Foto de Perfil
         </FormLabel>
         <Input
-          type="password"
-          name="password"
-          borderColor={'whiteAlpha.300'}
-          bg={'whiteAlpha.200'}
+          type="text"
+          name="profilePicture"
+          variant={'outline'}
+          bg={'blackAlpha.50'}
+          color={'black'}
+          focusBorderColor={'blue.200'}
           size={'md'}
-          focusBorderColor={'blue.500'}
-          color={'whiteAlpha.700'}
           onReset={formik.handleReset}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.password}
+          value={formik.values.profilePicture}
         />
-        {formik.errors.password &&
-          formik.touched.password &&
-          formik.errors.password}
         <Button
           mt={'1.2em'}
-          colorScheme={'teal'}
+          bg={'blue.600'}
+          color={'white'}
           w={'24%'}
+          h={'6vh'}
           size="md"
           pos={'absolute'}
           bottom={'10vh'}
-          right={'25vw'}
+          right={'23vw'}
+          _hover={{ bg: 'blue.400', color: 'white' }}
           onClick={() => {
             formik.resetForm();
           }}
@@ -124,12 +127,15 @@ export const BrokerForm = ({ createdBroker, setBasicInfoState }) => {
           mt={'1.2em'}
           type="submit"
           disabled={formik.isSubmitting}
-          colorScheme={'teal'}
+          bg={'blue.600'}
+          color={'white'}
+          h={'6vh'}
           w={'24%'}
           size="md"
           pos={'absolute'}
           bottom={'10vh'}
-          right={'5vw'}
+          right={'3vw'}
+          _hover={{ bg: 'blue.400', color: 'white' }}
         >
           Enviar
         </Button>

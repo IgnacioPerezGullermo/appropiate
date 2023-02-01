@@ -14,23 +14,22 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BrokersService = void 0;
 const common_1 = require("@nestjs/common");
-const appointment_entity_1 = require("../appointment/entities/appointment.entity");
+const user_entity_1 = require("../users/entities/user.entity");
 const constants_1 = require("../../core/constants");
 const broker_entity_1 = require("./entities/broker.entity");
 let BrokersService = class BrokersService {
     constructor(brokerRepository) {
         this.brokerRepository = brokerRepository;
     }
-    async create(CreateBrokerDto) {
+    async create(createBrokerDto) {
         try {
             const broker = new broker_entity_1.Broker();
-            broker.username = CreateBrokerDto.username;
-            broker.email = CreateBrokerDto.email.trim().toLowerCase();
-            broker.password = CreateBrokerDto.password;
-            broker.type = CreateBrokerDto.type;
-            broker.tel = CreateBrokerDto.tel;
+            broker.lastName = createBrokerDto.lastName;
+            broker.firstName = createBrokerDto.firstName;
+            broker.profilePicture = createBrokerDto.profilePicture;
+            broker.userId = createBrokerDto.userId;
+            console.log(createBrokerDto, broker);
             const brokerData = await broker.save();
-            console.log(brokerData);
             return brokerData;
         }
         catch (error) {
@@ -46,7 +45,7 @@ let BrokersService = class BrokersService {
         return await this.brokerRepository.findAll({
             include: [
                 {
-                    model: appointment_entity_1.Appointment,
+                    model: user_entity_1.User,
                 },
             ],
         });
@@ -56,7 +55,7 @@ let BrokersService = class BrokersService {
             where: { id },
             include: [
                 {
-                    model: appointment_entity_1.Appointment,
+                    model: user_entity_1.User,
                 },
             ],
         });
@@ -69,10 +68,10 @@ let BrokersService = class BrokersService {
         if (!broker) {
             throw new common_1.BadRequestException(`User does not exist in db `);
         }
-        broker.username = updateBrokerDto.username || broker.username;
-        broker.email = updateBrokerDto.email || broker.email;
-        broker.tel = updateBrokerDto.tel || broker.tel;
-        broker.type = updateBrokerDto.type || broker.type;
+        broker.lastName = updateBrokerDto.lastName || broker.lastName;
+        broker.firstName = updateBrokerDto.firstName || broker.firstName;
+        broker.profilePicture =
+            updateBrokerDto.profilePicture || broker.profilePicture;
         try {
             const data = await broker.save();
         }

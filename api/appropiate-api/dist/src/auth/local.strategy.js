@@ -22,7 +22,7 @@ let LocalStrategy = class LocalStrategy extends (0, passport_1.PassportStrategy)
     async validate(username, password) {
         const client = await this.authService.validateUser(username, password);
         if (!client) {
-            throw new common_1.UnauthorizedException('Invalid user credentials');
+            throw new common_1.UnauthorizedException('Credenciales de usuario invalidas');
         }
         return client;
     }
