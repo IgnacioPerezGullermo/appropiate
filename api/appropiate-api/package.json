@@ -2,7 +2,8 @@
   "name": "appropiate-api",
   "version": "0.0.1",
   "engines": {
-    "node": "18.x "
+    "node": "18.x",
+    "npm": "9.2.0"
   },
   "description": "",
   "author": "",
