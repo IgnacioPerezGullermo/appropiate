@@ -1,4 +1,8 @@
-node_modules
+/node_modules
+/package-lock.json
+/dist
+npm-debug.log
+.DS_Store
 postgres_data
-.env
+/*.env
 

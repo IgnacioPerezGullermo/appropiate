@@ -3,10 +3,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
-  { title: 'Inicio', endpoint: '/' },
-  { title: 'Blog', endpoint: '/blog' },
-  { title: 'Asesorate', endpoint: '/appointment' },
-  { title: 'Ingresar', endpoint: '/login' },
+  { title: 'Inicio', endpoint: '/', index: 0 },
+  { title: 'Blog', endpoint: '/blog', index: 1 },
+  { title: 'Asesorate', endpoint: '/appointment', index: 2 },
+  { title: 'Ingresar', endpoint: '/login', index: 3 },
 ];
 
 export const NavBar = ({ btnRef, onOpen, location }) => {
@@ -19,7 +19,7 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
       left={'0%'}
       top={'0%'}
       borderBottom={'1px solid black'}
-      bg={'brand.800'}
+      bg={'whiteAlpha.900'}
       textAlign={'left'}
     >
       <Text pos={'absolute'} right={'5vw'} top={'1vh'} fontSize={'3vw '}>
@@ -29,13 +29,26 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
         {menuItems.map((item) => {
           if (item.title === 'Ingresar') {
             return (
-              <Button colorScheme={'blue'} onClick={onOpen} ref={btnRef}>
+              <Button
+                variant={'ghost'}
+                color="primary"
+                size={'lg'}
+                _hover={{ bg: 'transparent', color: 'blue.400' }}
+                onClick={onOpen}
+                ref={btnRef}
+                key={item.index}
+              >
                 {location !== 'landing' ? 'Usuario' : 'Ingresar'}
               </Button>
             );
           } else {
             return (
               <Button
+                variant={'ghost'}
+                color="primary"
+                _hover={{ bg: 'transparent', color: 'blue.400' }}
+                size={'lg'}
+                key={item.index}
                 onClick={(e) => {
                   navigate(item.endpoint);
                 }}

@@ -1,4 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react';
+import '@fontsource/playfair-display';
+import '@fontsource/source-sans-pro';
 import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -13,19 +15,22 @@ import {
 } from 'react-router-dom';
 import { NavBar } from './components/NavBar';
 import store from './redux/store';
-import { theme } from './theme';
+import { theme } from './styles/theme';
 import { Appointment } from './views/Appointment';
 import { Blog } from './views/Blog';
+import { BrokerDashboard } from './views/BrokerDashboard';
 import { Dashboard } from './views/dashboard';
 import { Home } from './views/Home';
 import { Landing } from './views/Landing';
 import { LogIn } from './views/LogIn';
-import { Panel } from './views/Panel';
 import { Profile } from './views/profile';
 import { Register } from './views/Register';
 import { Services } from './views/Services';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+const dotenv = require('dotenv');
+dotenv.config();
+
+axios.defaults.baseURL = process.env.BASE_URL;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -43,7 +48,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <Route path="/appointment" element={<Appointment />} />
               <Route path="/login" element={<LogIn />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/panel" element={<Panel />} />
+              <Route path="/brokerdashboard" element={<BrokerDashboard />} />
             </Routes>
           </BrowserRouter>
         </div>

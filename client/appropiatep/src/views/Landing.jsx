@@ -12,22 +12,57 @@ import {
   Input,
   Text,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
 import { Formik } from 'formik';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { NavBar } from '../components/NavBar';
-import { authUserLogin, authUserSignin } from '../redux/action';
+import { registerUser, userLogin } from '../redux/auth/authAction';
 
 export const Landing = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-  const authInfo = useSelector((state) => state.authInfo);
-  const authToken = useSelector((state) => state.authToken);
+  const { loading, userInfo, error, success } = useSelector(
+    (state) => state.auth
+  );
+
   const [Option, setOption] = React.useState('signup');
+  React.useEffect(() => {
+    if (success === true && Option === 'signup') {
+      toast({
+        title: 'Cuenta creada con exito',
+        description: 'En instantes te redirigiremos',
+        status: 'success',
+        duration: 5000,
+        isClosable: false,
+        onCloseComplete: navigate('/home'),
+      });
+    }
+    if (success === true) {
+      toast({
+        title: `Bienvenido ${userInfo?.username}`,
+        description: 'En momentos te redirigiremos al inicio',
+        status: 'success',
+        duration: 5000,
+        isClosable: false,
+        onCloseComplete: navigate('/home'),
+      });
+    }
+    if (success === false && error) {
+      toast({
+        title: 'Algo ha salido mal',
+        description: error,
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  }, [navigate, userInfo, success, Option]);
   return (
     <Box
       pos={'absolute'}
@@ -83,10 +118,21 @@ export const Landing = () => {
                     username: values.username,
                     email: values.email,
                     password: values.password,
+                    type: 'client',
                   };
                   //console.log(client);
-                  dispatch(authUserSignin(client), []);
-                  navigate('/home');
+                  dispatch(registerUser(client));
+                  if (error !== null) {
+                    return toast({
+                      title: 'Algo ha salido mal',
+                      description: error.message,
+                      status: 'error',
+                      duration: 9000,
+                      isClosable: true,
+                      onCloseComplete: actions.resetForm,
+                    });
+                  }
+                  //navigate('/home');
                 }}
               >
                 {({
@@ -154,7 +200,7 @@ export const Landing = () => {
                     <Button
                       mt={'1.2em'}
                       type="submit"
-                      disabled={isSubmitting}
+                      //disabled={isSubmitting}
                       colorScheme={'teal'}
                       w={'100%'}
                       size="md"
@@ -194,8 +240,18 @@ export const Landing = () => {
                     password: values.password,
                   };
                   //console.log(client);
-                  dispatch(authUserLogin(client), []);
-                  navigate('/home');
+                  dispatch(userLogin(client));
+                  if (error !== null) {
+                    console.log(error);
+                    return toast({
+                      title: 'Algo ha salido mal',
+                      description: error,
+                      status: 'error',
+                      duration: 9000,
+                      isClosable: true,
+                      onCloseComplete: actions.resetForm,
+                    });
+                  }
                 }}
               >
                 {({
@@ -239,12 +295,11 @@ export const Landing = () => {
                     <Button
                       mt={'1.2em'}
                       type="submit"
-                      disabled={isSubmitting}
                       colorScheme={'teal'}
                       w={'100%'}
                       size="md"
                     >
-                      Submit
+                      Enviar
                     </Button>
                     <DrawerFooter
                       border={'1px solid black'}
@@ -272,16 +327,15 @@ export const Landing = () => {
         </DrawerContent>
       </Drawer>
       <Box
-        bg={'brand.700'}
+        bg={'blackAlpha.600'}
         pos={'absolute'}
         w={'100vw'}
         h={'35vh'}
         top={'40vh'}
-        opacity={'0.8'}
         pl={'18vw'}
         pr={'18vw'}
       >
-        <Text fontSize={'3.5vw'} textAlign={'center'}>
+        <Text fontSize={'3.5vw'} textAlign={'center'} color={'blue.300'}>
           ¿Quieres <strong>invertir</strong> pero no sabes cómo sacar el{' '}
           <strong>máximo</strong> provecho?
         </Text>
@@ -291,6 +345,14 @@ export const Landing = () => {
           position={'absolute'}
           top={'22vh'}
           left={'45vw'}
+          borderRadius={'xl'}
+          bg={'primary'}
+          color={'white'}
+          _hover={{
+            bg: 'blue.400',
+            transform: 'scale(1.2)',
+            transition: '500ms',
+          }}
           onClick={onOpen}
           ref={btnRef}
         >

@@ -1,13 +1,4 @@
-import {
-  BelongsTo,
-  Column,
-  DataType,
-  ForeignKey,
-  HasMany,
-  Model,
-  Table,
-} from 'sequelize-typescript';
-import { User } from './user.entity';
+import { BelongsTo, Column, Model, Table } from 'sequelize-typescript';
 
 @Table
 export class Admin extends Model {

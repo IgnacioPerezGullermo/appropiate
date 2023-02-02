@@ -7,23 +7,26 @@ import {
   IsString,
   Length,
 } from 'class-validator';
-import { CreateUserDto } from './create-user.dto';
+import { CreateClientDto } from './create-client.dto';
 
-export class UpdateUserDto extends PartialType(CreateUserDto) {
+export class UpdateClientDto extends PartialType(CreateClientDto) {
   @ApiProperty()
   @IsString()
-  @IsNotEmpty()
-  readonly name?: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsNotEmpty()
-  @Length(8, 20)
-  readonly password?: string;
+  readonly lastName: string;
 
   @ApiProperty()
   @IsString()
-  @IsNotEmpty()
-  @IsEmail()
-  readonly email?: string;
+  readonly firstName: string;
+
+  @ApiProperty()
+  @IsString()
+  readonly ageRange: string;
+
+  @ApiProperty()
+  @IsString()
+  readonly basicIncome?: number;
+
+  @ApiProperty()
+  @IsString()
+  readonly profilePicture?: string;
 }

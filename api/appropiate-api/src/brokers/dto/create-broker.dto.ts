@@ -12,27 +12,18 @@ export class CreateBrokerDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  readonly username: string;
+  readonly lastName: string;
 
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  @Length(8, 20)
-  readonly password: string;
+  readonly firstName: string;
 
   @ApiProperty()
   @IsString()
-  @IsNotEmpty()
-  @IsEmail()
-  readonly email: string;
+  readonly profilePicture: string;
 
   @ApiProperty()
   @IsString()
-  @IsOptional()
-  readonly type?: string;
-
-  @ApiProperty()
-  @IsNumber()
-  @Length(12)
-  readonly tel: string;
+  readonly userId: string;
 }
