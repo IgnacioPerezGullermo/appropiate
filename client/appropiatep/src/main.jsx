@@ -1,4 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react';
+import '@fontsource/playfair-display';
+import '@fontsource/source-sans-pro';
 import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -24,9 +26,11 @@ import { LogIn } from './views/LogIn';
 import { Profile } from './views/profile';
 import { Register } from './views/Register';
 import { Services } from './views/Services';
-import '@fontsource/playfair-display';
-import '@fontsource/source-sans-pro';
-axios.defaults.baseURL = 'http://localhost:3001';
+
+const dotenv = require('dotenv');
+dotenv.config();
+
+axios.defaults.baseURL = process.env.BASE_URL;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
