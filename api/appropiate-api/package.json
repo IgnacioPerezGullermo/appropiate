@@ -1,6 +1,9 @@
 {
   "name": "appropiate-api",
   "version": "0.0.1",
+  "engines": {
+    "node": "18.x "
+  },
   "description": "",
   "author": "",
   "private": false,
@@ -88,9 +91,6 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node",
-    "engines": {
-      "node": "18.13.0"
-    }
+    "testEnvironment": "node"
   }
 }
