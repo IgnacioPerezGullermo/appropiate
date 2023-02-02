@@ -6,7 +6,8 @@
   "logo": "https://app.tooljet.io/assets/images/logo.svg",
   "success_url": "/",
   "scripts": {
-    "predeploy": "npm install && npm run build"
+    "predeploy": "npm install && npm run build",
+    "web": "npm run start:prod"
   },
   "env": {
     "NODE_ENV": {
