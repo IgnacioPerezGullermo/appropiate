@@ -25,7 +25,7 @@ import { Dashboard } from './views/dashboard';
 import { Home } from './views/Home';
 import { Landing } from './views/Landing';
 import { LogIn } from './views/LogIn';
-import { Profile } from './views/profile';
+import { Profile } from './views/Profile';
 import { Register } from './views/Register';
 import { Services } from './views/Services';
 
