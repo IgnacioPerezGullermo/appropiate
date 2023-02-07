@@ -2,6 +2,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/playfair-display';
 import '@fontsource/source-sans-pro';
 import axios from 'axios';
+import dotenv from 'dotenv';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -13,6 +14,7 @@ import {
   RouterProvider,
   Routes,
 } from 'react-router-dom';
+
 import { NavBar } from './components/NavBar';
 import store from './redux/store';
 import { theme } from './styles/theme';
@@ -27,10 +29,11 @@ import { Profile } from './views/profile';
 import { Register } from './views/Register';
 import { Services } from './views/Services';
 
-const dotenv = require('dotenv');
-dotenv.config();
+//dotenv.config();
 
-axios.defaults.baseURL = process.env.BASE_URL;
+//axios.defaults.baseURL = process.env.BASE_URL || 'https://localhost:3001';
+axios.defaults.baseURL =
+  import.meta.env.VITE_BASE_URL || 'https://localhost:3001';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
