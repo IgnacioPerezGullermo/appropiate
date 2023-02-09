@@ -59,6 +59,11 @@ export class UsersService {
   }
 
   async findOneByUsername(username: string) {
+    return await this.usersRepository.findOne<User>({
+      where: { username },
+    });
+  }
+  async findSearchedByUsername(username: string) {
     return await this.usersRepository.findAll<User>({
       where: { username: { [Op.like]: '%' + username + '%' } },
     });

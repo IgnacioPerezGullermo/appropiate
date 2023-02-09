@@ -44,18 +44,21 @@ export class BrokersService {
     }
   }
 
-  async find({ page, pageSize }): Promise<Broker[]> {
+  async find({ page, pageSize }): Promise<{ total: number; data: Broker[] }> {
     const offset = page * pageSize;
     const limit = pageSize;
-    return await this.brokerRepository.findAll<Broker>({
-      limit,
-      offset,
-      include: [
-        {
-          model: User,
-        },
-      ],
-    });
+    const { rows, count } = await this.brokerRepository.findAndCountAll<Broker>(
+      {
+        limit,
+        offset,
+        include: [
+          {
+            model: User,
+          },
+        ],
+      },
+    );
+    return { total: count, data: rows };
   }
 
   async findOne(id: string) {
