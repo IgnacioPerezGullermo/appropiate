@@ -3,6 +3,7 @@ import { Appointment } from 'src/appointment/entities/appointment.entity';
 import { Broker } from 'src/brokers/entities/broker.entity';
 import { Client } from 'src/clients/entities/client.entity';
 import { User } from '../users/entities/user.entity';
+import { Propierty } from '../propierties/entities/propierty.entity';
 
 export function extractStringEnvVar(key: keyof NodeJS.ProcessEnv): string {
   const value = process.env[key];
@@ -48,7 +49,7 @@ export const databaseProviders = [
         //   },
         // },
       });
-      sequelize.addModels([Broker, Client, Appointment, User]);
+      sequelize.addModels([Broker, Client, Appointment, User, Propierty]);
       await sequelize.sync();
       return sequelize;
     },
