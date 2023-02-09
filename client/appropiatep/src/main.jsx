@@ -33,7 +33,7 @@ import { Services } from './views/Services';
 
 //axios.defaults.baseURL = process.env.BASE_URL || 'https://localhost:3001';
 axios.defaults.baseURL =
-  import.meta.env.VITE_BASE_URL || 'https://localhost:3001';
+  import.meta.env.VITE_DEV_BASE_URL || 'https://localhost:3001';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

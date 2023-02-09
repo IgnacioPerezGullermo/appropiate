@@ -6,6 +6,7 @@ import {
   GridItem,
   Heading,
   HStack,
+  Input,
   Stack,
   Tab,
   TabList,
@@ -30,6 +31,7 @@ export const BrokerList = ({ brokers }) => {
       fontWeight="bold"
     >
       <GridItem area={'card'} p={'2vh'}>
+        <Input />
         <HStack spacing={'1.5vw'}>
           {brokers?.map((broker) => {
             return (

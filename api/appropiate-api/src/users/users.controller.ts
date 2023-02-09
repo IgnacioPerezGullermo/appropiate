@@ -6,10 +6,13 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { query } from 'express';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 
 @ApiTags('Users')
@@ -22,9 +25,19 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @Get()
-  findAll() {
-    return this.usersService.findAll();
+  @Get('find')
+  @ApiCreatedResponse({
+    status: 201,
+    description: 'Usuarios encontrados con exito',
+    type: [User],
+  })
+  @ApiResponse({ status: 403, description: 'Error en la solicitud' })
+  async findAll() {
+    try {
+      return await this.usersService.findAll();
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   @Get(':id')
@@ -32,10 +45,16 @@ export class UsersController {
     return this.usersService.findById(id);
   }
 
-  @Get(':username')
-  findByUser(@Param('username') username: string) {
+  @Get('search/:username')
+  @ApiCreatedResponse({
+    status: 201,
+    description: 'Estos son los usuarios con el nombre ingresado',
+    type: [User],
+  })
+  @ApiResponse({ status: 403, description: 'Error en la solicitud' })
+  async findByUser(@Param('username') username: string) {
     console.log(username);
-    return this.usersService.findOneByUsername(username);
+    return await this.usersService.findOneByUsername(username);
   }
 
   @Patch(':id')

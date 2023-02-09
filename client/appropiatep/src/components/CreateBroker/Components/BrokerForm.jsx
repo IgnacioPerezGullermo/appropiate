@@ -10,6 +10,8 @@ export const BrokerForm = ({
   createdBroker,
   SelectedUser,
   setBasicInfoState,
+  setContinue,
+  setSelectedUser,
 }) => {
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -107,14 +109,32 @@ export const BrokerForm = ({
         />
         <Button
           mt={'1.2em'}
+          bg={'red.600'}
+          color={'white'}
+          h={'6vh'}
+          w={'16%'}
+          size="md"
+          pos={'absolute'}
+          bottom={'10vh'}
+          right={'29vw'}
+          _hover={{ bg: 'blue.400', color: 'white' }}
+          onClick={() => {
+            setSelectedUser('');
+            setContinue(false);
+          }}
+        >
+          Regresar
+        </Button>
+        <Button
+          mt={'1.2em'}
           bg={'blue.600'}
           color={'white'}
-          w={'24%'}
+          w={'16%'}
           h={'6vh'}
           size="md"
           pos={'absolute'}
           bottom={'10vh'}
-          right={'23vw'}
+          right={'16vw'}
           _hover={{ bg: 'blue.400', color: 'white' }}
           onClick={() => {
             formik.resetForm();
@@ -129,7 +149,7 @@ export const BrokerForm = ({
           bg={'blue.600'}
           color={'white'}
           h={'6vh'}
-          w={'24%'}
+          w={'16%'}
           size="md"
           pos={'absolute'}
           bottom={'10vh'}

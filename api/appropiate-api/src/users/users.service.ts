@@ -5,6 +5,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { USER_REPOSITORY } from 'core/constants';
+import { Op } from 'sequelize';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -45,14 +46,14 @@ export class UsersService {
   }
 
   async findById(id: string) {
-    return await this.usersRepository.findOne({
+    return await this.usersRepository.findOne<User>({
       where: { id },
     });
   }
 
   async findOneByUsername(username: string) {
-    return await this.usersRepository.findOne<User>({
-      where: { username },
+    return await this.usersRepository.findAll<User>({
+      where: { username: { [Op.like]: '%' + username + '%' } },
     });
   }
 

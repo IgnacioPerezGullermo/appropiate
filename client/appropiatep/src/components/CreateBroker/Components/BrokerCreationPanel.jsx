@@ -33,6 +33,7 @@ export const BrokerCreationPanel = ({
   setBasicInfoState,
   handleTabChange,
   setContinue,
+  setSelectedUser,
 }) => {
   const dispatch = useDispatch();
   return (
@@ -60,6 +61,8 @@ export const BrokerCreationPanel = ({
               createdBroker={createdBroker}
               SelectedUser={SelectedUser}
               setBasicInfoState={setBasicInfoState}
+              setSelectedUser={setSelectedUser}
+              setContinue={setContinue}
             />
           </Box>
         ) : (
