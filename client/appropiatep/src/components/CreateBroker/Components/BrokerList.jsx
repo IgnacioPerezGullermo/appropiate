@@ -16,8 +16,9 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React from 'react';
+import { Pagination } from '../../Pagination/Pagination';
 
-export const BrokerList = ({ brokers }) => {
+export const BrokerList = ({ brokers, Page, setPage, PageSize }) => {
   return (
     <Grid
       templateAreas={`"card card"
@@ -31,7 +32,7 @@ export const BrokerList = ({ brokers }) => {
     >
       <GridItem area={'card'} p={'2vh'}>
         <HStack spacing={'1.5vw'}>
-          {brokers?.map((broker) => {
+          {brokers?.data?.map((broker) => {
             return (
               <Box
                 bg={'white'}
@@ -72,6 +73,12 @@ export const BrokerList = ({ brokers }) => {
             );
           })}
         </HStack>
+        <Pagination
+          page={Page}
+          pageSize={PageSize}
+          setPage={setPage}
+          total={brokers.total}
+        />
       </GridItem>
       <GridItem area={'appo'} p={8} verticalAlign={'center'}>
         <Heading fontFamily={'body'} fontSize={'2vw'}>

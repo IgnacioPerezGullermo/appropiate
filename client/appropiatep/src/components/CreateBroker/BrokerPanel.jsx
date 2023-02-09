@@ -36,20 +36,23 @@ export const BrokerPanel = ({ setOption, Option }) => {
   const [Searched, setSearched] = React.useState('');
   const [SelectedUser, setSelectedUser] = React.useState('');
   const [Continue, setContinue] = React.useState(false);
+  const [Page, setPage] = React.useState(0);
+  const [PageSize, setPageSize] = React.useState(4);
   const handleTabChange = (index) => {
     setTabIndex(index);
   };
   React.useEffect(() => {
-    dispatch(getBrokers({ page: 1, pageSize: 4 }));
+    dispatch(getBrokers({ page: Page, pageSize: 4 }));
     dispatch(getSearchedUsers(Searched));
-  }, [TabIndex, Searched]);
+  }, [TabIndex, Searched, Page]);
   const opciones = {
     weekday: 'long',
     year: 'numeric',
     month: 'short',
     day: 'numeric',
   };
-  //console.log(brokers[0]);
+  //
+  console.log(brokers);
   let formatDate = new Date(createdBroker?.createdAt);
   formatDate = formatDate.toLocaleDateString('es-CL', opciones);
   function capitalizeFirstLetter(string) {
@@ -103,8 +106,13 @@ export const BrokerPanel = ({ setOption, Option }) => {
         </TabList>
 
         <TabPanels>
-          <TabPanel>
-            <BrokerList brokers={brokers} />
+          <TabPanel p={1}>
+            <BrokerList
+              Page={Page}
+              setPage={setPage}
+              PageSize={PageSize}
+              brokers={brokers}
+            />
           </TabPanel>
           <TabPanel>
             <BrokerSearch

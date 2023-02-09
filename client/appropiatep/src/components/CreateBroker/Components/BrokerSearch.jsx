@@ -35,13 +35,14 @@ export const BrokerSearch = ({
                   pr="4.5rem"
                   type="text"
                   placeholder="Busca usuarios..."
+                  bg={'white'}
                   onChange={(e) => {
                     handleInputChange(e);
                   }}
                 />
                 <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm">
-                    <UilSearch />
+                  <Button h="1.75rem" size="md">
+                    <UilSearch size={'1.5vw'} />
                   </Button>
                 </InputRightElement>
               </InputGroup>

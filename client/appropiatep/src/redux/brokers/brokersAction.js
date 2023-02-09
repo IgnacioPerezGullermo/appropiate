@@ -15,6 +15,7 @@ export const getBrokers = createAsyncThunk(
         '',
         config
       );
+      console.log(info.data);
       return info.data;
     } catch (error) {
       // return custom error message from backend if present
