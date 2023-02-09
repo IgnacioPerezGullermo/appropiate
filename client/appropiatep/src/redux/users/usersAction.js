@@ -40,3 +40,30 @@ export const updateUsers = createAsyncThunk(
     }
   }
 );
+
+export const getSearchedUsers = createAsyncThunk(
+  'users/searched',
+  async (username) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      if (username === '') {
+        let info = await axios.get('/users/find', '', config);
+        return info.data;
+      } else {
+        let info = await axios.get(`/users/search/${username}`);
+        return info.data;
+      }
+    } catch (error) {
+      // return custom error message from backend if present
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);

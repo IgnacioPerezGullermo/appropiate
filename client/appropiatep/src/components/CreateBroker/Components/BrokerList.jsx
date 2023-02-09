@@ -18,7 +18,6 @@ import {
 import React from 'react';
 
 export const BrokerList = ({ brokers }) => {
-  console.log(brokers);
   return (
     <Grid
       templateAreas={`"card card"
@@ -31,7 +30,6 @@ export const BrokerList = ({ brokers }) => {
       fontWeight="bold"
     >
       <GridItem area={'card'} p={'2vh'}>
-        <Input />
         <HStack spacing={'1.5vw'}>
           {brokers?.map((broker) => {
             return (

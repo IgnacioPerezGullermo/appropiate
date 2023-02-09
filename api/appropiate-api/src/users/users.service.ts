@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { USER_REPOSITORY } from 'core/constants';
 import { Op } from 'sequelize';
+import { Broker } from 'src/brokers/entities/broker.entity';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -42,7 +43,13 @@ export class UsersService {
   }
 
   async findAll() {
-    return await this.usersRepository.findAll<User>();
+    return await this.usersRepository.findAll<User>({
+      include: [
+        {
+          model: Broker,
+        },
+      ],
+    });
   }
 
   async findById(id: string) {

@@ -19,7 +19,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBrokers } from '../../redux/brokers/brokersAction';
-import { getUsers } from '../../redux/users/usersAction';
+import { getSearchedUsers } from '../../redux/users/usersAction';
 import { BrokerCreationPanel } from './Components/BrokerCreationPanel';
 import { BrokerForm } from './Components/BrokerForm';
 import { BrokerList } from './Components/BrokerList';
@@ -30,7 +30,7 @@ export const BrokerPanel = ({ setOption, Option }) => {
   const { brokers, createdBroker, error, success } = useSelector(
     (state) => state.brokers
   );
-  const { users } = useSelector((state) => state.users);
+  const { searchedUsers } = useSelector((state) => state.users);
   const [BasicInfoState, setBasicInfoState] = React.useState('pending');
   const [TabIndex, setTabIndex] = React.useState(0);
   const [Searched, setSearched] = React.useState('');
@@ -40,8 +40,8 @@ export const BrokerPanel = ({ setOption, Option }) => {
     setTabIndex(index);
   };
   React.useEffect(() => {
-    dispatch(getBrokers());
-    dispatch(getUsers(Searched));
+    dispatch(getBrokers({ page: 1, pageSize: 4 }));
+    dispatch(getSearchedUsers(Searched));
   }, [TabIndex, Searched]);
   const opciones = {
     weekday: 'long',
@@ -110,9 +110,10 @@ export const BrokerPanel = ({ setOption, Option }) => {
             <BrokerSearch
               setSearched={setSearched}
               Continue={Continue}
+              selectedUser={SelectedUser}
               setSelectedUser={setSelectedUser}
               setContinue={setContinue}
-              setSearched={setSearched}
+              setBasicInfoState={setBasicInfoState}
             />
           </TabPanel>
           <TabPanel>

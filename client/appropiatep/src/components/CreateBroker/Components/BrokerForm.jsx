@@ -8,7 +8,7 @@ import { updateUsers } from '../../../redux/users/usersAction';
 
 export const BrokerForm = ({
   createdBroker,
-  SelectedUser,
+  selectedUser,
   setBasicInfoState,
   setContinue,
   setSelectedUser,
@@ -19,6 +19,7 @@ export const BrokerForm = ({
       lastName: '',
       firstName: '',
       profilePicture: '',
+      userId: '',
     },
     validate: (values) => {
       const errors = {};
@@ -29,7 +30,7 @@ export const BrokerForm = ({
         lastName: values.lastName,
         firstName: values.firstName,
         profilePicture: values.profilePicture,
-        userId: SelectedUser,
+        userId: selectedUser,
       };
       dispatch(registerBroker(broker), []);
       setBasicInfoState('sucess');
@@ -145,7 +146,7 @@ export const BrokerForm = ({
         <Button
           mt={'1.2em'}
           type="submit"
-          disabled={formik.isSubmitting}
+          //disabled={formik.isSubmitting}
           bg={'blue.600'}
           color={'white'}
           h={'6vh'}

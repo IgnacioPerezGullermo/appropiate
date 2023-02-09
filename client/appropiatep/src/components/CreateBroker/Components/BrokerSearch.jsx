@@ -14,7 +14,9 @@ import { BrokerSelect } from './BrokerSelect';
 export const BrokerSearch = ({
   Continue,
   users,
+  selectedUser,
   setSelectedUser,
+  setBasicInfoState,
   setContinue,
   setSearched,
 }) => {
@@ -53,6 +55,8 @@ export const BrokerSearch = ({
       case true:
         return (
           <BrokerCreationPanel
+            setBasicInfoState={setBasicInfoState}
+            selectedUser={selectedUser}
             setSelectedUser={setSelectedUser}
             setContinue={setContinue}
           />
