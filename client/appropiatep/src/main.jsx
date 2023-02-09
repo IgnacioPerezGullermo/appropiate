@@ -2,6 +2,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/playfair-display';
 import '@fontsource/source-sans-pro';
 import axios from 'axios';
+import dotenv from 'dotenv';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -13,25 +14,26 @@ import {
   RouterProvider,
   Routes,
 } from 'react-router-dom';
+
 import { NavBar } from './components/NavBar';
 import store from './redux/store';
 import { theme } from './styles/theme';
 import { Appointment } from './views/Appointment';
 import { Blog } from './views/Blog';
 import { BrokerDashboard } from './views/BrokerDashboard';
-import { Dashboard } from './views/dashboard';
+import { Dashboard } from './views/Dashboard';
 import { Home } from './views/Home';
 import { Landing } from './views/Landing';
 import { LogIn } from './views/LogIn';
-import { Profile } from './views/profile';
+import { Profile } from './views/Profile';
 import { Register } from './views/Register';
 import { Services } from './views/Services';
 
-/*const dotenv = require('dotenv');
-dotenv.config();*/
+//dotenv.config();
 
-//axios.defaults.baseURL = process.env.BASE_URL;
-axios.defaults.baseURL = 'https://appropiate.herokuapp.com';
+//axios.defaults.baseURL = process.env.BASE_URL || 'https://localhost:3001';
+axios.defaults.baseURL =
+  import.meta.env.VITE_BASE_URL || 'https://localhost:3001';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

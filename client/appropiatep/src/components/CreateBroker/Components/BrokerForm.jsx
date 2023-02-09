@@ -29,7 +29,6 @@ export const BrokerForm = ({
         profilePicture: values.profilePicture,
         userId: SelectedUser,
       };
-      console.log(broker);
       dispatch(registerBroker(broker), []);
       setBasicInfoState('sucess');
     },
