@@ -6,6 +6,7 @@ import { BrokerPanel } from '../components/CreateBroker/BrokerPanel';
 import { CreatePost } from '../components/CreatePost/CreatePost';
 import { Overview } from '../components/Overview/Overview';
 import { SideBar } from '../components/SideBar/SideBar';
+import { PropiertyPanel } from '../components/CreateProperty/PropiertyPanel';
 
 export const AdminPanel = ({ admin }) => {
   const [Option, setOption] = useState('dashboard');
@@ -19,6 +20,8 @@ export const AdminPanel = ({ admin }) => {
         return <CreatePost />;
       case 'appointments':
         return <AppointmentPanel />;
+      case 'createPropierty':
+        return <PropiertyPanel />;
       default:
         return <Overview />;
     }
