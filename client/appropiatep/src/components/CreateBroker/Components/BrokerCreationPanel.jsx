@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { UilCheck } from '@iconscout/react-unicons';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { clearCreatedBroker } from '../../../redux/brokers/brokersAction';
 import { BrokerForm } from './BrokerForm';
 
@@ -28,13 +28,14 @@ export const BrokerCreationPanel = ({
   username,
   email,
   createdAt,
-  createdBroker,
-  SelectedUser,
   setBasicInfoState,
   handleTabChange,
   setContinue,
+  setSelectedUser,
+  selectedUser,
 }) => {
   const dispatch = useDispatch();
+  const { createdBroker } = useSelector((state) => state.brokers);
   return (
     <Grid
       templateAreas={`"card form"
@@ -58,8 +59,10 @@ export const BrokerCreationPanel = ({
           >
             <BrokerForm
               createdBroker={createdBroker}
-              SelectedUser={SelectedUser}
+              selectedUser={selectedUser}
               setBasicInfoState={setBasicInfoState}
+              setSelectedUser={setSelectedUser}
+              setContinue={setContinue}
             />
           </Box>
         ) : (

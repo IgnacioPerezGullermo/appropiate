@@ -8,8 +8,10 @@ import { updateUsers } from '../../../redux/users/usersAction';
 
 export const BrokerForm = ({
   createdBroker,
-  SelectedUser,
+  selectedUser,
   setBasicInfoState,
+  setContinue,
+  setSelectedUser,
 }) => {
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -17,6 +19,7 @@ export const BrokerForm = ({
       lastName: '',
       firstName: '',
       profilePicture: '',
+      userId: '',
     },
     validate: (values) => {
       const errors = {};
@@ -27,7 +30,7 @@ export const BrokerForm = ({
         lastName: values.lastName,
         firstName: values.firstName,
         profilePicture: values.profilePicture,
-        userId: SelectedUser,
+        userId: selectedUser,
       };
       dispatch(registerBroker(broker), []);
       setBasicInfoState('sucess');
@@ -107,14 +110,32 @@ export const BrokerForm = ({
         />
         <Button
           mt={'1.2em'}
+          bg={'red.600'}
+          color={'white'}
+          h={'6vh'}
+          w={'16%'}
+          size="md"
+          pos={'absolute'}
+          bottom={'10vh'}
+          right={'29vw'}
+          _hover={{ bg: 'blue.400', color: 'white' }}
+          onClick={() => {
+            setSelectedUser('');
+            setContinue(false);
+          }}
+        >
+          Regresar
+        </Button>
+        <Button
+          mt={'1.2em'}
           bg={'blue.600'}
           color={'white'}
-          w={'24%'}
+          w={'16%'}
           h={'6vh'}
           size="md"
           pos={'absolute'}
           bottom={'10vh'}
-          right={'23vw'}
+          right={'16vw'}
           _hover={{ bg: 'blue.400', color: 'white' }}
           onClick={() => {
             formik.resetForm();
@@ -125,11 +146,11 @@ export const BrokerForm = ({
         <Button
           mt={'1.2em'}
           type="submit"
-          disabled={formik.isSubmitting}
+          //disabled={formik.isSubmitting}
           bg={'blue.600'}
           color={'white'}
           h={'6vh'}
-          w={'24%'}
+          w={'16%'}
           size="md"
           pos={'absolute'}
           bottom={'10vh'}

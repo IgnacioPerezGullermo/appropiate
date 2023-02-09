@@ -6,6 +6,7 @@ import {
   GridItem,
   Heading,
   HStack,
+  Input,
   Stack,
   Tab,
   TabList,
@@ -17,7 +18,6 @@ import {
 import React from 'react';
 
 export const BrokerList = ({ brokers }) => {
-  console.log(brokers);
   return (
     <Grid
       templateAreas={`"card card"

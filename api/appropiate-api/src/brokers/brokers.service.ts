@@ -26,7 +26,7 @@ export class BrokersService {
       broker.profilePicture = createBrokerDto.profilePicture;
       broker.userId = createBrokerDto.userId;
 
-      console.log(createBrokerDto, broker);
+      console.log(createBrokerDto.userId);
       const brokerData = await broker.save();
       return brokerData;
     } catch (error) {
@@ -44,8 +44,12 @@ export class BrokersService {
     }
   }
 
-  async findAll(): Promise<Broker[]> {
+  async find({ page, pageSize }): Promise<Broker[]> {
+    const offset = page * pageSize;
+    const limit = pageSize;
     return await this.brokerRepository.findAll<Broker>({
+      limit,
+      offset,
       include: [
         {
           model: User,

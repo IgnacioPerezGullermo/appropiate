@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { BrokersService } from './brokers.service';
@@ -23,8 +24,11 @@ export class BrokersController {
   }
 
   @Get()
-  findAll() {
-    return this.brokersService.findAll();
+  async findAll(
+    @Query('page') page: number,
+    @Query('pageSize') pageSize: number,
+  ) {
+    return await this.brokersService.find({ page, pageSize });
   }
 
   @Get(':id')

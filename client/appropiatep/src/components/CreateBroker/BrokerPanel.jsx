@@ -2,10 +2,11 @@ import {
   Avatar,
   Box,
   Button,
-  Grid,
-  GridItem,
-  Heading,
-  Select,
+  Input,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+  RangeSliderTrack,
   Tab,
   TabList,
   TabPanel,
@@ -13,32 +14,35 @@ import {
   Tabs,
   Text,
 } from '@chakra-ui/react';
+import axios from 'axios';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBrokers } from '../../redux/brokers/brokersAction';
-import { getUsers } from '../../redux/users/usersAction';
+import { getSearchedUsers } from '../../redux/users/usersAction';
 import { BrokerCreationPanel } from './Components/BrokerCreationPanel';
 import { BrokerForm } from './Components/BrokerForm';
 import { BrokerList } from './Components/BrokerList';
+import { BrokerSearch } from './Components/BrokerSearch';
 
 export const BrokerPanel = ({ setOption, Option }) => {
   const dispatch = useDispatch();
   const { brokers, createdBroker, error, success } = useSelector(
     (state) => state.brokers
   );
-  const { users } = useSelector((state) => state.users);
+  const { searchedUsers } = useSelector((state) => state.users);
   const [BasicInfoState, setBasicInfoState] = React.useState('pending');
   const [TabIndex, setTabIndex] = React.useState(0);
+  const [Searched, setSearched] = React.useState('');
   const [SelectedUser, setSelectedUser] = React.useState('');
   const [Continue, setContinue] = React.useState(false);
   const handleTabChange = (index) => {
     setTabIndex(index);
   };
   React.useEffect(() => {
-    dispatch(getBrokers());
-    dispatch(getUsers());
-  }, [TabIndex]);
+    dispatch(getBrokers({ page: 1, pageSize: 4 }));
+    dispatch(getSearchedUsers(Searched));
+  }, [TabIndex, Searched]);
   const opciones = {
     weekday: 'long',
     year: 'numeric',
@@ -103,35 +107,14 @@ export const BrokerPanel = ({ setOption, Option }) => {
             <BrokerList brokers={brokers} />
           </TabPanel>
           <TabPanel>
-            {Continue === false ? (
-              users?.map((user) => {
-                return (
-                  <Box>
-                    <Text>{user.username}</Text>
-                    <Button
-                      onClick={() => {
-                        setSelectedUser(user.id);
-                        setContinue(true);
-                      }}
-                    >
-                      Convertir en Broker
-                    </Button>
-                  </Box>
-                );
-              })
-            ) : (
-              <BrokerCreationPanel
-                setContinue={setContinue}
-                id={createdBroker?.id}
-                username={createdBroker?.username}
-                email={createdBroker?.email}
-                createdAt={formatDate}
-                createdBroker={createdBroker}
-                SelectedUser={SelectedUser}
-                setBasicInfoState={setBasicInfoState}
-                handleTabChange={handleTabChange}
-              ></BrokerCreationPanel>
-            )}
+            <BrokerSearch
+              setSearched={setSearched}
+              Continue={Continue}
+              selectedUser={SelectedUser}
+              setSelectedUser={setSelectedUser}
+              setContinue={setContinue}
+              setBasicInfoState={setBasicInfoState}
+            />
           </TabPanel>
           <TabPanel>
             <p>Form de modificacion</p>

@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUsers, updateUsers } from './usersAction';
+import { getSearchedUsers, getUsers, updateUsers } from './usersAction';
 
 const initialState = {
   users: [],
   success: null,
   error: null,
+  searchedUsers: [],
 };
 
 const usersSlice = createSlice({
@@ -22,6 +23,13 @@ const usersSlice = createSlice({
       state.success = true;
     },
     [updateUsers.rejected]: (state, { payload }) => {
+      state.error = true;
+    },
+    [getSearchedUsers.fulfilled]: (state, { payload }) => {
+      state.searchedUsers = payload;
+    },
+    [getSearchedUsers.rejected]: (state, { payload }) => {
+      state.searchedUsers = payload;
       state.error = true;
     },
   },
