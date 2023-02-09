@@ -86,6 +86,19 @@ export const SideBar = ({ Option, setOption }) => {
           }}
         >
           Asesorias
+        </Button>
+        <Button
+          leftIcon={<UilUserPlus />}
+          variant="sidebarButton"
+          bg={Option === 'createPropierty' ? 'blue.600' : 'secondary'}
+          color={
+            Option === 'createPropierty' ? 'whiteAlpha.900' : 'blackAlpha.900'
+          }
+          onClick={() => {
+            setOption('createPropierty');
+          }}
+        >
+          Crear Propiedad
         </Button>{' '}
       </VStack>
       <Button
