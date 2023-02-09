@@ -27,10 +27,11 @@ import { Profile } from './views/profile';
 import { Register } from './views/Register';
 import { Services } from './views/Services';
 
-const dotenv = require('dotenv');
-dotenv.config();
+/*const dotenv = require('dotenv');
+dotenv.config();*/
 
-axios.defaults.baseURL = process.env.BASE_URL;
+//axios.defaults.baseURL = process.env.BASE_URL;
+axios.defaults.baseURL = 'https://appropiate.herokuapp.com';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
