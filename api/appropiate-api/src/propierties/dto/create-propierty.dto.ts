@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreatePropiertyDto {
   @ApiProperty()
   @IsString()
-  readonly price : string;
+  readonly price: string;
 
   @ApiProperty()
   @IsString()
@@ -32,7 +32,7 @@ export class CreatePropiertyDto {
 
   @ApiProperty()
   @IsString()
-  readonly caprate : string;
+  readonly caprate: string;
 
   @ApiProperty()
   @IsString()
