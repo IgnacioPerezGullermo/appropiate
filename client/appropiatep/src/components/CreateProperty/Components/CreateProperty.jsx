@@ -1,8 +1,19 @@
-import { Box, FormLabel, Heading, Input } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  FormLabel,
+  Heading,
+  HStack,
+  Input,
+  Select,
+} from '@chakra-ui/react';
 import { Formik, useFormik } from 'formik';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { registerPropierty } from '../../../redux/properties/propertiesAction';
 
 export const CreateProperty = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       price: '',
@@ -39,228 +50,290 @@ export const CreateProperty = () => {
         projectname: values.projectname, //listo
         stock: values.stock, //listo
       };
-      dispatch(registerProperty(property));
+      dispatch(registerPropierty(property));
     },
   });
   return (
-    <Box pl={4} pr={4} w={'100%'} h={'100%'}>
+    <Box pl={4} pr={4} w={'100%'} bg={'white'} p={4} h={'80vh'}>
       <form onSubmit={formik.handleSubmit}>
         <Heading
           fontSize={26}
           color={'blue.400'}
-          mb={'5vh'}
+          mb={'0.7vh'}
           textAlign={'center'}
         >
           Informacion de Propiedad
         </Heading>
-        <FormLabel>Nombre</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="projectname"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.projectname}
-        />
-        <FormLabel>Precio</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="price"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.price}
-        />
-        <FormLabel>Región</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="region"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.region}
-        />
-        <FormLabel>Comuna</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="commune"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.commune}
-        />
-        <FormLabel>Dormitorios</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="bedr"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.bedr}
-        />
-        <FormLabel>Cantidad de Baños</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="bath"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.bath}
-        />
-        <FormLabel>Bodega</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="storage"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.storage}
-        />
-        <FormLabel>Estacionamiento</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="parking"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.parking}
-        />
-        <FormLabel>Cap Rate</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="caprate"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.caprate}
-        />
-        <FormLabel>Area Total</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="totalarea"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.totalarea}
-        />
-        <FormLabel>Tipo de Entrega</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="deliverytype"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.deliverytype}
-        />
-        <FormLabel>Inmobiliaria</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="inmob"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.inmob}
-        />
-        <FormLabel>Disponible</FormLabel>
-        <Input
-          type="text"
-          variant={'outline'}
-          name="stock"
-          bg={'blackAlpha.50'}
-          color={'black'}
-          focusBorderColor={'blue.200'}
-          size={'md'}
-          w={'100%'}
-          mb={'2vh'}
-          onReset={formik.handleReset}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.stock}
-        />
+        <HStack p={0}>
+          <FormLabel w={'100%'} mt={2}>
+            Nombre
+          </FormLabel>
+          <FormLabel w={'100%'}>Precio</FormLabel>
+        </HStack>
+        <HStack>
+          <Input
+            type="text"
+            variant={'outline'}
+            name="projectname"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'100%'}
+            mb={'1vh'}
+            mt={2}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.projectname}
+          />
+          <Input
+            type="text"
+            variant={'outline'}
+            name="price"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'100%'}
+            mb={'1vh'}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.price}
+          />
+        </HStack>
+        <HStack p={0}>
+          <FormLabel w={'100%'} mt={2}>
+            Región
+          </FormLabel>
+          <FormLabel w={'100%'}>Comuna</FormLabel>
+        </HStack>
+        <HStack>
+          <Select
+            type="text"
+            variant={'outline'}
+            name="region"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'100%'}
+            mb={'1vh'}
+            mt={2}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.region}
+          >
+            <option>Elige una opcion...</option>
+            <option>Metropolitana</option>
+            <option>Quinta</option>
+          </Select>
+
+          <Select
+            type="text"
+            variant={'outline'}
+            name="commune"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'100%'}
+            mb={'1vh'}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.commune}
+          >
+            <option>Elige una opcion...</option>
+            <option>Viña del Mar</option>
+            <option>Santiago</option>
+            <option>Ñuño</option>
+          </Select>
+        </HStack>
+        <HStack>
+          <FormLabel w={'24.5%'} mt={2}>
+            Dormitorios
+          </FormLabel>
+          <FormLabel w={'24.5%'}>Baños</FormLabel>
+          <FormLabel w={'24.5%'}>Bodega</FormLabel>
+          <FormLabel w={'24.5%'}>Estacionamiento</FormLabel>
+        </HStack>
+        <HStack>
+          <Input
+            type="text"
+            variant={'outline'}
+            name="bedr"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'24.5%'}
+            mb={'1vh'}
+            mt={2}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.bedr}
+          />
+          <Input
+            type="text"
+            variant={'outline'}
+            name="bath"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'24.5%'}
+            mb={'1vh'}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.bath}
+          />
+          <Input
+            type="text"
+            variant={'outline'}
+            name="storage"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'24.5%'}
+            mb={'1vh'}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.storage}
+          />
+          <Input
+            type="text"
+            variant={'outline'}
+            name="parking"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'24.5%'}
+            mb={'1vh'}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.parking}
+          />
+        </HStack>
+        <HStack>
+          <FormLabel w={'32.5%'} mt={2}>
+            Cap Rate
+          </FormLabel>
+          <FormLabel w={'32.5%'}>Area Total</FormLabel>
+          <FormLabel w={'32.5%'}>Disponible</FormLabel>
+        </HStack>
+        <HStack>
+          <Input
+            type="text"
+            variant={'outline'}
+            name="caprate"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'100%'}
+            mb={'1vh'}
+            mt={2}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.caprate}
+          />
+          <Input
+            type="text"
+            variant={'outline'}
+            name="totalarea"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'100%'}
+            mb={'1vh'}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.totalarea}
+          />
+
+          <Select
+            type="text"
+            variant={'outline'}
+            name="stock"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'100%'}
+            mb={'1vh'}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.stock}
+          >
+            <option>Elige una opcion...</option>
+            <option>true</option>
+            <option>false</option>
+          </Select>
+        </HStack>
+        <HStack>
+          <FormLabel w={'100%'} mt={2}>
+            Tipo de Entrega
+          </FormLabel>
+          <FormLabel w={'100%'}>Inmobiliaria</FormLabel>
+        </HStack>
+
+        <HStack>
+          <Select
+            type="text"
+            variant={'outline'}
+            name="deliverytype"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'100%'}
+            mb={'1vh'}
+            mt={2}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.deliverytype}
+          >
+            <option>Elige una opcion...</option>
+            <option>Inmediata</option>
+            <option>Primer Semestre 2023</option>
+            <option>Segundo Semestre 2023</option>
+            <option>Primer Semestre 2024</option>
+            <option>Segundo Semestre 2024</option>
+            <option>Primer Semestre 2025</option>
+            <option>Segundo Semestre 2025</option>
+            <option>Primer Semestre 2026</option>
+            <option>Segundo Semestre 2026</option>
+          </Select>
+          <Input
+            type="text"
+            variant={'outline'}
+            name="inmob"
+            bg={'blackAlpha.50'}
+            color={'black'}
+            focusBorderColor={'blue.200'}
+            size={'md'}
+            w={'100%'}
+            mb={'1vh'}
+            onReset={formik.handleReset}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.inmob}
+          />
+        </HStack>
         <Button
           mt={'1.2em'}
           bg={'red.600'}
@@ -269,7 +342,7 @@ export const CreateProperty = () => {
           w={'16%'}
           size="md"
           pos={'absolute'}
-          bottom={'10vh'}
+          bottom={'7vh'}
           right={'29vw'}
           _hover={{ bg: 'blue.400', color: 'white' }}
           onClick={() => {
@@ -287,7 +360,7 @@ export const CreateProperty = () => {
           h={'6vh'}
           size="md"
           pos={'absolute'}
-          bottom={'10vh'}
+          bottom={'7vh'}
           right={'16vw'}
           _hover={{ bg: 'blue.400', color: 'white' }}
           onClick={() => {
@@ -306,7 +379,7 @@ export const CreateProperty = () => {
           w={'16%'}
           size="md"
           pos={'absolute'}
-          bottom={'10vh'}
+          bottom={'7vh'}
           right={'3vw'}
           _hover={{ bg: 'blue.400', color: 'white' }}
         >

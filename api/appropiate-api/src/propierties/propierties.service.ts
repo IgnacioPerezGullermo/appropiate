@@ -4,15 +4,17 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
+import { PROPIERTY_REPOSITORY } from '../../core/constants';
 import { CreatePropiertyDto } from './dto/create-propierty.dto';
 import { UpdatePropiertyDto } from './dto/update-propierty.dto';
-import { Propierty } from './entities/propierty.entity'
-
+import { Propierty } from './entities/propierty.entity';
 
 @Injectable()
 export class PropiertiesService {
- 
-
+  constructor(
+    @Inject(PROPIERTY_REPOSITORY)
+    private readonly propiertiesRepository: typeof Propierty,
+  ) {}
   async create(createPropiertyDto: CreatePropiertyDto) {
     try {
       const propierty = new Propierty();
@@ -48,8 +50,8 @@ export class PropiertiesService {
     }
   }
 
-  findAll() {
-    return `This action returns all propierties`;
+  async findAll(): Promise<Propierty[]> {
+    return await this.propiertiesRepository.findAll<Propierty>();
   }
 
   findOne(id: number) {
