@@ -21,7 +21,7 @@ export const SideBar = ({ Option, setOption }) => {
     <Box
       h={'100vh'}
       w={'20vw'}
-      bg={'secondary'}
+      bg={'gray.900'}
       pos={'absolute'}
       top={'0%'}
       left={'0%'}
@@ -42,8 +42,8 @@ export const SideBar = ({ Option, setOption }) => {
           id="dashboard"
           leftIcon={<UilHome />}
           variant="sidebarButton"
-          bg={Option === 'dashboard' ? 'blue.600' : 'secondary'}
-          color={Option === 'dashboard' ? 'whiteAlpha.900' : 'blackAlpha.900'}
+          bg={Option === 'dashboard' ? 'teal.400' : 'gray.900'}
+          color={Option === 'dashboard' ? 'black' : 'white'}
           onClick={() => {
             setOption('dashboard');
           }}
@@ -53,10 +53,8 @@ export const SideBar = ({ Option, setOption }) => {
         <Button
           leftIcon={<UilUserPlus />}
           variant="sidebarButton"
-          bg={Option === 'createBroker' ? 'blue.600' : 'secondary'}
-          color={
-            Option === 'createBroker' ? 'whiteAlpha.900' : 'blackAlpha.900'
-          }
+          bg={Option === 'createBroker' ? 'teal.400' : 'gray.900'}
+          color={Option === 'createBroker' ? 'black' : 'white'}
           onClick={() => {
             setOption('createBroker');
           }}
@@ -66,8 +64,8 @@ export const SideBar = ({ Option, setOption }) => {
         <Button
           leftIcon={<UilDocumentLayoutRight />}
           variant="sidebarButton"
-          bg={Option === 'blog' ? 'blue.600' : 'secondary'}
-          color={Option === 'blog' ? 'whiteAlpha.900' : 'blackAlpha.900'}
+          bg={Option === 'blog' ? 'teal.400' : 'gray.900'}
+          color={Option === 'blog' ? 'black' : 'white'}
           onClick={() => {
             setOption('blog');
           }}
@@ -77,10 +75,8 @@ export const SideBar = ({ Option, setOption }) => {
         <Button
           leftIcon={<UilCalendarAlt />}
           variant="sidebarButton"
-          bg={Option === 'appointments' ? 'blue.600' : 'secondary'}
-          color={
-            Option === 'appointments' ? 'whiteAlpha.900' : 'blackAlpha.900'
-          }
+          bg={Option === 'appointments' ? 'teal.400' : 'gray.900'}
+          color={Option === 'appointments' ? 'black' : 'white'}
           onClick={() => {
             setOption('appointments');
           }}
@@ -90,10 +86,8 @@ export const SideBar = ({ Option, setOption }) => {
         <Button
           leftIcon={<UilUserPlus />}
           variant="sidebarButton"
-          bg={Option === 'createPropierty' ? 'blue.600' : 'secondary'}
-          color={
-            Option === 'createPropierty' ? 'whiteAlpha.900' : 'blackAlpha.900'
-          }
+          bg={Option === 'createPropierty' ? 'teal.400' : 'gray.900'}
+          color={Option === 'createPropierty' ? 'black' : 'white'}
           onClick={() => {
             setOption('createPropierty');
           }}

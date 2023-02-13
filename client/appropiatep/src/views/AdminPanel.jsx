@@ -36,9 +36,7 @@ export const AdminPanel = ({ admin }) => {
           pos={'absolute'}
           top={'0%'}
           left={'20%'}
-          backgroundImage={BackgroundPanel}
-          filter="auto"
-          brightness="60%"
+          bg={'gray.300'}
         ></Box>
         {renderSwitch(Option)}
       </Box>

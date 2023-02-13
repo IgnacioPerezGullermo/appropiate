@@ -13,7 +13,7 @@ export const ButtonStyles = {
       fontWeight: 'medium',
       justifyContent: 'left',
       borderRadius: 'lg',
-      _hover: { bg: 'blue.400', color: 'white' },
+      _hover: { bg: 'teal.600', color: 'white' },
     },
     logoutButton: {
       bg: 'secondary',

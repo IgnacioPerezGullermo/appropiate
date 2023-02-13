@@ -52,7 +52,9 @@ export const PropiertyList = ({
             pr="4.5rem"
             type="text"
             placeholder="Busca usuarios..."
-            bg={'white'}
+            bg={'gray.900'}
+            color={'white'}
+            focusBorderColor={'teal.300'}
             onChange={(e) => {
               handleInputChange(e);
             }}
@@ -62,7 +64,7 @@ export const PropiertyList = ({
           {propierties?.data?.map((prop) => {
             return (
               <Box
-                bg={'white'}
+                bg={'gray.700'}
                 boxShadow={'md'}
                 textAlign={'left'}
                 w={'100%'}
@@ -83,48 +85,71 @@ export const PropiertyList = ({
                   />
                 </GridItem>
                 <GridItem gridArea={'info'} pl={3} pt={2}>
-                  <Heading textTransform={'uppercase'} fontSize={30}>
+                  <Heading
+                    textTransform={'uppercase'}
+                    fontSize={30}
+                    color={'teal.300'}
+                  >
                     {prop.projectname}
                   </Heading>
-                  <Text mt={1}>
+                  <Text mt={1} color={'white'} fontWeight={'light'}>
                     {prop.commune}, {prop.region}
                   </Text>
-                  <Divider mt={1} w={'96%'} bg={'gray.300'} />
+                  <Divider mt={1} w={'96%'} bg={'blue.800'} />
                   <HStack mt={1} justify={'space-between'} p={2}>
                     <Box display={'flex'} flexDirection={'row'}>
-                      <UilBed />
-                      <Text ml={1}>{prop.bedr}</Text>
+                      <UilBed color={'#4FD1C5'} />
+                      <Text ml={1} color={'white'} fontWeight={'light'}>
+                        {prop.bedr}
+                      </Text>
                     </Box>
                     <Box display={'flex'} flexDirection={'row'}>
-                      <UilBath />
-                      <Text ml={1}>{prop.bath}</Text>
+                      <UilBath color={'#4FD1C5'} />
+                      <Text ml={1} color={'white'} fontWeight={'light'}>
+                        {prop.bath}
+                      </Text>
                     </Box>
                     <Box display={'flex'} flexDirection={'row'}>
-                      <UilBox />
-                      <Text ml={1}>{prop.storage}</Text>
+                      <UilBox color={'#4FD1C5'} />
+                      <Text ml={1} color={'white'} fontWeight={'light'}>
+                        {prop.storage}
+                      </Text>
                     </Box>
                     <Box display={'flex'} flexDirection={'row'}>
-                      <UilCar />
-                      <Text ml={1}>{prop.parking}</Text>
+                      <UilCar color={'#4FD1C5'} />
+                      <Text ml={1} color={'white'} fontWeight={'light'}>
+                        {prop.parking}
+                      </Text>
                     </Box>
                   </HStack>
                   <HStack justify={'space-evenly'} mt={2}>
                     <VStack>
-                      <Text>Cap Rate</Text>
-                      <Box display={'flex'} flexDirection={'row'}>
-                        <Text>{prop.caprate}</Text>
-                        <UilPercentage />
+                      <Text color={'white'} fontWeight={'light'} mb={'-1.2vh'}>
+                        Cap Rate
+                      </Text>
+                      <Box display={'flex'} flexDirection={'row'} spacing={0}>
+                        <Text color={'white'} fontWeight={'light'}>
+                          {prop.caprate}
+                        </Text>
+                        <UilPercentage color={'#4FD1C5'} />
                       </Box>
                     </VStack>
                     <VStack>
-                      <Text>Precio</Text>
-                      <Text>{prop.price} UF</Text>
+                      <Text color={'white'} fontWeight={'light'} mb={'-1.2vh'}>
+                        Precio
+                      </Text>
+                      <HStack>
+                        <Text color={'white'} fontWeight={'light'}>
+                          {prop.price}
+                        </Text>
+                        <Text color={'teal.300'}> UF</Text>
+                      </HStack>
                     </VStack>
                   </HStack>
                   <Button
                     variant={'sidebarButton'}
-                    bg={'blue.600'}
-                    color={'white'}
+                    bg={'teal.300'}
+                    color={'black'}
                     mt={'2vh'}
                     w={'96%'}
                   >
