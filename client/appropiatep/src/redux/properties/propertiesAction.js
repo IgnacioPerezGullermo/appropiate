@@ -1,32 +1,38 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// export const getBrokers = createAsyncThunk(
-//   'brokers/all',
-//   async ({ page, pageSize }) => {
-//     try {
-//       const config = {
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       };
-//       let info = await axios.get(
-//         `/broker?page=${page}&pageSize=${pageSize}`,
-//         '',
-//         config
-//       );
-//       console.log(info.data);
-//       return info.data;
-//     } catch (error) {
-//       // return custom error message from backend if present
-//       if (error.response && error.response.data.message) {
-//         return rejectWithValue(error.response.data.message);
-//       } else {
-//         return rejectWithValue(error.message);
-//       }
-//     }
-//   }
-// );
+export const getSearchedPropierties = createAsyncThunk(
+  'properties/searched',
+  async ({ page, pageSize, projectname }) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      if (projectname === '') {
+        let info = await axios.get(
+          `/propierties/find?page=${page}&pageSize=${pageSize}`,
+          '',
+          config
+        );
+        return info.data;
+      } else {
+        let info = await axios.get(
+          `/propierties/searched/${projectname}?page=${page}&pageSize=${pageSize}`
+        );
+        return info.data;
+      }
+    } catch (error) {
+      // return custom error message from backend if present
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
 
 export const registerPropierty = createAsyncThunk(
   'propierties/create',

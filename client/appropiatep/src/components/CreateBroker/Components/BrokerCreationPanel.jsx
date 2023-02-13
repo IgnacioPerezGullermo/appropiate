@@ -39,7 +39,7 @@ export const BrokerCreationPanel = ({
   return (
     <Grid
       templateAreas={`"card form"
-      "footer footer"`}
+        "footer footer"`}
       gridTemplateRows={'82vh'}
       gridTemplateColumns={'0.7fr 1fr'}
       gridGap={3}

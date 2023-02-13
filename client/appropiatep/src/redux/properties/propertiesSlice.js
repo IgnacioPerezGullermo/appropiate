@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerPropierty } from './propertiesAction';
+import { registerPropierty, getSearchedPropierties } from './propertiesAction';
 
 const initialState = {
   propierties: [],
@@ -14,12 +14,12 @@ const propiertiesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    // [getBrokers.fulfilled]: (state, { payload }) => {
-    //   state.propierties = payload;
-    // },
-    // [getBrokers.rejected]: (state, { payload }) => {
-    //   state.propierties = payload;
-    // },
+    [getSearchedPropierties.fulfilled]: (state, { payload }) => {
+      state.propierties = payload;
+    },
+    [getSearchedPropierties.rejected]: (state, { payload }) => {
+      state.propierties = payload;
+    },
     [registerPropierty.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.createdPropierty = payload;

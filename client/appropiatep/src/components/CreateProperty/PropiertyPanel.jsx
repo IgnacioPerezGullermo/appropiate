@@ -14,18 +14,34 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSearchedPropierties } from '../../redux/properties/propertiesAction';
 import { CreateProperty } from './Components/CreateProperty';
+import { PropiertyList } from './Components/PropiertyList';
 
 export const PropiertyPanel = ({ setOption, Option }) => {
   const dispatch = useDispatch();
-  /*const { propierty, createdPropierty, error, success } = useSelector(
-      (state) => state.brokers
-    );*/
+  const { propierties, createdPropierty, error, success } = useSelector(
+    (state) => state.propierties
+  );
   const [TabIndex, setTabIndex] = React.useState(0);
+  const [Searched, setSearched] = React.useState('');
+  const [Page, setPage] = React.useState(0);
+  const [PageSize, setPageSize] = React.useState(4);
+  React.useEffect(() => {
+    dispatch(
+      getSearchedPropierties({
+        page: Page,
+        pageSize: PageSize,
+        projectname: Searched,
+      })
+    );
+  }, [TabIndex, Searched, Page]);
+
   const handleTabChange = (index) => {
     setTabIndex(index);
   };
+
   return (
     <Box
       bg={'whiteAlpha.800'}
@@ -73,7 +89,15 @@ export const PropiertyPanel = ({ setOption, Option }) => {
         </TabList>
 
         <TabPanels>
-          <TabPanel></TabPanel>
+          <TabPanel>
+            <PropiertyList
+              propierties={propierties}
+              setSearched={setSearched}
+              Page={Page}
+              setPage={setPage}
+              PageSize={PageSize}
+            />
+          </TabPanel>
           <TabPanel>
             <CreateProperty />
           </TabPanel>

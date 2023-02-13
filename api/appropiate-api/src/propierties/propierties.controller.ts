@@ -30,7 +30,7 @@ export class PropiertiesController {
     return this.propiertiesService.create(createPropiertyDto);
   }
 
-  @Get()
+  @Get('find')
   @ApiCreatedResponse({
     status: 201,
     description: 'Estos son todas las propiedades solicitadas',
@@ -41,7 +41,7 @@ export class PropiertiesController {
     return this.propiertiesService.find({ page, pageSize });
   }
 
-  @Get('searched/:username')
+  @Get('searched/:projectname')
   @ApiCreatedResponse({
     status: 201,
     description: 'Estos son las propiedades con el nombre ingresado',
