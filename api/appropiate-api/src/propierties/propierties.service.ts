@@ -4,6 +4,7 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
+import { Op } from 'sequelize';
 import { PROPIERTY_REPOSITORY } from '../../core/constants';
 import { CreatePropiertyDto } from './dto/create-propierty.dto';
 import { UpdatePropiertyDto } from './dto/update-propierty.dto';
@@ -15,6 +16,7 @@ export class PropiertiesService {
     @Inject(PROPIERTY_REPOSITORY)
     private readonly propiertiesRepository: typeof Propierty,
   ) {}
+
   async create(createPropiertyDto: CreatePropiertyDto) {
     try {
       const propierty = new Propierty();
@@ -50,12 +52,41 @@ export class PropiertiesService {
     }
   }
 
-  async findAll(): Promise<Propierty[]> {
-    return await this.propiertiesRepository.findAll<Propierty>();
+  async find({
+    page,
+    pageSize,
+  }): Promise<{ total: number; data: Propierty[] }> {
+    const offset = page * pageSize;
+    const limit = pageSize;
+    console.log(offset, limit);
+    const { rows, count } =
+      await this.propiertiesRepository.findAndCountAll<Propierty>({
+        limit,
+        offset,
+      });
+    console.log(rows);
+    return { total: count, data: rows };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} propierty`;
+  async findSearched({
+    page,
+    pageSize,
+    projectname,
+  }): Promise<{ total: number; data: Propierty[] }> {
+    const offset = page * pageSize;
+    const limit = pageSize;
+    const { rows, count } =
+      await this.propiertiesRepository.findAndCountAll<Propierty>({
+        limit,
+        offset,
+        where: { projectname: { [Op.like]: '%' + projectname + '%' } },
+      });
+    console.log(rows);
+    return { total: count, data: rows };
+  }
+
+  async findOne(id: string) {
+    return await this.propiertiesRepository.findOne({ where: { id } });
   }
 
   update(id: number, updatePropiertyDto: UpdatePropiertyDto) {

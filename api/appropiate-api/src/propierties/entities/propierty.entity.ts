@@ -1,61 +1,59 @@
 import {
-    Column,
-    DataType,
-    ForeignKey,
-    HasMany,
-    HasOne,
-    Model,
-    Table,
-  } from 'sequelize-typescript';
-  //import { User } from 'src/users/entities/user.entity';
-  
-  @Table
-  export class Propierty extends Model {
-    @Column({
-      type: DataType.UUID,
-      defaultValue: DataType.UUIDV4,
-      primaryKey: true,
-    })
-    id: string;
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  HasOne,
+  Model,
+  Table,
+} from 'sequelize-typescript';
+//import { User } from 'src/users/entities/user.entity';
 
-    @Column
-    price : string;
+@Table
+export class Propierty extends Model {
+  @Column({
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4,
+    primaryKey: true,
+  })
+  id: string;
 
-    @Column
-    region: string;
+  @Column
+  price: string;
 
-    @Column
-    commune: string;
-  
-    @Column
-    bedr: string;
-  
-    @Column
-    bath: string;
-  
-    @Column
-    storage: string;
-  
-    @Column
-    parking: string;
+  @Column
+  region: string;
 
-    @Column
-    caprate : string;
+  @Column
+  commune: string;
 
-    @Column
-    totalarea: string;
+  @Column
+  bedr: string;
 
-    @Column
-    deliverytype: string;
-  
-    @Column
-    inmob: string;
-  
-    @Column
-    projectname: string;
+  @Column
+  bath: string;
 
-    @Column
-    stock: string;
+  @Column
+  storage: string;
 
-  }
-  
+  @Column
+  parking: string;
+
+  @Column
+  caprate: string;
+
+  @Column
+  totalarea: string;
+
+  @Column
+  deliverytype: string;
+
+  @Column
+  inmob: string;
+
+  @Column
+  projectname: string;
+
+  @Column
+  stock: string;
+}
