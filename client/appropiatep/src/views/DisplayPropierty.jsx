@@ -10,8 +10,8 @@ export const DisplayPropierty = () => {
       commune: "Santiago",
       "bedr": "2",
       "bath": "1",
-      "storage": "SI",
-      "parking": "SI",
+      "storage": "si",
+      "parking": "si",
       "caprate": "3,3",
       "totalarea": "20000",
       "deliverytype": "Primer Semestre 2023",
@@ -28,8 +28,8 @@ export const DisplayPropierty = () => {
       commune: "Santiago",
       "bedr": "2",
       "bath": "1",
-      "storage": "No",
-      "parking": "NO",
+      "storage": "no",
+      "parking": "no",
       "caprate": "2,4",
       "totalarea": "20000",
       "deliverytype": "Primer Semestre 2023",
@@ -48,11 +48,11 @@ export const DisplayPropierty = () => {
       price={prop.price}
       commune={prop.commune}
       region={prop.region}
-      /*storage={prop.storage}
-      parking={prop.parking}*/
+      storage={prop.storage}
+      parking={prop.parking}
       caprate={prop.caprate}
-      //totalarea={prop.totalarea}
-      //deliverytype={prop.deliverytype}
+      totalarea={prop.totalarea}
+      deliverytype={prop.deliverytype}
       />)
   })}</div>;
 };
