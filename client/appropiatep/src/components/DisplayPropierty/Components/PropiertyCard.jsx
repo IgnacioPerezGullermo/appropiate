@@ -14,6 +14,7 @@ import {
   Image,
   Text,
   Tooltip,
+  useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
 import {
@@ -37,13 +38,16 @@ export const PropiertyCard = ({
   caprate,
 }) => {
   console.log(storage || storage === 'si');
+  const bg = useColorModeValue('white', 'black');
+  const color = useColorModeValue('black', 'white');
+  const bgButton = useColorModeValue('primary', 'transparent');
   return (
     <Card
       width={'100%'}
       h={'38vh'}
       borderRadius={'lg'}
       boxShadow={'base'}
-      bg={'black'}
+      bg={bg}
       gridTemplateAreas={`"image info"`}
       gridTemplateColumns={'35% 65%'}
       gridTemplateRows={'1fr'}
@@ -64,7 +68,7 @@ export const PropiertyCard = ({
             <Text fontSize={'xl'} fontWeight={'bold'} justifySelf={'left'}>
               {commune},{' '}
             </Text>
-            <Text fontSize="xl" color={'white'} fontWeight={'light'}>
+            <Text fontSize="xl" color={color} fontWeight={'light'}>
               {' '}
               {region}
             </Text>
@@ -80,7 +84,7 @@ export const PropiertyCard = ({
                   <UilBed />{' '}
                 </span>
               </Tooltip>
-              <Text ml={1} color={'#FFFFFF'}>
+              <Text ml={1} fontSize={'lg'} color={color}>
                 {' '}
                 {bedr}{' '}
               </Text>
@@ -96,7 +100,7 @@ export const PropiertyCard = ({
                   <UilBath />{' '}
                 </span>
               </Tooltip>
-              <Text ml={1} color={'#FFFFFF'}>
+              <Text ml={1} fontSize={'lg'} color={color}>
                 {' '}
                 {bath}{' '}
               </Text>
@@ -135,10 +139,10 @@ export const PropiertyCard = ({
             <VStack
               fontSize={'2xl'}
               alignItems={'center'}
-              color={'#FFFFFF'}
+              color={color}
               justifyContent="space-evenly"
             >
-              <Text fontSize={'xs'}>Cap Rate</Text>
+              <Text fontSize={'sm'}>Cap Rate</Text>
               <Box
                 display={'flex'}
                 flexDirection={'row'}
@@ -150,7 +154,7 @@ export const PropiertyCard = ({
               </Box>
             </VStack>
             <VStack alignItems={'center'} justifyContent="space-evenly">
-              <Text fontSize={'xs'} color={'#FFFFFF'}>
+              <Text fontSize={'sm'} color={color}>
                 Desde
               </Text>
               <Box display={'flex'} flexDirection={'row'}>
@@ -163,8 +167,8 @@ export const PropiertyCard = ({
           <Button
             rightIcon={<UilFastMail />}
             variant={'outline'}
-            //bg={'#19C8C4'}
-            color={'white'}
+            bg={bgButton}
+            color={color}
             justifyContent="space-evenly"
             borderColor={'primary'}
             alignItems={'center'}

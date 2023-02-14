@@ -1,4 +1,4 @@
-import { Box, useDisclosure } from '@chakra-ui/react';
+import { Box, useColorModeValue, useDisclosure } from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PropiertyCard } from '../components/DisplayPropierty/Components/PropiertyCard.jsx';
@@ -10,12 +10,13 @@ export const DisplayPropierty = () => {
   const { userInfo, authToken } = useSelector((state) => state.auth);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+  const bg = useColorModeValue('gray.200', 'gray.800');
 
   return (
     <Box
       pos={'absolute'}
       top={'0vh'}
-      bg={'gray.900'}
+      bg={bg}
       w={'100vw'}
       left={'0vw'}
       h={'100vh'}
