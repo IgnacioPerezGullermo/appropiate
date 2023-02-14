@@ -6,7 +6,8 @@ const menuItems = [
   { title: 'Inicio', endpoint: '/', index: 0 },
   { title: 'Blog', endpoint: '/blog', index: 1 },
   { title: 'Asesorate', endpoint: '/appointment', index: 2 },
-  { title: 'Ingresar', endpoint: '/login', index: 3 },
+  { title: 'Oportunidades', endpoint: '/displaypropierty', index: 2 },
+  { title: 'Ingresar', endpoint: '/login', index: 4 },
 ];
 
 export const NavBar = ({ btnRef, onOpen, location }) => {
@@ -18,9 +19,10 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
       pos={'absolute'}
       left={'0%'}
       top={'0%'}
-      borderBottom={'1px solid black'}
-      bg={'whiteAlpha.900'}
+      bg={'gray.800'}
       textAlign={'left'}
+      borderBottom={'4px solid'}
+      borderColor={'primary'}
     >
       <Text pos={'absolute'} right={'5vw'} top={'1vh'} fontSize={'3vw '}>
         Logo
@@ -32,6 +34,7 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
               <Button
                 variant={'ghost'}
                 color="primary"
+                fontWeight={'medium'}
                 size={'lg'}
                 _hover={{ bg: 'transparent', color: 'blue.400' }}
                 onClick={onOpen}
@@ -46,6 +49,7 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
               <Button
                 variant={'ghost'}
                 color="primary"
+                fontWeight={'medium'}
                 _hover={{ bg: 'transparent', color: 'blue.400' }}
                 size={'lg'}
                 key={item.index}

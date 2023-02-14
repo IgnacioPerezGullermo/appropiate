@@ -1,58 +1,34 @@
+import { Box, useDisclosure } from '@chakra-ui/react';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { PropiertyCard } from '../components/DisplayPropierty/Components/PropiertyCard.jsx';
+import { PropiertyCards } from '../components/DisplayPropierty/Components/PropiertyCards.jsx';
+import { NavBar } from '../components/NavBar.jsx';
+import { UserDrawer } from '../components/UserDrawer/UserDrawer.jsx';
 
 export const DisplayPropierty = () => {
-  let data = [
-    {
-      "id": "42ff45fd-7b27-4af7-8241-6eba92804781",
-      "price": "2000",
-      "region": "Metropolitana",
-      commune: "Santiago",
-      "bedr": "2",
-      "bath": "1",
-      "storage": "si",
-      "parking": "si",
-      "caprate": "3,3",
-      "totalarea": "20000",
-      "deliverytype": "Primer Semestre 2023",
-      "inmob": "Copahue",
-      "projectname": "Los pajaritos",
-      "stock": "true",
-      "createdAt": "2023-02-10T18:17:40.453Z",
-      "updatedAt": "2023-02-10T18:17:40.453Z"
-    },
-    {
-      "id": "dddd2d9b-313b-4ec8-9e73-b11e9a5f3c56",
-      "price": "20000",
-      "region": "Metropolitana",
-      commune: "Santiago",
-      "bedr": "2",
-      "bath": "1",
-      "storage": "no",
-      "parking": "no",
-      "caprate": "2,4",
-      "totalarea": "20000",
-      "deliverytype": "Primer Semestre 2023",
-      "inmob": "Copahue",
-      "projectname": "Los pajaritos",
-      "stock": "true",
-      "createdAt": "2023-02-10T18:23:09.642Z",
-      "updatedAt": "2023-02-10T18:23:09.642Z"
-    },
-  ]
-  return <div> {data.map((prop)=>{
+  const { userInfo, authToken } = useSelector((state) => state.auth);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
 
-    return (<PropiertyCard 
-      bedr={prop.bedr}
-      bath={prop.bath}
-      price={prop.price}
-      commune={prop.commune}
-      region={prop.region}
-      storage={prop.storage}
-      parking={prop.parking}
-      caprate={prop.caprate}
-      totalarea={prop.totalarea}
-      deliverytype={prop.deliverytype}
-      />)
-  })}</div>;
+  return (
+    <Box
+      pos={'absolute'}
+      top={'0vh'}
+      bg={'gray.400'}
+      w={'100vw'}
+      left={'0vw'}
+      h={'100vh'}
+    >
+      <NavBar btnref={btnRef} onOpen={onOpen} location={'landing'} />
+      <UserDrawer
+        isOpen={isOpen}
+        onClose={onClose}
+        username={userInfo?.username}
+        email={userInfo?.email}
+        createdAt={userInfo?.createdAt}
+      />
+      <PropiertyCards />
+    </Box>
+  );
 };
