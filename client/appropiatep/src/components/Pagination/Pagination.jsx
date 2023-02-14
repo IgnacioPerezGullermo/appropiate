@@ -14,7 +14,8 @@ export const Pagination = ({ page, pageSize, total, setPage }) => {
       paddingInline={'0.7vw'}
       paddingBlock={'0.5vh'}
       borderRadius={'2xl'}
-      bg={'transparent'}
+      w={'100%'}
+      bg={'gray.800'}
     >
       {pagesObject.map((page) => {
         return (
