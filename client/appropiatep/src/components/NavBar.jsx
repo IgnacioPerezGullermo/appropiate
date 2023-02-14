@@ -1,4 +1,15 @@
-import { background, Box, Button, color, Text, Wrap } from '@chakra-ui/react';
+import {
+  background,
+  Box,
+  Button,
+  Circle,
+  color,
+  Text,
+  useColorMode,
+  useColorModeValue,
+  Wrap,
+} from '@chakra-ui/react';
+import { UilMoon, UilSun } from '@iconscout/react-unicons';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,6 +23,10 @@ const menuItems = [
 
 export const NavBar = ({ btnRef, onOpen, location }) => {
   const navigate = useNavigate();
+  const { colorMode, toggleColorMode } = useColorMode();
+  const bg = useColorModeValue('white', 'black');
+  const bgToggle = useColorModeValue('gray.900', 'gray.200');
+  console.log(colorMode);
   return (
     <Box
       w={'100vw'}
@@ -19,7 +34,7 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
       pos={'absolute'}
       left={'0%'}
       top={'0%'}
-      bg={'black'}
+      bg={bg}
       textAlign={'left'}
       borderBottom={'4px solid'}
       borderColor={'primary'}
@@ -62,6 +77,24 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
             );
           }
         })}
+        <Circle
+          border={1}
+          borderColor={'primary'}
+          size={'7vh'}
+          bg={bg}
+          onClick={() => {
+            toggleColorMode('dark');
+          }}
+          _hover={
+            colorMode === 'light' ? { bg: 'gray.100' } : { bg: 'gray.900' }
+          }
+        >
+          {colorMode === 'light' ? (
+            <UilMoon size="35" color={'#19C8C4'} />
+          ) : (
+            <UilSun size="35" color={'#19C8C4'} />
+          )}
+        </Circle>
       </Wrap>
     </Box>
   );

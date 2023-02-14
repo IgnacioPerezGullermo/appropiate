@@ -5,6 +5,10 @@ import { ButtonStyles as Button } from './components/buttonStyle';
 // 2. Extend the theme to include custom colors, fonts, etc
 
 export const theme = extendTheme({
+  config: {
+    initialColorMode: 'dark' | 'light',
+    useSystemColorMode: true,
+  },
   colors: {
     transparent: 'transparent',
     black: '#000000',
