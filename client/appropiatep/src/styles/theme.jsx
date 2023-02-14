@@ -8,7 +8,7 @@ export const theme = extendTheme({
   colors: {
     transparent: 'transparent',
     black: '#000',
-    primary: '#2b6CB0',
+    primary: '#19C8C4',
     secondary: '#d9f3f0',
     terciary: '#318F88',
   },

@@ -38,14 +38,15 @@ export const PropiertyCard = ({
           </GridItem>
           <GridItem
             area={"info"}
-            color={'#19C8C4'}>
+            color={'primary'}>
             <CardHeader >
-              <HStack justifyContent='space-evenly'>
+              <HStack justifyContent='space-evenly'
+                      alignItems={"center"}>
                 <Box display={"flex"} flexDirection={"row"}>
-                  <Heading fontSize={"2xl"}>{commune},</Heading>
+                  <Text fontSize={"xl"} color={'white'}>{commune},</Text>
                 </Box>
                 <Box display={"flex"} flexDirection={"row"}>
-                  <Text fontSize={"xl"} color={'#FFFFFF'}>{region}</Text>
+                  <Text fontSize={"xl"} >{region}</Text>
                 </Box>
               </HStack>
             </CardHeader>
@@ -59,7 +60,7 @@ export const PropiertyCard = ({
                   <Tooltip label='Dormitorios' fontSize='md' placement='bottom'>
                     <span>  <UilBed/> </span>
                   </Tooltip>
-                  <Text ml={1} color={'#FFFFFF'}> {bedr} </Text>
+                  <Text ml={1} color={'white'}> {bedr} </Text>
                 </Box>
                 <Box 
                   display={"flex"} 
@@ -68,7 +69,7 @@ export const PropiertyCard = ({
                   <Tooltip label='Baños' fontSize='md' placement='bottom'>
                     <span>  <UilBath/>  </span>
                   </Tooltip>
-                  <Text ml={1} color={'#FFFFFF'}> {bath} </Text>
+                  <Text ml={1} color={'white'}> {bath} </Text>
                 </Box>
                 {(storage && storage === 'si') && 
                 //aca viene el jsx
@@ -98,7 +99,7 @@ export const PropiertyCard = ({
                 <VStack
                   fontSize={"2xl"}              
                   alignItems={"center"}
-                  color={'#FFFFFF'}
+                  color={'white'}
                   justifyContent='space-evenly'>
                   <Text fontSize={"xs"}>Cap Rate</Text>
                   <Box
@@ -113,7 +114,7 @@ export const PropiertyCard = ({
                 <VStack  
                   alignItems={"center"} 
                   justifyContent='space-evenly'>
-                  <Text fontSize={"xs"} color={'#FFFFFF'}>Desde</Text>
+                  <Text fontSize={"xs"} color={'white'}>Desde</Text>
                   <Box
                     display={"flex"}
                     flexDirection={"row"}>
@@ -125,8 +126,8 @@ export const PropiertyCard = ({
             <Center>
               <Button
                 rightIcon={<UilFastMail/>} 
-                bg={'#19C8C4'}
-                color={'#FFFFFF'} 
+                bg={'primary'}
+                color={'white'} 
                 justifyContent='space-evenly' 
                 alignItems={"center"}> + información</Button>
             </Center>
