@@ -23,7 +23,7 @@ export const PropiertyCards = ({}) => {
   return (
     <Box w={'90vw'} ml={'4vw'} mt={'14vh'} h={'container.sm'} p={1}>
       <SimpleGrid columns={'3'} p={0} gap={6} mr={2}>
-        {propierties.data?.map((prop) => {
+        {propierties?.data?.map((prop) => {
           return (
             <PropiertyCard
               bedr={prop.bedr}

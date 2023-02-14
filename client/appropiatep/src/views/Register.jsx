@@ -1,17 +1,15 @@
-/*import React from 'react';
 import {
-  
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
+
+  FormControl, FormErrorMessage,
+  FormHelperText, FormLabel
 } from '@chakra-ui/react';
+import React from 'react';
 
 export const Register = () => {
   return <div>This is the Register page</div>
-  <FormControl isRequired>
+  /*<FormControl isRequired>
   <FormLabel>First name</FormLabel>
   <Input placeholder='First name' />
-</FormControl>
+</FormControl>*/
   ;
-}; */
+}; 
