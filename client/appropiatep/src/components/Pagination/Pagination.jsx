@@ -19,13 +19,13 @@ export const Pagination = ({ page, pageSize, total, setPage }) => {
       {pagesObject.map((page) => {
         return (
           <Button
-            bg={'blue.400'}
+            bg={'teal.300'}
             value={page.value}
-            color={'white'}
+            color={'black'}
             size={'md'}
             borderRadius={'3xl'}
             marginInline={'0.5vw'}
-            _hover={{ bg: 'blue.600' }}
+            _hover={{ bg: 'teal.600', color: 'white' }}
             onClick={() => {
               setPage(page.value);
             }}

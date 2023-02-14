@@ -44,7 +44,7 @@ export const PropiertyPanel = ({ setOption, Option }) => {
 
   return (
     <Box
-      bg={'whiteAlpha.800'}
+      bg={'gray.800'}
       h={'92vh'}
       w={'75vw'}
       pos={'absolute'}
@@ -61,27 +61,30 @@ export const PropiertyPanel = ({ setOption, Option }) => {
       >
         <TabList>
           <Tab
-            bg={'whiteAlpha.900'}
-            color={'black'}
+            bg={'gray.800'}
+            color={'white'}
+            borderColor={'transparent'}
             borderBottom={'1px solid gray'}
             borderRadius={'15px 0% 0% 0%'}
-            _selected={{ color: 'white', bg: 'blue.600' }}
+            _selected={{ color: 'black', bg: 'teal.300' }}
           >
             Propiedades Overview
           </Tab>
           <Tab
-            bg={'whiteAlpha.900'}
-            color={'black'}
+            bg={'gray.800'}
+            color={'white'}
+            borderColor={'transparent'}
             borderBottom={'1px solid gray'}
-            _selected={{ color: 'white', bg: 'blue.600' }}
+            _selected={{ color: 'black', bg: 'teal.300' }}
           >
             Crear Propiedad
           </Tab>
           <Tab
-            bg={'whiteAlpha.900'}
-            color={'black'}
+            bg={'gray.800'}
+            color={'white'}
+            borderColor={'transparent'}
             borderBottom={'1px solid gray'}
-            _selected={{ color: 'white', bg: 'blue.600' }}
+            _selected={{ color: 'black', bg: 'teal.300' }}
             borderRadius={'0% 15px 0% 0%'}
           >
             Modificar Propiedad
