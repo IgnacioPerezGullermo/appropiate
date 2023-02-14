@@ -15,7 +15,7 @@ export const DisplayPropierty = () => {
     <Box
       pos={'absolute'}
       top={'0vh'}
-      bg={'gray.400'}
+      bg={'gray.900'}
       w={'100vw'}
       left={'0vw'}
       h={'100vh'}

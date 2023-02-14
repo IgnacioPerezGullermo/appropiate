@@ -43,7 +43,7 @@ export const PropiertyCard = ({
       h={'38vh'}
       borderRadius={'lg'}
       boxShadow={'base'}
-      bg={'gray.800'}
+      bg={'black'}
       gridTemplateAreas={`"image info"`}
       gridTemplateColumns={'35% 65%'}
       gridTemplateRows={'1fr'}
@@ -162,10 +162,14 @@ export const PropiertyCard = ({
         <Center>
           <Button
             rightIcon={<UilFastMail />}
-            bg={'#19C8C4'}
-            color={'#FFFFFF'}
+            variant={'outline'}
+            //bg={'#19C8C4'}
+            color={'white'}
             justifyContent="space-evenly"
+            borderColor={'primary'}
             alignItems={'center'}
+            borderRadius={'full'}
+            _hover={{ bg: 'primary' }}
           >
             {' '}
             + información
