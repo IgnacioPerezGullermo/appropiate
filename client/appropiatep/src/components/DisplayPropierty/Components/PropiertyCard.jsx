@@ -36,14 +36,14 @@ export const PropiertyCard = ({
 }) => {
   return (
     <Card
-      width={'100%'}
+      width={'28vw'}
       h={'30vh'}
       borderRadius={'lg'}
       boxShadow={'base'}
       m={3}
       bg={'#272727'}
       gridTemplateAreas={`"image info"`}
-      gridTemplateColumns={'35% 65%'}
+      gridTemplateColumns={'0.9fr 1fr'}
       gridTemplateRows={'1fr'}
       display={'grid'}
       overflow={'hidden'}
