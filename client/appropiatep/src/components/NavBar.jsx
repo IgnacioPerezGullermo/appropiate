@@ -19,7 +19,7 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
       pos={'absolute'}
       left={'0%'}
       top={'0%'}
-      bg={'gray.800'}
+      bg={'black'}
       textAlign={'left'}
       borderBottom={'4px solid'}
       borderColor={'primary'}

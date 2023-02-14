@@ -7,7 +7,7 @@ import { ButtonStyles as Button } from './components/buttonStyle';
 export const theme = extendTheme({
   colors: {
     transparent: 'transparent',
-    black: '#000',
+    black: '#000000',
     primary: '#19C8C4',
     secondary: '#d9f3f0',
     terciary: '#318F88',
