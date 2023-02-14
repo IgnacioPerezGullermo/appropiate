@@ -28,6 +28,7 @@ import { LogIn } from './views/LogIn';
 import { Profile } from './views/Profile';
 import { Register } from './views/Register';
 import { Services } from './views/Services';
+import { DisplayPropierty } from './views/displaypropierty';
 
 //dotenv.config();
 
@@ -52,6 +53,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <Route path="/login" element={<LogIn />} />
               <Route path="/register" element={<Register />} />
               <Route path="/brokerdashboard" element={<BrokerDashboard />} />
+              <Route path="/displaypropierty" element={<DisplayPropierty />} />
             </Routes>
           </BrowserRouter>
         </div>
