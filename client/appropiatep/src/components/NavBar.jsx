@@ -10,8 +10,9 @@ import {
   useColorModeValue,
   Wrap,
 } from '@chakra-ui/react';
-import { UilMoon, UilSun } from '@iconscout/react-unicons';
+import { UilMoon, UilSun, UilUserCircle } from '@iconscout/react-unicons';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import DarkTitle from '../assets/AppDarkMode.png';
 import LightTitle from '../assets/AppLightMode.png';
@@ -25,12 +26,13 @@ const menuItems = [
 ];
 
 export const NavBar = ({ btnRef, onOpen, location }) => {
+  const { userToken } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue('white', 'black');
   const bgToggle = useColorModeValue('gray.900', 'gray.200');
   const logo = useColorModeValue(LightTitle, DarkTitle);
-  console.log(colorMode);
+  console.log(userToken);
   return (
     <Box
       w={'100vw'}
@@ -53,21 +55,8 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
         justifyContent={'center'}
       >
         {menuItems.map((item) => {
-          if (item.title === 'Ingresar') {
-            return (
-              <Button
-                variant={'ghost'}
-                color="primary"
-                fontWeight={'medium'}
-                size={'lg'}
-                _hover={{ bg: 'transparent', color: 'blue.400' }}
-                onClick={onOpen}
-                ref={btnRef}
-                key={item.index}
-              >
-                {location !== 'landing' ? 'Usuario' : 'Ingresar'}
-              </Button>
-            );
+          if (userToken && item.title === 'Ingresar') {
+            return null;
           } else {
             return (
               <Button
@@ -88,26 +77,21 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
         })}
         <Circle
           border={1}
+          ref={btnRef}
           borderColor={'primary'}
           lineHeight={'base'}
-          size={'6vh'}
+          size={'7vh'}
           bg={bg}
-          onClick={() => {
-            toggleColorMode('dark');
-          }}
+          onClick={onOpen}
           _hover={
             colorMode === 'light' ? { bg: 'gray.100' } : { bg: 'gray.900' }
           }
         >
-          {colorMode === 'light' ? (
-            <UilMoon size="30" color={'#19C8C4'} />
-          ) : (
-            <UilSun size="30" color={'#19C8C4'} />
-          )}
+          <UilUserCircle size="38" color={'#19C8C4'} />
         </Circle>
       </Wrap>
       <Box
-        bg={'red'}
+        bg={'transparent'}
         w={'12vw'}
         h={'8vh'}
         pos={'absolute'}
