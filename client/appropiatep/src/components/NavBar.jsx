@@ -8,7 +8,7 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
-  Wrap,
+  Wrap
 } from '@chakra-ui/react';
 import { UilMoon, UilSun } from '@iconscout/react-unicons';
 import React from 'react';
@@ -20,8 +20,9 @@ const menuItems = [
   { title: 'Inicio', endpoint: '/', index: 0 },
   { title: 'Blog', endpoint: '/blog', index: 1 },
   { title: 'Asesorate', endpoint: '/appointment', index: 2 },
-  { title: 'Oportunidades', endpoint: '/displaypropierty', index: 2 },
-  { title: 'Ingresar', endpoint: '/login', index: 4 },
+  { title: 'Oportunidades', endpoint: '/displaypropierty', index: 3 },
+  { title: 'Register', endpoint: '/register', index: 4 },
+  { title: 'Ingresar', endpoint: '/login', index: 5 }
 ];
 
 export const NavBar = ({ btnRef, onOpen, location }) => {

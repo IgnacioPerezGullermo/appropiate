@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Center,
   Divider,
   FormControl,
   FormErrorMessage,
@@ -14,23 +15,28 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  useColorModeValue,
   useDisclosure
 } from '@chakra-ui/react';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavBar } from '../components/NavBar';
+import { createClient } from '../redux/clients/clientsAction';
 
 export const Register = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
-  /*const navigate = useNavigate();
+  const generalColor = useColorModeValue('black', 'white');
+  const bgColor = useColorModeValue ('gray.100', '#272727');
+  const bgBoxColor = useColorModeValue ('white', 'black')
+  /*const { userInfo, userToken } = useSelector((state)=> state.auth)
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
-  const { loading, userInfo, error, success } = useSelector(
+  const btnRef = React.useRef();*/
+  /*const { loading, userInfo, error, success } = useSelector(
     (state) => state.auth
-  );
-  const [Option, setOption] = React.useState('fullinformation');
+  );*/
+  /*const [Option, setOption] = React.useState('fullinformation');
   React.useEffect(() => {
     if (success === true && Option === 'fullinformation') {
       toast({
@@ -66,52 +72,74 @@ export const Register = () => {
     
     <Box>
       <NavBar btnref={btnRef} onOpen={onOpen} location={'register'} />
-      <Heading 
-        alignItems={'center'}
-        p={'10'}>Completa tu registro
-      </Heading>
-      <Divider/>
-      <List 
-        spacing={3}
-        w={'30%'}
-        p={'20'}>
-        <FormControl isRequired>
-          <FormLabel> Renta líquida</FormLabel>
-          <Input 
-            placeholder='$'
-            type="number"
-           />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel >Edad</FormLabel>
-            <NumberInput w={'30%'} max={99} min={18}>
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-        </FormControl>        
-        <FormControl isRequired>
-          <FormLabel> Ahorro actual</FormLabel>
-          <Input 
-            placeholder='$'
-            type="number" />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel> Crédito Hipotecario PRE-aprobado</FormLabel>
-          <Input 
-            placeholder='$'
-            type="number" />
-          <FormHelperText>Escribe el monto</FormHelperText>
-        </FormControl>
-        <Button
-          mt={'1.2em'}
-          type="submit"
-          colorScheme={'teal'}
-          w={'100%'}
-          size="md"> Enviar</Button>
-      </List>
+      <Box
+        bg={bgColor}
+        pos={'absolute'}
+        w={'100%'}
+        h={'86vh'}
+        top={'12vh'}>
+        <Center
+          marginLeft={'25%'}
+          w={'50%'}
+          bg={bgBoxColor}
+          marginTop={'2%'}>
+          
+         <List 
+          color={generalColor}
+          w={'60%'}
+          p={'10'}>
+          <Heading
+            color={'primary'}
+            w={'100%'}
+            padding={'2'}
+            marginBottom={'10'}>Completa tu registro
+          </Heading>
+          <FormControl isRequired>
+            <FormLabel> Renta líquida</FormLabel>
+            <Input 
+             placeholder='$'
+             type="number"
+             marginBottom={'10'}
+             w={'50%'}
+             borderColor={'primary'}
+            />
+           <FormLabel >Edad</FormLabel>
+              <NumberInput 
+                borderColor={'primary'}
+                w={'20%'} 
+                max={99} min={18} 
+                marginBottom={'10'}> <NumberInputField  />
+                <NumberInputStepper >
+                  <NumberIncrementStepper color={'primary'} />  <NumberDecrementStepper color={'primary'}  />
+                </NumberInputStepper>
+              </NumberInput>
+            <FormLabel> Ahorro actual</FormLabel>
+            <Input 
+              placeholder='$'
+              type="number"
+              marginBottom={'10'}
+              w={'50%'}
+              borderColor={'primary'} />
+            <FormLabel> Crédito Hipotecario PRE-aprobado</FormLabel>
+            <Input 
+              placeholder='$'
+              type="number"
+              w={'50%'}
+              borderColor={'primary'} />
+            <FormHelperText  marginBottom={'10'} >Escribe el monto</FormHelperText>
+          </FormControl>
+          <Button
+            right={'-150px'}
+            bg={'primary'}
+            color={bgBoxColor}
+            borderColor={'#FFFFFF'}
+            alignItems={'center'}
+            borderRadius={'full'}
+            _hover={{ bg: '#272727', color: '#19C8C4' }}> Guardar
+          </Button>
+        </List>
+      </Center>
     </Box>
+  </Box>
   );
 }; 
