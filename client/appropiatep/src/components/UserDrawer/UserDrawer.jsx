@@ -10,6 +10,7 @@ import {
   DrawerOverlay,
   FormLabel,
   Text,
+  useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
 import React from 'react';
@@ -33,6 +34,8 @@ export const UserDrawer = ({
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+  const bg = useColorModeValue('white', 'black');
+  const color = useColorModeValue('black', 'white');
   return (
     <Box>
       <Drawer
@@ -42,36 +45,36 @@ export const UserDrawer = ({
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent bg={'gray.800'}>
+        <DrawerContent bg={bg}>
           <DrawerCloseButton
-            bg={'red.700'}
-            color={'whiteAlpha.800'}
+            bg={'red.600'}
+            color={'white'}
             focusBorderColor={'whiteAlpha.900'}
           />
-          <DrawerHeader color={'blue.500'}>Informacion de Usuario</DrawerHeader>
+          <DrawerHeader color={'primary'}>Informacion de Usuario</DrawerHeader>
 
           <DrawerBody>
-            <FormLabel mt={'1rem'} color={'white'}>
+            <FormLabel mt={'1rem'} color={color}>
               Nombre de Usuario
             </FormLabel>
-            <Text color={'whiteAlpha.700'}>{username}</Text>
-            <FormLabel mt={'1rem'} color={'white'}>
+            <Text color={'primary'}>{username}</Text>
+            <FormLabel mt={'1rem'} color={color}>
               Correo electronico
             </FormLabel>
-            <Text color={'whiteAlpha.700'}>{email}</Text>
-            <FormLabel mt={'1rem'} color={'white'}>
+            <Text color={'primary'}>{email}</Text>
+            <FormLabel mt={'1rem'} color={color}>
               Usuario desde:
             </FormLabel>
-            <Text color={'whiteAlpha.700'}>
-              {capitalizeFirstLetter(formatDate)}
-            </Text>
+            <Text color={'primary'}>{capitalizeFirstLetter(formatDate)}</Text>
           </DrawerBody>
 
           <DrawerFooter>
-            <Button colorScheme={'red'} mr={3} onClick={onClose}>
+            <Button bg={'red.500'} mr={3} onClick={onClose}>
               Log Out
             </Button>
-            <Button colorScheme="blue">Save</Button>
+            <Button bg={'primary'} color={color}>
+              Save
+            </Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

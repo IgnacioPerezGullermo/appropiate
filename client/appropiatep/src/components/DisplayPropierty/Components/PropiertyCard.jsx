@@ -37,7 +37,6 @@ export const PropiertyCard = ({
   parking,
   caprate,
 }) => {
-  console.log(storage || storage === 'si');
   const bg = useColorModeValue('white', 'black');
   const color = useColorModeValue('black', 'white');
   const bgButton = useColorModeValue('primary', 'transparent');
