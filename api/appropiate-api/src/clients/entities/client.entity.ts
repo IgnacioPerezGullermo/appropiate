@@ -25,10 +25,16 @@ export class Client extends Model {
   firstName: string;
 
   @Column
-  ageRange: string;
+  age: number;
 
   @Column
   basicIncome: number;
+
+  @Column
+  currentSavings: number;
+
+  @Column
+  bankCredit: number;
 
   @Column
   profilePicture: string;

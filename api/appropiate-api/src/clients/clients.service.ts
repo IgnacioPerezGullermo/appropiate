@@ -22,8 +22,10 @@ export class ClientsService {
       const user = new Client();
       user.firstName = createClientDto.firstName;
       user.lastName = createClientDto.lastName;
-      user.ageRange = createClientDto.ageRange;
-      user.profilePicture = createClientDto.profilePicture;
+      user.age = createClientDto.age;
+      user.basicIncome = createClientDto.basicIncome;
+      user.currentSavings = createClientDto.currentSavings;
+      user.bankCredit = createClientDto.bankCredit;
       user.userId = createClientDto.userId;
       const userData = await user.save();
       //console.log(clientData);
@@ -80,11 +82,13 @@ export class ClientsService {
       throw new BadRequestException(`User does not exist in db `);
     }
 
-    user.firstName = updateClientDto.firstName || user.firstName;
-    user.lastName = updateClientDto.lastName || user.lastName;
-    user.ageRange = updateClientDto.ageRange || user.ageRange;
-    user.basicIncome = updateClientDto.basicIncome || user.basicIncome;
-    user.profilePicture = updateClientDto.profilePicture || user.profilePicture;
+    user.firstName = updateClientDto.firstName;
+    user.lastName = updateClientDto.lastName;
+    user.age = updateClientDto.age;
+    user.basicIncome = updateClientDto.basicIncome;
+    user.currentSavings = updateClientDto.currentSavings;
+    user.bankCredit = updateClientDto.bankCredit;
+    user.userId = updateClientDto.userId;
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

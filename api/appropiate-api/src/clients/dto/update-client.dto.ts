@@ -20,7 +20,7 @@ export class UpdateClientDto extends PartialType(CreateClientDto) {
 
   @ApiProperty()
   @IsString()
-  readonly ageRange: string;
+  readonly age: number;
 
   @ApiProperty()
   @IsString()
@@ -29,4 +29,12 @@ export class UpdateClientDto extends PartialType(CreateClientDto) {
   @ApiProperty()
   @IsString()
   readonly profilePicture?: string;
+
+  @ApiProperty()
+  @IsNumber()
+  readonly currentSavings?: number;
+
+  @ApiProperty()
+  @IsNumber()
+  readonly bankCredit?: number;
 }
