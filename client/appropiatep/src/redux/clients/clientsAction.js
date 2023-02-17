@@ -10,7 +10,7 @@ export const createClient = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       };
-      const info = await axios.post('/client', client, config);
+      const info = await axios.post('/clients ', client, config);
       let update = await axios.patch(
         `users/${info.data.userId}`,
         { clientId: info.data.id },

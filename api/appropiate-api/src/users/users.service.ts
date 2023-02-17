@@ -2,12 +2,12 @@ import {
   BadRequestException,
   Inject,
   Injectable,
-  InternalServerErrorException,
+  InternalServerErrorException
 } from '@nestjs/common';
 import { USER_REPOSITORY } from 'core/constants';
 import { Op } from 'sequelize';
 import { Broker } from 'src/brokers/entities/broker.entity';
-
+import { Client } from 'src/clients/entities/client.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -47,6 +47,9 @@ export class UsersService {
       include: [
         {
           model: Broker,
+        },
+        {
+          model: Client,
         },
       ],
     });
