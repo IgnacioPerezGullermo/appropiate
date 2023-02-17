@@ -22,7 +22,7 @@ import { Appointment } from './views/Appointment';
 import { Blog } from './views/Blog';
 import { BrokerDashboard } from './views/BrokerDashboard';
 import { Dashboard } from './views/Dashboard';
-import { DisplayPropierty } from './views/displaypropierty';
+import { DisplayPropierty } from './views/DisplaPropierty';
 import { Home } from './views/Home';
 import { Landing } from './views/Landing';
 import { LogIn } from './views/LogIn';
