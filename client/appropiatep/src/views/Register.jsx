@@ -1,73 +1,34 @@
 import {
-  Box,
-  Button,
-  Center,
-  Divider,
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-  Heading,
-  Input,
-  List,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  useColorModeValue,
-  useDisclosure
+  Box
 } from '@chakra-ui/react';
+//import { UilArrowLeft, UilMoon, UilSun } from '@iconscout/react-unicons';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { LoginForm } from '../components/LoginComponent/LoginForm/LoginForm';
+import { UpgradeForm } from '../components/LoginComponent/UpgradeFrom';
+/*import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { NavBar } from '../components/NavBar';
-import { createClient } from '../redux/clients/clientsAction';
+import { createClient } from '../redux/clients/clientsAction';*/
 
 export const Register = () => {
+  const [Option, setOption] = React.useState('upgrade');
+  return (
+    <Box>
+      {Option === 'upgrade' ? (
+        <UpgradeForm Option={Option} setOption={setOption} />
+      ) : (
+        <LoginForm Option={Option} setOption={setOption} />
+      )}
+    </Box>
+  );
+  /*const { colorMode, toggleColorMode } = useColorMode();
   const generalColor = useColorModeValue('black', 'white');
   const bgColor = useColorModeValue ('gray.100', '#272727');
-  const bgBoxColor = useColorModeValue ('white', 'black')
-  /*const { userInfo, userToken } = useSelector((state)=> state.auth)
+  const bgBoxColor = useColorModeValue ('white', 'black');
+  const bg = useColorModeValue('gray.200', 'gray.800');
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();*/
-  /*const { loading, userInfo, error, success } = useSelector(
-    (state) => state.auth
-  );*/
-  /*const [Option, setOption] = React.useState('fullinformation');
-  React.useEffect(() => {
-    if (success === true && Option === 'fullinformation') {
-      toast({
-        title: `Datos completados con éxito ${userInfo?.username}`,
-        description: 'En instantes te redirigiremos',
-        status: 'success',
-        duration: 5000,
-        isClosable: false,
-        onCloseComplete: navigate('/home'),
-      });
-    }
-    if (success === true) {
-      toast({
-        title: `Felicidades ${userInfo?.username}`,
-        description: 'En momentos te redirigiremos a las propiedades',
-        status: 'success',
-        duration: 5000,
-        isClosable: false,
-        onCloseComplete: navigate('/DisplayPropierty'),
-      });
-    }
-    if (success === false && error) {
-      toast({
-        title: 'Algo ha salido mal',
-        description: error,
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-      });
-    }
-  }, [navigate, userInfo, success, Option]);*/
+  const btnRef = React.useRef();
   return (
     
     <Box>
@@ -129,7 +90,7 @@ export const Register = () => {
             <FormHelperText  marginBottom={'10'} >Escribe el monto</FormHelperText>
           </FormControl>
           <Button
-            right={'-150px'}
+            right={'-120px'}
             bg={'primary'}
             color={bgBoxColor}
             borderColor={'#FFFFFF'}
@@ -137,9 +98,43 @@ export const Register = () => {
             borderRadius={'full'}
             _hover={{ bg: '#272727', color: '#19C8C4' }}> Guardar
           </Button>
+          <Button
+            right={'-180px'}
+            bg={'#272727'}
+            color={bgBoxColor}
+            borderColor={'#FFFFFF'}
+            alignItems={'center'}
+            borderRadius={'full'}
+            _hover={{ bg: '#272727', color: '#19C8C4' }}
+            onClick={() => {
+              navigate('/');
+            }}> Regresar
+          </Button>
         </List>
       </Center>
-    </Box>
+      <Circle
+            pos={'absolute'}
+            bottom={'4vh'}
+            left={'4vh'}
+            border={1}
+            borderColor={'primary'}
+            lineHeight={'base'}
+            size={'6vh'}
+            bg={bg}
+            onClick={() => {
+              toggleColorMode('dark');
+            }}
+            _hover={
+              colorMode === 'light' ? { bg: 'gray.100' } : { bg: 'gray.900' }
+            }
+          >
+            {colorMode === 'light' ? (
+              <UilMoon size="30" color={'#19C8C4'} />
+            ) : (
+              <UilSun size="30" color={'#19C8C4'} />
+            )}
+          </Circle>
+    </Box>     
   </Box>
-  );
+  );*/
 }; 
