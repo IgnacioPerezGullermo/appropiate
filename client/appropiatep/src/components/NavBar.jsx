@@ -76,20 +76,22 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
             );
           }
         })}
-        <Circle
-          border={1}
-          ref={btnRef}
-          borderColor={'primary'}
-          lineHeight={'base'}
-          size={'7vh'}
-          bg={bg}
-          onClick={onOpen}
-          _hover={
-            colorMode === 'light' ? { bg: 'gray.100' } : { bg: 'gray.900' }
-          }
-        >
-          <UilUserCircle size="38" color={'#19C8C4'} />
-        </Circle>
+        {userToken ? (
+          <Circle
+            border={1}
+            ref={btnRef}
+            borderColor={'primary'}
+            lineHeight={'base'}
+            size={'7vh'}
+            bg={bg}
+            onClick={onOpen}
+            _hover={
+              colorMode === 'light' ? { bg: 'gray.100' } : { bg: 'gray.900' }
+            }
+          >
+            <UilUserCircle size="38" color={'#19C8C4'} />
+          </Circle>
+        ) : null}
       </Wrap>
       <Box
         bg={'transparent'}
