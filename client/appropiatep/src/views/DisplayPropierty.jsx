@@ -3,7 +3,7 @@ import {
   Circle,
   useColorMode,
   useColorModeValue,
-  useDisclosure,
+  useDisclosure
 } from '@chakra-ui/react';
 import { UilMoon, UilSun } from '@iconscout/react-unicons';
 import React from 'react';
@@ -25,7 +25,7 @@ export const DisplayPropierty = () => {
       pos={'absolute'}
       top={'0vh'}
       bg={bg}
-      w={'100vw'}
+      w={'full'}
       left={'0vw'}
       h={'100vh'}
     >
