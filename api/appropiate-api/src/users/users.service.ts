@@ -2,7 +2,7 @@ import {
   BadRequestException,
   Inject,
   Injectable,
-  InternalServerErrorException
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { USER_REPOSITORY } from 'core/constants';
 import { Op } from 'sequelize';
@@ -64,6 +64,14 @@ export class UsersService {
   async findOneByUsername(username: string) {
     return await this.usersRepository.findOne<User>({
       where: { username },
+      include: [
+        {
+          model: Broker,
+        },
+        {
+          model: Client,
+        },
+      ],
     });
   }
   async findSearchedByUsername(username: string) {

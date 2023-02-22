@@ -6,6 +6,7 @@ import {
   HStack,
   Input,
   Select,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { Formik, useFormik } from 'formik';
 import React from 'react';
@@ -53,8 +54,10 @@ export const CreateProperty = () => {
       dispatch(registerPropierty(property));
     },
   });
+  const color = useColorModeValue('black', 'white');
+  const bgBox = useColorModeValue('gray.200', 'gray.800');
   return (
-    <Box pl={4} pr={4} w={'100%'} bg={'white'} p={4} h={'80vh'}>
+    <Box pl={4} pr={4} w={'100%'} bg={bgBox} p={4} h={'80vh'}>
       <form onSubmit={formik.handleSubmit}>
         <Heading
           fontSize={26}
@@ -65,10 +68,12 @@ export const CreateProperty = () => {
           Informacion de Propiedad
         </Heading>
         <HStack p={0}>
-          <FormLabel w={'100%'} mt={2}>
+          <FormLabel w={'100%'} mt={2} color={color}>
             Nombre
           </FormLabel>
-          <FormLabel w={'100%'}>Precio</FormLabel>
+          <FormLabel w={'100%'} color={color}>
+            Precio
+          </FormLabel>
         </HStack>
         <HStack>
           <Input
@@ -76,7 +81,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="projectname"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'100%'}
@@ -92,7 +97,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="price"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'100%'}
@@ -104,10 +109,12 @@ export const CreateProperty = () => {
           />
         </HStack>
         <HStack p={0}>
-          <FormLabel w={'100%'} mt={2}>
+          <FormLabel w={'100%'} mt={2} color={color}>
             Región
           </FormLabel>
-          <FormLabel w={'100%'}>Comuna</FormLabel>
+          <FormLabel w={'100%'} color={color}>
+            Comuna
+          </FormLabel>
         </HStack>
         <HStack>
           <Select
@@ -115,7 +122,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="region"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'100%'}
@@ -136,7 +143,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="commune"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'100%'}
@@ -147,18 +154,25 @@ export const CreateProperty = () => {
             value={formik.values.commune}
           >
             <option>Elige una opcion...</option>
+            <option>San Miguel</option>
             <option>Viña del Mar</option>
             <option>Santiago</option>
             <option>Ñuño</option>
           </Select>
         </HStack>
         <HStack>
-          <FormLabel w={'24.5%'} mt={2}>
+          <FormLabel w={'24.5%'} mt={2} color={color}>
             Dormitorios
           </FormLabel>
-          <FormLabel w={'24.5%'}>Baños</FormLabel>
-          <FormLabel w={'24.5%'}>Bodega</FormLabel>
-          <FormLabel w={'24.5%'}>Estacionamiento</FormLabel>
+          <FormLabel w={'24.5%'} color={color}>
+            Baños
+          </FormLabel>
+          <FormLabel w={'24.5%'} color={color}>
+            Bodega
+          </FormLabel>
+          <FormLabel w={'24.5%'} color={color}>
+            Estacionamiento
+          </FormLabel>
         </HStack>
         <HStack>
           <Input
@@ -166,7 +180,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="bedr"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'24.5%'}
@@ -182,7 +196,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="bath"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'24.5%'}
@@ -197,7 +211,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="storage"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'24.5%'}
@@ -212,7 +226,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="parking"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'24.5%'}
@@ -224,11 +238,15 @@ export const CreateProperty = () => {
           />
         </HStack>
         <HStack>
-          <FormLabel w={'32.5%'} mt={2}>
+          <FormLabel w={'32.5%'} mt={2} color={color}>
             Cap Rate
           </FormLabel>
-          <FormLabel w={'32.5%'}>Area Total</FormLabel>
-          <FormLabel w={'32.5%'}>Disponible</FormLabel>
+          <FormLabel w={'32.5%'} color={color}>
+            Area Total
+          </FormLabel>
+          <FormLabel w={'32.5%'} color={color}>
+            Disponible
+          </FormLabel>
         </HStack>
         <HStack>
           <Input
@@ -236,7 +254,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="caprate"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'100%'}
@@ -252,7 +270,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="totalarea"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'100%'}
@@ -268,7 +286,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="stock"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'100%'}
@@ -284,10 +302,12 @@ export const CreateProperty = () => {
           </Select>
         </HStack>
         <HStack>
-          <FormLabel w={'100%'} mt={2}>
+          <FormLabel w={'100%'} mt={2} color={color}>
             Tipo de Entrega
           </FormLabel>
-          <FormLabel w={'100%'}>Inmobiliaria</FormLabel>
+          <FormLabel w={'100%'} color={color}>
+            Inmobiliaria
+          </FormLabel>
         </HStack>
 
         <HStack>
@@ -296,7 +316,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="deliverytype"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'100%'}
@@ -323,7 +343,7 @@ export const CreateProperty = () => {
             variant={'outline'}
             name="inmob"
             bg={'blackAlpha.50'}
-            color={'black'}
+            color={color}
             focusBorderColor={'blue.200'}
             size={'md'}
             w={'100%'}

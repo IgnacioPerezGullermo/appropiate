@@ -1,51 +1,69 @@
 import {
   Box,
   Button,
+  ButtonGroup,
+  Center,
   Circle,
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  FormLabel,
-  Input,
+  HStack,
+  Slider,
+  SliderFilledTrack,
+  SliderMark,
+  SliderThumb,
+  SliderTrack,
   Text,
   useColorMode,
   useColorModeValue,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
-import { UilMoon, UilSun } from '@iconscout/react-unicons';
+import {
+  UilArrowLeft,
+  UilDollarAlt,
+  UilMoon,
+  UilSun,
+} from '@iconscout/react-unicons';
 import { Formik } from 'formik';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../assets/logo.svg';
+import { PropiertyCards } from '../components/DisplayPropierty/Components/PropiertyCards';
 import { NavBar } from '../components/NavBar';
 import { UserDrawer } from '../components/UserDrawer/UserDrawer';
 import { registerUser, userLogin } from '../redux/auth/authAction';
+import numberWithCommas from '../utils/conversors';
 
 export const Landing = () => {
+  const [SliderValue, setSliderValue] = React.useState(1400000);
+  const [FilterAction, setFilterAction] = React.useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const { loading, userInfo, error, success } = useSelector(
     (state) => state.auth
   );
   const { colorMode, toggleColorMode } = useColorMode();
+  const bg = useColorModeValue('gray.200', 'gray.800');
   const bgButton = useColorModeValue('white', 'black');
+  const bgSearchButton = useColorModeValue('primary', 'transparent');
+  const hoverButton = useColorModeValue({ bg: 'teal.200' }, { bg: 'primary' });
+  const color = useColorModeValue('black', 'white');
+  const bgBanner = useColorModeValue('gray.300', 'gray.700');
+  const labelStyles = {
+    mt: '2',
+    ml: '-5',
+    fontSize: 'sm',
+    color: color,
+  };
   return (
     <Box
       pos={'absolute'}
       top={'0vh'}
-      bgImage={
-        'https://ak.picdn.net/offset/photos/5ff8d96c6f52af4409f72e7a/medium/offset_1073705.jpg'
-      }
+      bg={bg}
       bgRepeat={'no-repeat'}
       bgSize={'cover'}
-      w={'100vw'}
+      w={'full'}
       left={'0vw'}
-      h={'100vh'}
+      h={'container.md'}
     >
       <UserDrawer
         isOpen={isOpen}
@@ -55,42 +73,105 @@ export const Landing = () => {
         createdAt={userInfo?.createdAt}
       />
       <NavBar btnref={btnRef} onOpen={onOpen} location={'landing'} />
-      {/* <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-        Open
-      </Button> */}
-      <Box
-        bg={'blackAlpha.600'}
-        pos={'absolute'}
-        w={'100vw'}
-        h={'35vh'}
-        top={'40vh'}
-        pl={'18vw'}
-        pr={'18vw'}
-      >
-        <Text fontSize={'3.5vw'} textAlign={'center'} color={'blue.300'}>
-          ¿Quieres <strong>invertir</strong> pero no sabes cómo sacar el{' '}
-          <strong>máximo</strong> provecho?
-        </Text>
-        <Button
-          w={'10vw'}
-          h={'8vh'}
-          position={'absolute'}
-          top={'22vh'}
-          left={'45vw'}
-          borderRadius={'xl'}
-          bg={'primary'}
-          color={'white'}
-          _hover={{
-            bg: 'blue.400',
-            transform: 'scale(1.2)',
-            transition: '500ms',
-          }}
-          onClick={onOpen}
-          ref={btnRef}
+      {FilterAction === false ? (
+        <Box
+          bg={bgBanner}
+          pos={'absolute'}
+          w={'full'}
+          h={'sm'}
+          top={'30vh'}
+          pl={'18vw'}
+          pr={'18vw'}
         >
-          Regístrate ya!
-        </Button>
-      </Box>
+          <Center mt={'3vh'}>
+            <HStack>
+              <Text fontSize={'3xl'} textAlign={'center'} color={color}>
+                Cuentanos tu
+              </Text>
+              <Text fontSize={'3xl'} color={'primary'}>
+                capacidad de ahorro
+              </Text>
+            </HStack>
+          </Center>
+          {''}
+
+          <Center mt={'1vh'}>
+            <HStack>
+              <Text fontSize={'3xl'} textAlign={'center'} color={color}>
+                Nosotros encontramos el
+              </Text>
+              <Text fontSize={'3xl'} color={'primary'}>
+                proyecto ideal para vos
+              </Text>
+            </HStack>
+          </Center>
+          <Slider
+            aria-label="slider-ex-1"
+            min={700000}
+            max={10000000}
+            defaultValue={SliderValue}
+            onChangeEnd={(val) => setSliderValue(val)}
+            mt={'5vw'}
+            ml={'10%'}
+            w={'80%'}
+          >
+            <SliderMark value={700000} {...labelStyles}>
+              {numberWithCommas(700000)}
+            </SliderMark>
+            <SliderMark value={700000} {...labelStyles}>
+              {numberWithCommas(700000)}
+            </SliderMark>
+            <SliderMark
+              value={SliderValue}
+              textAlign="center"
+              bg={bg}
+              color="primary"
+              mt="-14"
+              ml="-10"
+              borderRadius={'full'}
+              p="2"
+              w="auto"
+            >
+              {numberWithCommas(SliderValue)}$
+            </SliderMark>
+            <SliderTrack boxSize={3}>
+              <SliderFilledTrack bg={'primary'} />
+            </SliderTrack>
+            <SliderThumb boxSize={6}>
+              <UilDollarAlt color={'#19C8C4'} />
+            </SliderThumb>
+          </Slider>
+          <Text textAlign={'center'} fontSize={'2xl'} mt={'2vw'}>
+            {numberWithCommas(SliderValue)}$
+          </Text>
+          <br />
+          <Center cursor={'pointer'}>
+            <Button
+              cursor={'pointer'}
+              onClick={() => {
+                setFilterAction(true);
+              }}
+            >
+              Buscar
+            </Button>
+          </Center>
+        </Box>
+      ) : null}
+      {FilterAction === true ? (
+        <Box
+          pos={'absolute'}
+          top={'0vh'}
+          //bg={bg}
+          w={'full'}
+          h={'full'}
+          mt={'2vh'}
+          left={'0vw'}
+        >
+          {FilterAction === true ? (
+            <PropiertyCards salary={SliderValue} />
+          ) : null}
+        </Box>
+      ) : null}
       <Circle
         pos={'fixed'}
         bottom={'3vh'}
@@ -100,6 +181,7 @@ export const Landing = () => {
         lineHeight={'base'}
         size={'6vh'}
         bg={bgButton}
+        cursor={'pointer'}
         onClick={() => {
           toggleColorMode('dark');
         }}
@@ -111,6 +193,27 @@ export const Landing = () => {
           <UilSun size="30" color={'#19C8C4'} />
         )}
       </Circle>
+      {FilterAction === true ? (
+        <Circle
+          pos={'fixed'}
+          top={'17vh'}
+          left={'4vh'}
+          border={1}
+          borderColor={'primary'}
+          lineHeight={'base'}
+          size={'6vh'}
+          bg={bgButton}
+          cursor={'pointer'}
+          onClick={() => {
+            setFilterAction(false);
+          }}
+          _hover={
+            colorMode === 'light' ? { bg: 'gray.100' } : { bg: 'gray.900' }
+          }
+        >
+          <UilArrowLeft size={'40px'} color={'#19C8C4'} />
+        </Circle>
+      ) : null}
     </Box>
   );
 };

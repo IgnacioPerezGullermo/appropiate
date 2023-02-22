@@ -8,7 +8,7 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
-  Wrap
+  Wrap,
 } from '@chakra-ui/react';
 import { UilMoon, UilSun, UilUserCircle } from '@iconscout/react-unicons';
 import React from 'react';
@@ -23,7 +23,7 @@ const menuItems = [
   { title: 'Asesorate', endpoint: '/appointment', index: 2 },
   { title: 'Oportunidades', endpoint: '/displaypropierty', index: 3 },
   { title: 'Register', endpoint: '/register', index: 4 },
-  { title: 'Ingresar', endpoint: '/login', index: 5 }
+  { title: 'Ingresar', endpoint: '/login', index: 5 },
 ];
 
 export const NavBar = ({ btnRef, onOpen, location }) => {
@@ -33,10 +33,9 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
   const bg = useColorModeValue('white', 'black');
   const bgToggle = useColorModeValue('gray.900', 'gray.200');
   const logo = useColorModeValue(LightTitle, DarkTitle);
-  console.log(userToken);
   return (
     <Box
-      w={'100vw'}
+      w={'full'}
       h={'12vh'}
       pos={'absolute'}
       left={'0%'}

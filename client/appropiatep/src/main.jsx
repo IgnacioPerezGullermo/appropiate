@@ -14,9 +14,9 @@ import {
   RouterProvider,
   Routes,
 } from 'react-router-dom';
-
 import { NavBar } from './components/NavBar';
 import store from './redux/store';
+import './styles/main.css';
 import { theme } from './styles/theme';
 import { Appointment } from './views/Appointment';
 import { Blog } from './views/Blog';

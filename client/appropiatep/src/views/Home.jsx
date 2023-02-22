@@ -10,7 +10,6 @@ export const Home = () => {
   //console.log(authInfo);
   return (
     <Box>
-      <NavBar btnRef={btnRef} onOpen={onOpen} location={'home'} />
       <UserDrawer
         isOpen={isOpen}
         onClose={onClose}

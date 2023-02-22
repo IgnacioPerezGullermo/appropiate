@@ -42,12 +42,12 @@ export const databaseProviders = [
         username: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
-        dialectOptions: {
-          ssl: {
-            require: true, // This will help you. But you will see nwe error
-            rejectUnauthorized: false, // This line will fix new error
-          },
-        },
+        // dialectOptions: {
+        //   ssl: {
+        //     require: true, // This will help you. But you will see nwe error
+        //     rejectUnauthorized: false, // This line will fix new error
+        //   },
+        // },
       });
       sequelize.addModels([Broker, Client, Appointment, User, Propierty]);
       await sequelize.sync();
