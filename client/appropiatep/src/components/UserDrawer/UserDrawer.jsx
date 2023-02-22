@@ -21,6 +21,8 @@ import {
 } from '@chakra-ui/react';
 import { UilBell, UilCheckCircle, UilEdit, UilTimesCircle } from '@iconscout/react-unicons';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { updateUsers } from '../../redux/users/usersAction';
 
 export const UserDrawer = ({
   btnRef,
@@ -29,6 +31,7 @@ export const UserDrawer = ({
   username,
   email,
   createdAt,
+  userId,
 }) => {
   const opciones = {
     weekday: 'long',
@@ -36,6 +39,11 @@ export const UserDrawer = ({
     month: 'short',
     day: 'numeric',
   };
+  const dispatch = useDispatch()
+  const [EditAction, setEditAction] = React.useState(false);
+  const [Info, setInfo] = React.useState({
+    username: '', email: '', 
+  });
   let formatDate = new Date(createdAt);
   formatDate = formatDate.toLocaleDateString('es-CL', opciones);
   function capitalizeFirstLetter(string) {
@@ -62,6 +70,7 @@ export const UserDrawer = ({
   }
   const bg = useColorModeValue('white', 'black');
   const color = useColorModeValue('black', 'white');
+  let handleChange = (e) => {setInfo({...Info, username: e.target.value}); console.log(e.target)};
   return (
     <Box>
       <Drawer
@@ -87,11 +96,13 @@ export const UserDrawer = ({
             <FormLabel mt={'1rem'} color={color}>
               Nombre de Usuario
             </FormLabel>
-            <Editable color={'primary'}  defaultValue={username}>
+            {EditAction === true?( <Editable color={'primary'}  defaultValue={username} >
               <EditablePreview /> 
-              <Input as={EditableInput} />
+              <Input as={EditableInput} onChange={(e)=>{handleChange(e);
+              console.log(Info)
+            }} />
               <EditableControls />
-            </Editable>
+            </Editable>): (<Text>{username}</Text>)}
             <FormLabel mt={'1rem'} color={color}>
               Correo electronico
             </FormLabel>
@@ -110,10 +121,11 @@ export const UserDrawer = ({
 
           <DrawerFooter >
             <FormLabel margin={'5px'} spacing={4}>
-              <Button bg={'primary'} color={color} h={'20px'}>
+              <Button bg={'primary'} color={color} h={'20px'} onClick={()=>{dispatch(updateUsers({user:{id:userId}, info:Info}))
+                setEditAction(false)}}>
                 Save
               </Button>
-              <Button bg={'primary'} color={color} h={'20px'} >
+              <Button bg={'primary'} color={color} h={'20px'} onClick={()=>{setEditAction(true)}} >
                 Editar Info
               </Button>
             </FormLabel>

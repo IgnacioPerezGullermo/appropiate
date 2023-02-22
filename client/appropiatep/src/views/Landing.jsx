@@ -14,7 +14,7 @@ import {
   useColorMode,
   useColorModeValue,
   useDisclosure,
-  useToast,
+  useToast
 } from '@chakra-ui/react';
 import {
   UilArrowLeft,
@@ -70,6 +70,7 @@ export const Landing = () => {
         onClose={onClose}
         username={userInfo?.username}
         email={userInfo?.email}
+        userId={userInfo?.id}
         createdAt={userInfo?.createdAt}
       />
       <NavBar btnref={btnRef} onOpen={onOpen} location={'landing'} />
