@@ -15,7 +15,7 @@ import {
   useColorMode,
   useColorModeValue,
   useDisclosure,
-  useToast,
+  useToast
 } from '@chakra-ui/react';
 import { UilMoon, UilSun } from '@iconscout/react-unicons';
 import { Formik } from 'formik';
@@ -52,6 +52,7 @@ export const Landing = () => {
         onClose={onClose}
         username={userInfo?.username}
         email={userInfo?.email}
+        userId={userInfo?.id}
         createdAt={userInfo?.createdAt}
       />
       <NavBar btnref={btnRef} onOpen={onOpen} location={'landing'} />
