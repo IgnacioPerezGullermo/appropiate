@@ -26,10 +26,9 @@ export class UsersController {
   }
 
   @Get('find')
-  @ApiCreatedResponse({
-    status: 201,
+  @ApiResponse({
+    status: 200,
     description: 'Usuarios encontrados con exito',
-    type: [User],
   })
   @ApiResponse({ status: 403, description: 'Error en la solicitud' })
   async findAll() {
