@@ -42,6 +42,7 @@ export const UserDrawer = ({
   email,
   createdAt,
   userId,
+  password,
 }) => {
   const opciones = {
     weekday: 'long',
@@ -85,8 +86,10 @@ export const UserDrawer = ({
   const bg = useColorModeValue('white', 'black');
   const color = useColorModeValue('black', 'white');
   let handleChange = (e) => {
-    setInfo({ ...Info, username: e.target.value });
-    console.log(e.target);
+    setInfo({
+      ...Info,
+      [e.target.name]: e.target.value,
+    });
   };
   let handleSubmit = () => {
     dispatch(updateUsers({ id: userInfo?.id, info: Info }));
@@ -119,10 +122,11 @@ export const UserDrawer = ({
               Nombre de Usuario
             </FormLabel>
             {EditAction === true ? (
-              <Editable color={'primary'} defaultValue={userInfo?.username}>
+              <Editable color={'primary'} defaultValue={username}>
                 <EditablePreview />
                 <Input
                   as={EditableInput}
+                  name="username"
                   onChange={(e) => {
                     handleChange(e);
                     console.log(Info);
@@ -136,11 +140,22 @@ export const UserDrawer = ({
             <FormLabel mt={'1rem'} color={color}>
               Correo electronico
             </FormLabel>
-            <Editable color={'primary'} defaultValue={userInfo?.email}>
-              <EditablePreview />
-              <Input as={EditableInput} />
-              <EditableControls />
-            </Editable>
+            {EditAction === true ? (
+              <Editable color={'primary'} defaultValue={email}>
+                <EditablePreview />
+                <Input
+                  as={EditableInput}
+                  name="email"
+                  onChange={(e) => {
+                    handleChange(e);
+                    console.log(Info);
+                  }}
+                />
+                <EditableControls />
+              </Editable>
+            ) : (
+              <Text>{email}</Text>
+            )}
             <FormLabel mt={'1rem'} color={color}>
               Usuario desde:
             </FormLabel>
