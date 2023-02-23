@@ -11,6 +11,7 @@ export const PropiertyCards = ({ salary }) => {
   const { propierties } = useSelector((state) => state.propierties);
   const [Page, setPage] = React.useState(0);
   const [PageSize, setPageSize] = React.useState(6);
+  let count = 0;
   console.log(Page, PageSize);
   React.useEffect(() => {
     dispatch(
@@ -28,6 +29,7 @@ export const PropiertyCards = ({ salary }) => {
           {propierties?.data?.map((prop) => {
             return (
               <PropiertyCard
+                key={prop.id}
                 bedr={prop.bedr}
                 bath={prop.bath}
                 price={prop.price}
@@ -69,6 +71,7 @@ export const PropiertyCards = ({ salary }) => {
             ) {
               return (
                 <PropiertyCard
+                  key={prop.id}
                   bedr={prop.bedr}
                   bath={prop.bath}
                   price={prop.price}

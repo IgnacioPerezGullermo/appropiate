@@ -10,12 +10,19 @@ import {
   useColorModeValue,
   Wrap,
 } from '@chakra-ui/react';
-import { UilMoon, UilSun, UilUserCircle } from '@iconscout/react-unicons';
+import {
+  UilArrowLeft,
+  UilMoon,
+  UilSun,
+  UilUserCircle,
+} from '@iconscout/react-unicons';
+import jwt from 'jwt-decode';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DarkTitle from '../assets/AppDarkMode.png';
 import LightTitle from '../assets/AppLightMode.png';
+import { refreshInfo } from '../redux/auth/authAction';
 
 const menuItems = [
   { title: 'Inicio', endpoint: '/', index: 0 },
@@ -26,25 +33,53 @@ const menuItems = [
   { title: 'Ingresar', endpoint: '/login', index: 5 },
 ];
 
-export const NavBar = ({ btnRef, onOpen, location }) => {
+export const NavBar = ({
+  btnRef,
+  onOpen,
+  Location,
+  setLocation,
+  setLogged,
+  PreviousPath,
+  setPreviousPath,
+  Logged,
+  props,
+}) => {
+  const dispatch = useDispatch();
+  let localToken = localStorage.getItem('userToken');
+  React.useEffect(() => {
+    if (Logged === false && localToken !== null) {
+      localToken = jwt(localStorage.getItem('userToken'));
+      console.log(localToken);
+      if (localToken.id) {
+        dispatch(refreshInfo(localToken.id));
+        setLogged(true);
+      }
+    }
+  }, [Logged]);
   const { userToken } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+
   const { colorMode, toggleColorMode } = useColorMode();
+  const bgMain = useColorModeValue('white', 'black');
+  const color = useColorModeValue('black', 'white');
   const bg = useColorModeValue('white', 'black');
   const bgToggle = useColorModeValue('gray.900', 'gray.200');
   const logo = useColorModeValue(LightTitle, DarkTitle);
+
   return (
     <Box
       w={'full'}
       h={'12vh'}
       pos={'absolute'}
       left={'0%'}
+      // display={Location === 'Ingresar' ? 'none' : null}
       top={'0%'}
-      bg={bg}
+      bg={Location === '/login' ? 'transparent' : bg}
       textAlign={'left'}
       borderBottom={'4px solid'}
-      borderColor={'primary'}
+      borderColor={Location === '/login' ? 'transparent' : 'primary'}
       overflow={'hidden'}
+      zIndex={90}
     >
       <Wrap
         pos={'absolute'}
@@ -55,18 +90,22 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
         justifyContent={'center'}
       >
         {menuItems.map((item) => {
-          if (userToken && item.title === 'Ingresar') {
+          if (localToken && item.title === 'Ingresar') {
             return null;
-          } else {
+          } else if (Location !== '/login') {
             return (
               <Button
                 variant={'ghost'}
-                color="primary"
+                color={Location === item.endpoint ? 'primary' : color}
                 fontWeight={'medium'}
+                fontSize={Location === item.endpoint ? 17 : 16}
                 _hover={{ bg: 'transparent', color: 'blue.400' }}
                 size={'lg'}
+                scale={Location === item.endpoint ? '120%' : null}
                 key={item.index}
                 onClick={(e) => {
+                  setPreviousPath(Location);
+                  setLocation(item.endpoint);
                   navigate(item.endpoint);
                 }}
               >
@@ -75,7 +114,7 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
             );
           }
         })}
-        {userToken ? (
+        {localToken ? (
           <Circle
             border={1}
             ref={btnRef}
@@ -102,6 +141,27 @@ export const NavBar = ({ btnRef, onOpen, location }) => {
       >
         <Image src={logo} objectFit={'cover'} />
       </Box>
+      {Location === '/login' ? (
+        <Button
+          pos={'absolute'}
+          top={'4vh'}
+          left={'4vh'}
+          size={'lg'}
+          borderRadius={'full'}
+          bg={bgMain}
+          color={color}
+          borderColor={'primary'}
+          _hover={{ color: 'primary' }}
+          leftIcon={<UilArrowLeft />}
+          onClick={() => {
+            setLocation(PreviousPath);
+            navigate(PreviousPath);
+          }}
+        >
+          {' '}
+          Regresar
+        </Button>
+      ) : null}
     </Box>
   );
 };

@@ -41,8 +41,7 @@ export const UserDrawer = ({
   username,
   email,
   createdAt,
-  userId,
-  password,
+  setLogged,
 }) => {
   const opciones = {
     weekday: 'long',
@@ -59,7 +58,7 @@ export const UserDrawer = ({
     username: '',
     email: '',
   });
-  let formatDate = new Date(createdAt);
+  let formatDate = new Date(userInfo?.createdAt);
   formatDate = formatDate.toLocaleDateString('es-CL', opciones);
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -121,13 +120,8 @@ export const UserDrawer = ({
             <FormLabel mt={'1rem'} color={color}>
               Nombre de Usuario
             </FormLabel>
-            <Editable color={'primary'} defaultValue={username}>
-              <EditablePreview />
-              <Input as={EditableInput} />
-              <EditableControls />
-            </Editable>
             {EditAction === true ? (
-              <Editable color={'primary'} defaultValue={username}>
+              <Editable color={'primary'} defaultValue={userInfo?.username}>
                 <EditablePreview />
                 <Input
                   as={EditableInput}
@@ -140,18 +134,13 @@ export const UserDrawer = ({
                 <EditableControls />
               </Editable>
             ) : (
-              <Text>{username}</Text>
+              <Text>{userInfo?.username}</Text>
             )}
             <FormLabel mt={'1rem'} color={color}>
               Correo electronico
             </FormLabel>
-            <Editable color={'primary'} defaultValue={email}>
-              <EditablePreview />
-              <Input as={EditableInput} />
-              <EditableControls />
-            </Editable>
             {EditAction === true ? (
-              <Editable color={'primary'} defaultValue={email}>
+              <Editable color={'primary'} defaultValue={userInfo?.email}>
                 <EditablePreview />
                 <Input
                   as={EditableInput}
@@ -164,7 +153,7 @@ export const UserDrawer = ({
                 <EditableControls />
               </Editable>
             ) : (
-              <Text>{email}</Text>
+              <Text>{userInfo?.email}</Text>
             )}
             <FormLabel mt={'1rem'} color={color}>
               Usuario desde:
@@ -204,7 +193,17 @@ export const UserDrawer = ({
               <Button bg={'primary'} color={color} h={'20px'}>
                 Completar Info
               </Button>
-              <Button bg={'red.500'} mr={3} onClick={onClose} h={'20px'}>
+              <Button
+                bg={'red.500'}
+                mr={3}
+                onClick={() => {
+                  localStorage.removeItem('userToken');
+                  setLogged(false);
+
+                  onClose();
+                }}
+                h={'20px'}
+              >
                 Log Out
               </Button>
             </FormLabel>

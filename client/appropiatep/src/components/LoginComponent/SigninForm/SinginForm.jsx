@@ -20,12 +20,17 @@ import { registerUser } from '../../../redux/auth/authAction';
 
 import React from 'react';
 
-export const SigninForm = ({ Option, setOption }) => {
+export const SigninForm = ({ Option, setOption, setLocation }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, userInfo, error, success } = useSelector(
     (state) => state.auth
   );
+  const successAction = (location) => {
+    setPreviousPath('/login');
+    setLocation(location);
+    navigate(location);
+  };
   const toast = useToast();
   React.useEffect(() => {
     if (success === true) {
@@ -35,7 +40,7 @@ export const SigninForm = ({ Option, setOption }) => {
         status: 'success',
         duration: 5000,
         isClosable: false,
-        onCloseComplete: navigate('/displaypropierty'),
+        onCloseComplete: successAction(PreviousPath),
       });
     }
     if (success === false && error) {
@@ -79,6 +84,7 @@ export const SigninForm = ({ Option, setOption }) => {
       right={0}
       borderLeft={'4px'}
       borderColor={'primary'}
+      zIndex={100}
     >
       <Box bg={'transparent'} w={'30vw'} h={'8vh'} mt={'10vh'} ml={'4vw'}>
         <Image src={logo} objectFit={'cover'} />

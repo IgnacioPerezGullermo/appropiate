@@ -3,7 +3,7 @@ import {
   Circle,
   useColorMode,
   useColorModeValue,
-  useDisclosure
+  useDisclosure,
 } from '@chakra-ui/react';
 import { UilMoon, UilSun } from '@iconscout/react-unicons';
 import React from 'react';
@@ -13,9 +13,8 @@ import { PropiertyCards } from '../components/DisplayPropierty/Components/Propie
 import { NavBar } from '../components/NavBar.jsx';
 import { UserDrawer } from '../components/UserDrawer/UserDrawer.jsx';
 
-export const DisplayPropierty = () => {
-  const { userInfo, authToken } = useSelector((state) => state.auth);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export const DisplayPropierty = ({ onClose, isOpen }) => {
+  const [Logged, setLogged] = React.useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
   const bgButton = useColorModeValue('white', 'black');
   const btnRef = React.useRef();
@@ -29,14 +28,6 @@ export const DisplayPropierty = () => {
       left={'0vw'}
       h={'100vh'}
     >
-      <NavBar btnref={btnRef} onOpen={onOpen} location={'landing'} />
-      <UserDrawer
-        isOpen={isOpen}
-        onClose={onClose}
-        username={userInfo?.username}
-        email={userInfo?.email}
-        createdAt={userInfo?.createdAt}
-      />
       <PropiertyCards />
       <Circle
         pos={'fixed'}
