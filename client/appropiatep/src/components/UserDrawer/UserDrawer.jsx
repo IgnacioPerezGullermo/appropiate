@@ -32,6 +32,7 @@ export const UserDrawer = ({
   email,
   createdAt,
   userId,
+  password,
 }) => {
   const opciones = {
     weekday: 'long',
@@ -42,7 +43,7 @@ export const UserDrawer = ({
   const dispatch = useDispatch()
   const [EditAction, setEditAction] = React.useState(false);
   const [Info, setInfo] = React.useState({
-    username: '', email: '', 
+    username: '', email: '',
   });
   let formatDate = new Date(createdAt);
   formatDate = formatDate.toLocaleDateString('es-CL', opciones);
@@ -70,7 +71,7 @@ export const UserDrawer = ({
   }
   const bg = useColorModeValue('white', 'black');
   const color = useColorModeValue('black', 'white');
-  let handleChange = (e) => {setInfo({...Info, username: e.target.value}); console.log(e.target)};
+  let handleChange = (e) => {setInfo({...Info, [e.target.name]: e.target.value})};
   return (
     <Box>
       <Drawer
@@ -96,9 +97,9 @@ export const UserDrawer = ({
             <FormLabel mt={'1rem'} color={color}>
               Nombre de Usuario
             </FormLabel>
-            {EditAction === true?( <Editable color={'primary'}  defaultValue={username} >
+            {EditAction === true?( <Editable color={'primary'}  defaultValue={username}  >
               <EditablePreview /> 
-              <Input as={EditableInput} onChange={(e)=>{handleChange(e);
+              <Input as={EditableInput} name='username' onChange={(e)=>{handleChange(e);
               console.log(Info)
             }} />
               <EditableControls />
@@ -106,11 +107,13 @@ export const UserDrawer = ({
             <FormLabel mt={'1rem'} color={color}>
               Correo electronico
             </FormLabel>
-            <Editable color={'primary'}  defaultValue={email}>
+            {EditAction === true?( <Editable color={'primary'}  defaultValue={email} >
               <EditablePreview /> 
-              <Input as={EditableInput} />
+              <Input as={EditableInput} name='email' onChange={(e)=>{handleChange(e);
+              console.log(Info)
+            }} />
               <EditableControls />
-            </Editable>
+            </Editable>): (<Text>{email}</Text>)}
             <FormLabel mt={'1rem'} color={color}>
               Usuario desde:
             </FormLabel>
