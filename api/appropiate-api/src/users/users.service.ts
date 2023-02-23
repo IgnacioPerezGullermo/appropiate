@@ -58,6 +58,14 @@ export class UsersService {
   async findById(id: string) {
     return await this.usersRepository.findOne<User>({
       where: { id },
+      include: [
+        {
+          model: Broker,
+        },
+        {
+          model: Client,
+        },
+      ],
     });
   }
 
@@ -94,6 +102,7 @@ export class UsersService {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const data = await user.save();
+      return data;
     } catch (err) {
       throw new InternalServerErrorException(
         `Can't update Client - check server logs`,

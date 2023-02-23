@@ -14,7 +14,7 @@ import {
   useColorMode,
   useColorModeValue,
   useDisclosure,
-  useToast
+  useToast,
 } from '@chakra-ui/react';
 import {
   UilArrowLeft,
@@ -54,6 +54,7 @@ export const Landing = () => {
     fontSize: 'sm',
     color: color,
   };
+  console.log(userInfo?.id);
   return (
     <Box
       pos={'absolute'}
