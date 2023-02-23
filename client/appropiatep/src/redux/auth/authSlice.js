@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authAdminLogin, registerUser, userLogin } from './authAction';
+import {
+  authAdminLogin,
+  refreshInfo,
+  registerUser,
+  userLogin,
+} from './authAction';
 
 const initialState = {
   loading: false,
@@ -14,6 +19,12 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    [refreshInfo.fulfilled]: (state, { payload }) => {
+      state.userInfo = payload;
+    },
+    [refreshInfo.pending]: (state) => {
+      state.loading = true;
+    },
     [userLogin.pending]: (state) => {
       state.loading = true;
       state.error = null;

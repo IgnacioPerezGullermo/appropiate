@@ -54,6 +54,7 @@ export const Landing = () => {
     fontSize: 'sm',
     color: color,
   };
+  console.log(userInfo?.id);
   return (
     <Box
       pos={'absolute'}
@@ -70,6 +71,7 @@ export const Landing = () => {
         onClose={onClose}
         username={userInfo?.username}
         email={userInfo?.email}
+        userId={userInfo?.id}
         createdAt={userInfo?.createdAt}
       />
       <NavBar btnref={btnRef} onOpen={onOpen} location={'landing'} />

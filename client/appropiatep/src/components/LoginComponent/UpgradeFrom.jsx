@@ -1,32 +1,32 @@
 import {
-  Box,
-  Button,
-  Center,
-  Circle,
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-  Heading,
-  Input,
-  List,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  useColorMode,
-  useColorModeValue,
-  useDisclosure,
-  useToast,
+    Box,
+    Button,
+    Center,
+    Circle,
+    FormControl,
+    FormErrorMessage,
+    FormHelperText,
+    FormLabel,
+    Heading,
+    Input,
+    List,
+    NumberDecrementStepper,
+    NumberIncrementStepper,
+    NumberInput,
+    NumberInputField,
+    NumberInputStepper,
+    useColorMode,
+    useColorModeValue,
+    useDisclosure,
+    useToast
 } from '@chakra-ui/react';
-import { UilArrowLeft, UilMoon, UilSun } from '@iconscout/react-unicons';
+import { UilMoon, UilSun } from '@iconscout/react-unicons';
 import { Field, Formik, useFormik } from 'formik';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { NavBar } from '../NavBar';
 import { createClient } from '../../redux/clients/clientsAction';
+import { NavBar } from '../NavBar';
 
 export const UpgradeForm = ({ Option, setOption }) => {
   const navigate = useNavigate();

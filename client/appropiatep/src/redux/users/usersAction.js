@@ -29,6 +29,7 @@ export const updateUsers = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       };
+      console.log(user);
       let info = await axios.patch(`users/${user.id}`, user.info, config);
       console.log(info.data);
       return info.data;

@@ -22,7 +22,29 @@ export const registerUser = createAsyncThunk(
     }
   }
 );
-
+export const refreshInfo = createAsyncThunk(
+  'auth/refresh',
+  async (id, { rejectWithValue }) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      //console.log(id);
+      let info = await axios.get(`/users/${id}`, config);
+      console.log(info.data);
+      return info.data;
+    } catch (error) {
+      // return custom error message from API if any
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
 export const userLogin = createAsyncThunk(
   'auth/login',
   async (user, { rejectWithValue }) => {
