@@ -30,6 +30,7 @@ export const updateUsers = createAsyncThunk(
         },
       };
       let info = await axios.patch(`users/${user.id}`, user.info, config);
+      console.log(info.data);
       return info.data;
     } catch (error) {
       if (error.response && error.response.data.message) {
