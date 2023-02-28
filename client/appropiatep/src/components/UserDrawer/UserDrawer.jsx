@@ -31,7 +31,7 @@ import {
 } from '@iconscout/react-unicons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { refreshInfo } from '../../redux/auth/authAction';
+import { logOut, refreshInfo } from '../../redux/auth/authAction';
 import { updateUsers } from '../../redux/users/usersAction';
 
 export const UserDrawer = ({
@@ -114,7 +114,12 @@ export const UserDrawer = ({
           />
           <DrawerHeader color={'primary'}>Informacion de Usuario </DrawerHeader>
 
-          <Avatar size="xl" bg="primary" left={'100px'} />
+          <Avatar
+            size="xl"
+            bg="primary"
+            left={'100px'}
+            src={userInfo?.client?.profilePicture}
+          />
 
           <DrawerBody>
             <FormLabel mt={'1rem'} color={color}>
@@ -197,6 +202,7 @@ export const UserDrawer = ({
                 bg={'red.500'}
                 mr={3}
                 onClick={() => {
+                  dispatch(logOut());
                   localStorage.removeItem('userToken');
                   setLogged(false);
 

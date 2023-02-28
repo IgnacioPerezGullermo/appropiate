@@ -27,7 +27,7 @@ import { Services } from './views/Services';
 
 export const App = () => {
   const [Logged, setLogged] = React.useState(false);
-  const [Location, setLocation] = React.useState('Inicio');
+  const [Location, setLocation] = React.useState('');
   const [PreviousPath, setPreviousPath] = React.useState('');
   const btnRef = React.useRef();
   const { isOpen, onOpen, onClose } = useDisclosure();
