@@ -147,30 +147,6 @@ export const UserDrawer = ({
             </Accordion>
           </DrawerBody>
           <DrawerFooter>
-            <FormLabel margin={'5px'} spacing={4}>
-              <Button
-                bg={'primary'}
-                color={color}
-                h={'20px'}
-                onClick={() => {
-                  handleSubmit();
-                }}
-              >
-                Save
-              </Button>
-
-              <Button
-                bg={'primary'}
-                color={color}
-                h={'20px'}
-              >
-                Editar Info
-              </Button>
-            </FormLabel>
-            <FormLabel margin={'5px'} spacing={4}>
-              <Button bg={'primary'} color={color} h={'20px'}>
-                Completar Info
-              </Button>
               <Button bg={'red.500'} mr={3} onClick={onClose} h={'20px'}>
                 Log Out
               </Button>
