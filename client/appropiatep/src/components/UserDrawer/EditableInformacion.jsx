@@ -149,18 +149,16 @@ export const EditableInformacion = ({
               >
                 Save
               </Button>
+
               <Button
                 bg={'primary'}
                 color={color}
                 h={'20px'}
-                onClick={() => {
-                  setEditAction(true);
-                }}
               >
                 Editar Info
               </Button>
               <Button bg={'primary'} color={color} h={'20px'}>
                 Completar Info
-              </Button>     
+              </Button>    
     </div>
   )};
