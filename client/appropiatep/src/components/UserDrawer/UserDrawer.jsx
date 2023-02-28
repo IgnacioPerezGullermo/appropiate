@@ -1,8 +1,12 @@
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Avatar,
   Box,
   Button,
-  ButtonGroup,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -10,39 +14,18 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  Editable,
-  EditableInput,
-  EditablePreview,
-  EditableTextarea,
-  Flex,
-  FormLabel,
-  IconButton,
-  Input,
-  Text,
-  useColorModeValue,
-  useDisclosure,
-  useEditableControls,
+  useColorModeValue
 } from '@chakra-ui/react';
-import {
-  UilBell,
-  UilCheckCircle,
-  UilEdit,
-  UilTimesCircle,
-} from '@iconscout/react-unicons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshInfo } from '../../redux/auth/authAction';
 import { updateUsers } from '../../redux/users/usersAction';
+import { EditableInformacion } from './EditableInformacion';
 
 export const UserDrawer = ({
   btnRef,
   isOpen,
   onClose,
-  username,
-  email,
-  createdAt,
-  userId,
-  password,
 }) => {
   const opciones = {
     weekday: 'long',
@@ -59,12 +42,12 @@ export const UserDrawer = ({
     username: '',
     email: '',
   });
-  let formatDate = new Date(createdAt);
+  /*let formatDate = new Date(createdAt);
   formatDate = formatDate.toLocaleDateString('es-CL', opciones);
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-  function EditableControls() {
+  }*/
+  /*function EditableControls() {
     const {
       isEditing,
       getSubmitButtonProps,
@@ -74,18 +57,15 @@ export const UserDrawer = ({
 
     return isEditing ? (
       <ButtonGroup>
-        <IconButton icon={<UilCheckCircle />} {...getSubmitButtonProps()} />
-        <IconButton icon={<UilTimesCircle />} {...getCancelButtonProps()} />
+        <IconButton size={'sm'} icon={<UilCheckCircle />} {...getSubmitButtonProps()} />
       </ButtonGroup>
     ) : (
-      <Flex>
-        <IconButton icon={<UilEdit />} {...getEditButtonProps()} />
-      </Flex>
+      <IconButton size={'sm'} icon={<UilEdit />} mt={'-6.5vh'} {...getEditButtonProps()}></IconButton>
     );
-  }
+  }*/
   const bg = useColorModeValue('white', 'black');
   const color = useColorModeValue('black', 'white');
-  let handleChange = (e) => {
+  /*let handleChange = (e) => {
     setInfo({
       ...Info,
       [e.target.name]: e.target.value,
@@ -97,7 +77,7 @@ export const UserDrawer = ({
       dispatch(refreshInfo(userInfo?.id));
     }, 500);
     setEditAction(false);
-  };
+  };*/
   return (
     <Box>
       <Drawer
@@ -113,90 +93,63 @@ export const UserDrawer = ({
             color={'white'}
             focusBorderColor={'whiteAlpha.900'}
           />
-          <DrawerHeader color={'primary'}>Informacion de Usuario </DrawerHeader>
-
-          <Avatar size="xl" bg="primary" left={'100px'} />
+          <DrawerHeader> 
+           <Avatar size="xl" margin={"100"} mt="2" bg="primary" />
+          </DrawerHeader>
 
           <DrawerBody>
-            <FormLabel mt={'1rem'} color={color}>
-              Nombre de Usuario
-            </FormLabel>
-            {EditAction === true ? (
-              <Editable color={'primary'} defaultValue={username}>
-                <EditablePreview />
-                <Input
-                  as={EditableInput}
-                  name="username"
-                  onChange={(e) => {
-                    handleChange(e);
-                    console.log(Info);
-                  }}
-                />
-                <EditableControls />
-              </Editable>
-            ) : (
-              <Text>{username}</Text>
-            )}
-            <FormLabel mt={'1rem'} color={color}>
-              Correo electronico
-            </FormLabel>
-            {EditAction === true ? (
-              <Editable color={'primary'} defaultValue={email}>
-                <EditablePreview />
-                <Input
-                  as={EditableInput}
-                  name="email"
-                  onChange={(e) => {
-                    handleChange(e);
-                    console.log(Info);
-                  }}
-                />
-                <EditableControls />
-              </Editable>
-            ) : (
-              <Text>{email}</Text>
-            )}
-            <FormLabel mt={'1rem'} color={color}>
-              Usuario desde:
-            </FormLabel>
-            <Text color={'primary'}>{capitalizeFirstLetter(formatDate)}</Text>
-            <Button bg={'color'} left={'220px'}>
-              {' '}
-              {<UilBell />}{' '}
-            </Button>
-          </DrawerBody>
+            <Accordion allowToggle>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton color={"primary"}>
+                    <Box as="span" flex='1' textAlign='left'>
+                      Información del Usuario
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  Lorem ipsum dolor 
+                </AccordionPanel>
+              </AccordionItem>
 
+              <AccordionItem>
+                <h2>
+                  <AccordionButton color={"primary"}>
+                    <Box as="span" flex='1' textAlign='left'>
+                      Datos de Usuario
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  Lorem ipsum dolor 
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton color={"primary"}>
+                    <Box as="span" flex='1' textAlign='left'>
+                      Información Financiera
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  Lorem ipsum dolor 
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          </DrawerBody>
           <DrawerFooter>
-            <FormLabel margin={'5px'} spacing={4}>
-              <Button
-                bg={'primary'}
-                color={color}
+              <Button 
+                bg={'red.500'} 
+                mr={3} 
+                onClick={onClose} 
                 h={'20px'}
-                onClick={() => {
-                  handleSubmit();
-                }}
               >
-                Save
-              </Button>
-              <Button
-                bg={'primary'}
-                color={color}
-                h={'20px'}
-                onClick={() => {
-                  setEditAction(true);
-                }}
-              >
-                Editar Info
-              </Button>
-            </FormLabel>
-            <FormLabel margin={'5px'} spacing={4}>
-              <Button bg={'primary'} color={color} h={'20px'}>
-                Completar Info
-              </Button>
-              <Button bg={'red.500'} mr={3} onClick={onClose} h={'20px'}>
                 Log Out
               </Button>
-            </FormLabel>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

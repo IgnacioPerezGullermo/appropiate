@@ -1,24 +1,24 @@
 import {
-    Box,
-    Button,
-    Center,
-    Circle,
-    FormControl,
-    FormErrorMessage,
-    FormHelperText,
-    FormLabel,
-    Heading,
-    Input,
-    List,
-    NumberDecrementStepper,
-    NumberIncrementStepper,
-    NumberInput,
-    NumberInputField,
-    NumberInputStepper,
-    useColorMode,
-    useColorModeValue,
-    useDisclosure,
-    useToast
+  Box,
+  Button,
+  Center,
+  Circle,
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
+  Heading,
+  Input,
+  List,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  useColorMode,
+  useColorModeValue,
+  useDisclosure,
+  useToast
 } from '@chakra-ui/react';
 import { UilMoon, UilSun } from '@iconscout/react-unicons';
 import { Field, Formik, useFormik } from 'formik';
@@ -27,6 +27,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createClient } from '../../redux/clients/clientsAction';
 import { NavBar } from '../NavBar';
+import { EditUpgradeForm } from './EditUpgradeForm';
 
 export const UpgradeForm = ({ Option, setOption }) => {
   const navigate = useNavigate();
@@ -73,6 +74,9 @@ export const UpgradeForm = ({ Option, setOption }) => {
   const bg = useColorModeValue('gray.200', 'gray.800');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+  let handleSubmit = () => {
+    dispatch()
+  }
   /*const formik = useFormik({
         initialValues: { basicIncome: '', age: '', currentSavings: '', bankCredit: '' },
         validate: (values) => {
@@ -210,6 +214,19 @@ export const UpgradeForm = ({ Option, setOption }) => {
                   >
                     {' '}
                     Guardar
+                  </Button>
+                  <Button
+                    right={'-120px'}
+                    bg={'primary'}
+                    color={bgBoxColor}
+                    borderColor={'#FFFFFF'}
+                    alignItems={'center'}
+                    borderRadius={'full'}
+                    type={'submit'}
+                    _hover={{ bg: '#272727', color: '#19C8C4' }}
+                  >
+                    {' '}
+                    Editar
                   </Button>
                   <Button
                     right={'-180px'}
