@@ -79,22 +79,23 @@ export class ClientsService {
   }
 
   async update(id: string, updateClientDto: UpdateClientDto) {
-    const user = await this.clientsRepository.findByPk<Client>(id);
-    if (!user) {
+    const client = await this.clientsRepository.findByPk<Client>(id);
+
+    if (!client) {
       throw new BadRequestException(`User does not exist in db `);
     }
 
-    user.firstName = updateClientDto.firstName;
-    user.lastName = updateClientDto.lastName;
-    user.age = updateClientDto.age;
-    user.basicIncome = updateClientDto.basicIncome;
-    user.currentSavings = updateClientDto.currentSavings;
-    user.bankCredit = updateClientDto.bankCredit;
-    user.userId = updateClientDto.userId;
+    client.firstName = updateClientDto.firstName || client.firstName;
+    client.lastName = updateClientDto.lastName || client.lastName;
+    client.age = updateClientDto.age || client.age;
+    client.basicIncome = updateClientDto.basicIncome || client.basicIncome;
+    client.currentSavings =
+      updateClientDto.currentSavings || client.currentSavings;
+    client.bankCredit = updateClientDto.bankCredit || client.bankCredit;
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const data = await user.save();
+      const data = await client.save();
     } catch (err) {
       throw new InternalServerErrorException(
         `Can't update Client - check server logs`,

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createClient } from './clientsAction';
+import { createClient, updateClient } from './clientsAction';
 
 const initialState = {
   clients: [],
@@ -38,6 +38,9 @@ const clientsSlice = createSlice({
     //   [clearCreatedBroker.rejected]: (state, { payload }) => {
     //     state.createdBroker = payload;
     //   },
+    [updateClient.fulfilled]: (state, { payload }) => {
+      state.createdClient = payload;
+    },
   },
 });
 

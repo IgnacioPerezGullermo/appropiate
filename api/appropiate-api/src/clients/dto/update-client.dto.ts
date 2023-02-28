@@ -12,18 +12,18 @@ import { CreateClientDto } from './create-client.dto';
 export class UpdateClientDto extends PartialType(CreateClientDto) {
   @ApiProperty()
   @IsString()
-  readonly lastName: string;
+  readonly lastName?: string;
 
   @ApiProperty()
   @IsString()
-  readonly firstName: string;
+  readonly firstName?: string;
 
   @ApiProperty()
   @IsString()
-  readonly age: number;
+  readonly age?: number;
 
   @ApiProperty()
-  @IsString()
+  @IsNumber()
   readonly basicIncome?: number;
 
   @ApiProperty()

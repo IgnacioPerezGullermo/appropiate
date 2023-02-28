@@ -2,32 +2,22 @@ import {
   Button,
   Editable,
   EditablePreview,
-  FormLabel, IconButton, Input,
-  InputGroup, InputRightElement,
-  Text
+  FormLabel,
+  IconButton,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Text,
 } from '@chakra-ui/react';
 
-import {
-  UilBell,
-  UilCheckCircle,
-  UilEdit
-} from '@iconscout/react-unicons';
+import { UilBell, UilCheckCircle, UilEdit } from '@iconscout/react-unicons';
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshInfo } from '../../redux/auth/authAction';
 import { updateUsers } from '../../redux/users/usersAction';
 
-export const EditableInformacion = ({
-  btnRef,
-  isOpen,
-  onClose,
-  username,
-  email,
-  createdAt,
-  userId,
-  password,
-}) => {
+export const EditableInformacion = ({ username, email, createdAt }) => {
   const opciones = {
     weekday: 'long',
     year: 'numeric',
@@ -50,15 +40,24 @@ export const EditableInformacion = ({
       getCancelButtonProps,
       getEditButtonProps,
     } = useEditableControls();
-    
+
     return isEditing ? (
       <ButtonGroup>
-        <IconButton size={'sm'} icon={<UilCheckCircle />} {...getSubmitButtonProps()} />
+        <IconButton
+          size={'sm'}
+          icon={<UilCheckCircle />}
+          {...getSubmitButtonProps()}
+        />
       </ButtonGroup>
     ) : (
-      <IconButton size={'sm'} icon={<UilEdit />} mt={'-6.5vh'} {...getEditButtonProps()}></IconButton>
+      <IconButton
+        size={'sm'}
+        icon={<UilEdit />}
+        mt={'-6.5vh'}
+        {...getEditButtonProps()}
+      ></IconButton>
     );
-  };
+  }
   let handleChange = (e) => {
     setInfo({
       ...Info,
@@ -85,13 +84,13 @@ export const EditableInformacion = ({
       {EditAction === true ? (
         <Editable color={color} defaultValue={username}>
           <EditablePreview />
-          <InputGroup size='sm'>
+          <InputGroup size="sm">
             <Input
               as={EditableInput}
               name="username"
               focusBorderColor={'transparent'}
-              _selected={{border:'none'}}
-              _active={{border:'none'}}
+              _selected={{ border: 'none' }}
+              _active={{ border: 'none' }}
               onChange={(e) => {
                 handleChange(e);
                 console.log(Info);
@@ -111,13 +110,13 @@ export const EditableInformacion = ({
       {EditAction === true ? (
         <Editable color={color} defaultValue={email}>
           <EditablePreview />
-          <InputGroup size='sm'>
+          <InputGroup size="sm">
             <Input
               as={EditableInput}
               name="email"
               focusBorderColor={'transparent'}
-              _selected={{border:'none'}}
-              _active={{border:'none'}}
+              _selected={{ border: 'none' }}
+              _active={{ border: 'none' }}
               onChange={(e) => {
                 handleChange(e);
                 console.log(Info);
@@ -140,25 +139,22 @@ export const EditableInformacion = ({
         {<UilBell />}{' '}
       </Button>
       <Button
-                bg={'primary'}
-                color={color}
-                h={'20px'}
-                onClick={() => {
-                  handleSubmit();
-                }}
-              >
-                Save
-              </Button>
+        bg={'primary'}
+        color={color}
+        h={'20px'}
+        onClick={() => {
+          handleSubmit();
+        }}
+      >
+        Save
+      </Button>
 
-              <Button
-                bg={'primary'}
-                color={color}
-                h={'20px'}
-              >
-                Editar Info
-              </Button>
-              <Button bg={'primary'} color={color} h={'20px'}>
-                Completar Info
-              </Button>    
+      <Button bg={'primary'} color={color} h={'20px'}>
+        Editar Info
+      </Button>
+      <Button bg={'primary'} color={color} h={'20px'}>
+        Completar Info
+      </Button>
     </div>
-  )};
+  );
+};
