@@ -14,7 +14,7 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +22,11 @@ import { logOut, refreshInfo } from '../../redux/auth/authAction';
 import { updateUsers } from '../../redux/users/usersAction';
 import { EditableInformacion } from './EditableInformacion';
 
-export const UserDrawer = ({ btnRef, isOpen, onClose }) => {
+export const UserDrawer = ({
+  btnRef,
+  isOpen,
+  onClose,
+}) => {
   const opciones = {
     weekday: 'long',
     year: 'numeric',
@@ -102,44 +106,50 @@ export const UserDrawer = ({ btnRef, isOpen, onClose }) => {
             <Accordion allowToggle>
               <AccordionItem>
                 <h2>
-                  <AccordionButton color={'primary'}>
-                    <Box as="span" flex="1" textAlign="left">
+                  <AccordionButton color={"primary"}>
+                    <Box as="span" flex='1' textAlign='left'>
                       Información del Usuario
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4}>Lorem ipsum dolor</AccordionPanel>
+                <AccordionPanel pb={4}>
+                  Lorem ipsum dolor 
+                </AccordionPanel>
               </AccordionItem>
 
               <AccordionItem>
                 <h2>
-                  <AccordionButton color={'primary'}>
-                    <Box as="span" flex="1" textAlign="left">
+                  <AccordionButton color={"primary"}>
+                    <Box as="span" flex='1' textAlign='left'>
                       Datos de Usuario
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4}>Lorem ipsum dolor</AccordionPanel>
+                <AccordionPanel pb={4}>
+                  Lorem ipsum dolor 
+                </AccordionPanel>
               </AccordionItem>
               <AccordionItem>
                 <h2>
-                  <AccordionButton color={'primary'}>
-                    <Box as="span" flex="1" textAlign="left">
+                  <AccordionButton color={"primary"}>
+                    <Box as="span" flex='1' textAlign='left'>
                       Información Financiera
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4}>Lorem ipsum dolor</AccordionPanel>
+                <AccordionPanel pb={4}>
+                  Lorem ipsum dolor 
+                </AccordionPanel>
               </AccordionItem>
             </Accordion>
           </DrawerBody>
           <DrawerFooter>
-            <Button bg={'red.500'} mr={3} onClick={onClose} h={'20px'}>
-              Log Out
-            </Button>
+              <Button bg={'red.500'} mr={3} onClick={onClose} h={'20px'}>
+                Log Out
+              </Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
