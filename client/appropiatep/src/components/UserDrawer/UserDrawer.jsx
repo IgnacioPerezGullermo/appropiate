@@ -7,6 +7,7 @@ import {
   Avatar,
   Box,
   Button,
+  Center,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -22,7 +23,7 @@ import { logOut, refreshInfo } from '../../redux/auth/authAction';
 import { updateUsers } from '../../redux/users/usersAction';
 import { EditableInformacion } from './EditableInformacion';
 
-export const UserDrawer = ({ btnRef, isOpen, onClose }) => {
+export const UserDrawer = ({ btnRef, isOpen, onClose, setLogged }) => {
   const opciones = {
     weekday: 'long',
     year: 'numeric',
@@ -74,6 +75,13 @@ export const UserDrawer = ({ btnRef, isOpen, onClose }) => {
     }, 500);
     setEditAction(false);
   };*/
+  const handleLogOut = () => {
+    setLogged(false);
+    dispatch(logOut());
+    localStorage.removeItem('userToken');
+    onClose();
+  };
+
   return (
     <Box>
       <Drawer
@@ -137,26 +145,14 @@ export const UserDrawer = ({ btnRef, isOpen, onClose }) => {
             </Accordion>
           </DrawerBody>
           <DrawerFooter>
-            <FormLabel margin={'5px'} spacing={4}>
-              <Button
-                bg={'primary'}
-                color={color}
-                h={'20px'}
-                onClick={() => {
-                  handleSubmit();
-                }}
-              >
-                Save
-              </Button>
-
-              <Button bg={'primary'} color={color} h={'20px'}>
-                Editar Info
-              </Button>
-            </FormLabel>
-            <Button bg={'primary'} color={color} h={'20px'}>
-              Completar Info
-            </Button>
-            <Button bg={'red.500'} mr={3} onClick={onClose} h={'20px'}>
+            <Button
+              bg={'red.500'}
+              color={'white'}
+              mr={'25%'}
+              w={'50%'}
+              textAlign={'center'}
+              onClick={handleLogOut}
+            >
               Log Out
             </Button>
           </DrawerFooter>
