@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   authAdminLogin,
+  logOut,
   refreshInfo,
   registerUser,
   userLogin,
@@ -62,6 +63,11 @@ const authSlice = createSlice({
       state.error = payload;
       state.success = false;
       state.loading = false;
+    },
+    [logOut.fulfilled]: (state, { payload }) => {
+      state.userInfo = {};
+      state.userToken = null;
+      state.success = null;
     },
   },
 });

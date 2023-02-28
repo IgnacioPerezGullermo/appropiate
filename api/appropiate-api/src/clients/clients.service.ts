@@ -5,6 +5,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { Appointment } from 'src/appointment/entities/appointment.entity';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { CLIENT_REPOSITORY } from '../../core/constants';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
@@ -15,6 +16,7 @@ export class ClientsService {
   constructor(
     @Inject(CLIENT_REPOSITORY)
     private readonly clientsRepository: typeof Client,
+    private cloudinaryService: CloudinaryService,
   ) {}
 
   async create(createClientDto: CreateClientDto) {
@@ -98,6 +100,22 @@ export class ClientsService {
         `Can't update Client - check server logs`,
       );
     }
+  }
+
+  async updateProfilePicture(id: string, file: Express.Multer.File) {
+    const user = await this.clientsRepository.findByPk<Client>(id);
+    if (!user) {
+      throw new BadRequestException(`User does not exist in db `);
+    }
+    this.cloudinaryService
+      .uploadImage(file)
+      .then(async (result) => {
+        user.profilePicture = result.url;
+        const data = await user.save();
+      })
+      .catch(() => {
+        throw new BadRequestException('Invalid file type.');
+      });
   }
 
   async remove(id: string) {

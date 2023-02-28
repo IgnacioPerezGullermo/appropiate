@@ -18,7 +18,7 @@ import {
   useColorMode,
   useColorModeValue,
   useDisclosure,
-  useToast
+  useToast,
 } from '@chakra-ui/react';
 import { UilMoon, UilSun } from '@iconscout/react-unicons';
 import { Field, Formik, useFormik } from 'formik';
@@ -97,7 +97,6 @@ export const UpgradeForm = ({ Option, setOption }) => {
     }); */
   return (
     <Box>
-      <NavBar btnref={btnRef} onOpen={onOpen} location={'register'} />
       <Box bg={bgColor} pos={'absolute'} w={'100%'} h={'86vh'} top={'12vh'}>
         <Center marginLeft={'25%'} w={'50%'} bg={bgBoxColor} marginTop={'2%'}>
           <List color={generalColor} w={'60%'} p={'10'}>

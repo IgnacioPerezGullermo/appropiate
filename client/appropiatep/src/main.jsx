@@ -14,6 +14,7 @@ import {
   RouterProvider,
   Routes,
 } from 'react-router-dom';
+import { App } from './App';
 import { NavBar } from './components/NavBar';
 import store from './redux/store';
 import './styles/main.css';
@@ -34,31 +35,5 @@ import { Services } from './views/Services';
 
 //axios.defaults.baseURL = process.env.BASE_URL || 'https://localhost:3001';
 axios.defaults.baseURL =
-  import.meta.env.VITE_DEV_BASE_URL || 'https://localhost:3001';
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ChakraProvider theme={theme}>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <div className="App">
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Landing />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/appointment" element={<Appointment />} />
-              <Route path="/login" element={<LogIn />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/brokerdashboard" element={<BrokerDashboard />} />
-              <Route path="/displaypropierty" element={<DisplayPropierty />} />
-            </Routes>
-          </BrowserRouter>
-        </div>
-      </ChakraProvider>
-    </Provider>
-  </React.StrictMode>
-);
+  import.meta.env.VITE_BASE_URL || 'http://localhost:3001';
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);

@@ -23,6 +23,7 @@ import {
   UilSun,
 } from '@iconscout/react-unicons';
 import { Formik } from 'formik';
+import jwt from 'jwt-decode';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -30,14 +31,16 @@ import Logo from '../assets/logo.svg';
 import { PropiertyCards } from '../components/DisplayPropierty/Components/PropiertyCards';
 import { NavBar } from '../components/NavBar';
 import { UserDrawer } from '../components/UserDrawer/UserDrawer';
-import { registerUser, userLogin } from '../redux/auth/authAction';
+import { refreshInfo, registerUser, userLogin } from '../redux/auth/authAction';
 import numberWithCommas from '../utils/conversors';
 
-export const Landing = () => {
+export const Landing = ({ isOpen, onClose }) => {
   const [SliderValue, setSliderValue] = React.useState(1400000);
   const [FilterAction, setFilterAction] = React.useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [Logged, setLogged] = React.useState(false);
+
   const btnRef = React.useRef();
+
   const { loading, userInfo, error, success } = useSelector(
     (state) => state.auth
   );
@@ -54,7 +57,6 @@ export const Landing = () => {
     fontSize: 'sm',
     color: color,
   };
-  console.log(userInfo?.id);
   return (
     <Box
       pos={'absolute'}
@@ -66,15 +68,6 @@ export const Landing = () => {
       left={'0vw'}
       h={'container.md'}
     >
-      <UserDrawer
-        isOpen={isOpen}
-        onClose={onClose}
-        username={userInfo?.username}
-        email={userInfo?.email}
-        userId={userInfo?.id}
-        createdAt={userInfo?.createdAt}
-      />
-      <NavBar btnref={btnRef} onOpen={onOpen} location={'landing'} />
       {FilterAction === false ? (
         <Box
           bg={bgBanner}

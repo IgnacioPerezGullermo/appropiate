@@ -14,7 +14,7 @@ import Back from '../assets/backgroundpanel.jpg';
 import { LoginComponent } from '../components/LoginComponent/LoginComponent';
 import { NavBar } from '../components/NavBar.jsx';
 
-export const LogIn = () => {
+export const LogIn = ({ setLocation, PreviousPath, setPreviousPath }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
   const bg = useColorModeValue('gray.200', 'gray.800');
@@ -41,24 +41,6 @@ export const LogIn = () => {
           w={'100%'}
           h={'100%'}
         >
-          <Button
-            pos={'absolute'}
-            top={'4vh'}
-            left={'4vh'}
-            size={'lg'}
-            borderRadius={'full'}
-            bg={bgMain}
-            color={color}
-            borderColor={'primary'}
-            _hover={{ color: 'primary' }}
-            leftIcon={<UilArrowLeft />}
-            onClick={() => {
-              navigate('/');
-            }}
-          >
-            {' '}
-            Regresar
-          </Button>
           <Circle
             pos={'absolute'}
             bottom={'4vh'}
@@ -83,7 +65,11 @@ export const LogIn = () => {
           </Circle>
         </Box>
       </GridItem>
-      <LoginComponent />
+      <LoginComponent
+        setLocation={setLocation}
+        PreviousPath={PreviousPath}
+        setPreviousPath={setPreviousPath}
+      />
     </Box>
   );
 };

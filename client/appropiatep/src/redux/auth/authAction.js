@@ -92,3 +92,19 @@ export const authAdminLogin = createAsyncThunk(
     }
   }
 );
+export const logOut = createAsyncThunk(
+  'auth/logout',
+  async (some, { rejectWithValue }) => {
+    try {
+      const info = {};
+      return info;
+    } catch (error) {
+      // return custom error message from backend if present
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);

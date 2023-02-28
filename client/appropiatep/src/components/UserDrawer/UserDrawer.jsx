@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { refreshInfo } from '../../redux/auth/authAction';
+import { logOut, refreshInfo } from '../../redux/auth/authAction';
 import { updateUsers } from '../../redux/users/usersAction';
 import { EditableInformacion } from './EditableInformacion';
 
@@ -42,7 +42,7 @@ export const UserDrawer = ({
     username: '',
     email: '',
   });
-  /*let formatDate = new Date(createdAt);
+  /*let formatDate = new Date(userInfo?.createdAt);
   formatDate = formatDate.toLocaleDateString('es-CL', opciones);
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -93,9 +93,14 @@ export const UserDrawer = ({
             color={'white'}
             focusBorderColor={'whiteAlpha.900'}
           />
-          <DrawerHeader> 
-           <Avatar size="xl" margin={"100"} mt="2" bg="primary" />
-          </DrawerHeader>
+          <DrawerHeader color={'primary'}>Informacion de Usuario </DrawerHeader>
+
+          <Avatar
+            size="xl"
+            bg="primary"
+            left={'100px'}
+            src={userInfo?.client?.profilePicture}
+          />
 
           <DrawerBody>
             <Accordion allowToggle>
@@ -142,12 +147,31 @@ export const UserDrawer = ({
             </Accordion>
           </DrawerBody>
           <DrawerFooter>
-              <Button 
-                bg={'red.500'} 
-                mr={3} 
-                onClick={onClose} 
+            <FormLabel margin={'5px'} spacing={4}>
+              <Button
+                bg={'primary'}
+                color={color}
+                h={'20px'}
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                Save
+              </Button>
+
+              <Button
+                bg={'primary'}
+                color={color}
                 h={'20px'}
               >
+                Editar Info
+              </Button>
+            </FormLabel>
+            <FormLabel margin={'5px'} spacing={4}>
+              <Button bg={'primary'} color={color} h={'20px'}>
+                Completar Info
+              </Button>
+              <Button bg={'red.500'} mr={3} onClick={onClose} h={'20px'}>
                 Log Out
               </Button>
           </DrawerFooter>
