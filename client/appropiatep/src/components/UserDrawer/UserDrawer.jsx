@@ -15,7 +15,7 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -118,7 +118,7 @@ export const UserDrawer = ({ btnRef, isOpen, onClose, setLogged }) => {
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4}>Lorem ipsum dolor</AccordionPanel>
+                <AccordionPanel pb={4}> <EditableInformacion /> </AccordionPanel>
               </AccordionItem>
 
               <AccordionItem>
