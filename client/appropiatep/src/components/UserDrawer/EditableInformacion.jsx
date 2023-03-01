@@ -1,10 +1,12 @@
 import {
   Button,
+  ButtonGroup,
   Editable,
   EditablePreview,
   FormLabel, IconButton, Input,
   InputGroup, InputRightElement,
-  Text
+  Text,
+  useEditableControls
 } from '@chakra-ui/react';
 
 import {
@@ -154,6 +156,7 @@ export const EditableInformacion = ({
                 bg={'primary'}
                 color={color}
                 h={'20px'}
+                onClick={()=>{setEditAction(true)}}
               >
                 Editar Info
               </Button>
