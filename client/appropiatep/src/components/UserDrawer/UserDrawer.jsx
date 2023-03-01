@@ -21,6 +21,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut, refreshInfo } from '../../redux/auth/authAction';
 import { updateUsers } from '../../redux/users/usersAction';
+import { EditableFinanciero } from './components/EditableFinanciero';
 import { EditableInformacion } from './EditableInformacion';
 
 export const UserDrawer = ({ btnRef, isOpen, onClose, setLogged }) => {
@@ -140,7 +141,9 @@ export const UserDrawer = ({ btnRef, isOpen, onClose, setLogged }) => {
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4}>Lorem ipsum dolor</AccordionPanel>
+                <AccordionPanel pb={4}>
+                  <EditableFinanciero />
+                </AccordionPanel>
               </AccordionItem>
             </Accordion>
           </DrawerBody>
