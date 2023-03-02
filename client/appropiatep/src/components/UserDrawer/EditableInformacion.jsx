@@ -1,13 +1,16 @@
 import {
   Button,
+  ButtonGroup,
   Editable,
+  EditableInput,
   EditablePreview,
   FormLabel,
   IconButton,
   Input,
   InputGroup,
-  InputRightElement,
-  Text,
+  InputRightElement, Text,
+  useColorModeValue,
+  useEditableControls
 } from '@chakra-ui/react';
 
 import { UilBell, UilCheckCircle, UilEdit } from '@iconscout/react-unicons';
@@ -27,6 +30,7 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
   const { loading, userInfo, error, success } = useSelector(
     (state) => state.auth
   );
+  const color = useColorModeValue('black', 'white');
   const dispatch = useDispatch();
   const [EditAction, setEditAction] = React.useState(false);
   const [Info, setInfo] = React.useState({
@@ -77,15 +81,17 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   return (
-    <div class="card-body">
+    <div className="card-body">
       <FormLabel mt={'1rem'} color={'primary'}>
         Nombre de Usuario
       </FormLabel>
       {EditAction === true ? (
         <Editable color={color} defaultValue={username}>
+  
           <EditablePreview />
           <InputGroup size="sm">
             <Input
+              defaultValue={username}
               as={EditableInput}
               name="username"
               focusBorderColor={'transparent'}
@@ -149,7 +155,14 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
         Save
       </Button>
 
-      <Button bg={'primary'} color={color} h={'20px'}>
+      <Button 
+        bg={'primary'} 
+        color={color} 
+        h={'20px'}         
+        onClick={() => {
+          setEditAction(true);
+        }}
+      >
         Editar Info
       </Button>
       <Button bg={'primary'} color={color} h={'20px'}>
