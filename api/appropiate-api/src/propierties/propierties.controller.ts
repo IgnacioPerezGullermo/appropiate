@@ -7,9 +7,20 @@ import {
   Patch,
   Post,
   Query,
+  UploadedFile,
+  UploadedFiles,
+  UseInterceptors,
 } from '@nestjs/common';
-import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import {
+  ApiBody,
+  ApiConsumes,
+  ApiCreatedResponse,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { CreatePropiertyDto } from './dto/create-propierty.dto';
+import { FilesUploadDto } from './dto/files-upload.dto';
 import { UpdatePropiertyDto } from './dto/update-propierty.dto';
 import { Propierty } from './entities/propierty.entity';
 import { PropiertiesService } from './propierties.service';
@@ -63,6 +74,20 @@ export class PropiertiesController {
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.propiertiesService.findOne(id);
+  }
+
+  @Post('image/:id')
+  @UseInterceptors(FileInterceptor('file'))
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    description: 'The file',
+    type: FilesUploadDto,
+  })
+  updateImage(
+    @Param('id') id: string,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return this.propiertiesService.addPictures(id, file);
   }
 
   @Patch(':id')

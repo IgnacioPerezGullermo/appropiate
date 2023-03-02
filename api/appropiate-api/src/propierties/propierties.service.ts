@@ -5,9 +5,11 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { Op } from 'sequelize';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { PROPIERTY_REPOSITORY } from '../../core/constants';
 import { CreatePropiertyDto } from './dto/create-propierty.dto';
 import { UpdatePropiertyDto } from './dto/update-propierty.dto';
+import { Images } from './entities/images.entity';
 import { Propierty } from './entities/propierty.entity';
 
 @Injectable()
@@ -15,6 +17,7 @@ export class PropiertiesService {
   constructor(
     @Inject(PROPIERTY_REPOSITORY)
     private readonly propiertiesRepository: typeof Propierty,
+    private cloudinaryService: CloudinaryService,
   ) {}
 
   async create(createPropiertyDto: CreatePropiertyDto) {
@@ -63,6 +66,11 @@ export class PropiertiesService {
       await this.propiertiesRepository.findAndCountAll<Propierty>({
         limit,
         offset,
+        include: [
+          {
+            model: Images,
+          },
+        ],
       });
     console.log(rows);
     return { total: count, data: rows };
@@ -80,17 +88,42 @@ export class PropiertiesService {
         limit,
         offset,
         where: { projectname: { [Op.like]: '%' + projectname + '%' } },
+        include: [Images],
       });
     console.log(rows);
     return { total: count, data: rows };
   }
 
   async findOne(id: string) {
-    return await this.propiertiesRepository.findOne({ where: { id } });
+    return await this.propiertiesRepository.findOne({
+      where: { id },
+      include: [
+        {
+          model: Images,
+        },
+      ],
+    });
   }
 
   update(id: number, updatePropiertyDto: UpdatePropiertyDto) {
     return `This action updates a #${id} propierty`;
+  }
+
+  async addPictures(id: string, file: Express.Multer.File) {
+    const images = new Images();
+    this.cloudinaryService
+      .uploadImage(file)
+      .then(async (result) => {
+        console.log(result);
+        images.url = result.url;
+        images.id = result.public_id;
+        images.propiertyId = id;
+        const ImageData = await images.save();
+        return ImageData;
+      })
+      .catch((error) => {
+        throw new BadRequestException(error);
+      });
   }
 
   remove(id: number) {

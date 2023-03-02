@@ -9,6 +9,7 @@ import React from 'react';
 import { Provider, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { NavBar } from './components/NavBar';
+import { PropiertyDetail } from './components/PropiertyDetail/PropiertyDetail';
 import { UserDrawer } from './components/UserDrawer/UserDrawer';
 import store from './redux/store';
 import './styles/main.css';
@@ -88,6 +89,7 @@ export const App = () => {
                     <DisplayPropierty isOpen={isOpen} onClose={onClose} />
                   }
                 />
+                <Route path="/propierty/:id" element={<PropiertyDetail />} />
               </Routes>
             </BrowserRouter>
           </div>

@@ -12,7 +12,6 @@ export const PropiertyCards = ({ salary }) => {
   const [Page, setPage] = React.useState(0);
   const [PageSize, setPageSize] = React.useState(6);
   let count = 0;
-  console.log(Page, PageSize);
   React.useEffect(() => {
     dispatch(
       getSearchedPropierties({
@@ -30,6 +29,7 @@ export const PropiertyCards = ({ salary }) => {
             return (
               <PropiertyCard
                 key={prop.id}
+                id={prop.id}
                 bedr={prop.bedr}
                 bath={prop.bath}
                 price={prop.price}
@@ -72,6 +72,7 @@ export const PropiertyCards = ({ salary }) => {
               return (
                 <PropiertyCard
                   key={prop.id}
+                  id={prop.id}
                   bedr={prop.bedr}
                   bath={prop.bath}
                   price={prop.price}

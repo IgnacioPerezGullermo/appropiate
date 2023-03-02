@@ -1,8 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerPropierty, getSearchedPropierties } from './propertiesAction';
+import {
+  getSearchedPropierties,
+  registerPropierty,
+  getPropiertyDetail,
+} from './propertiesAction';
 
 const initialState = {
   propierties: [],
+  propiertyDetail: {},
   error: null,
   createdPropierty: {},
   loading: false,
@@ -31,6 +36,9 @@ const propiertiesSlice = createSlice({
     [registerPropierty.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
+    },
+    [getPropiertyDetail.fulfilled]: (state, { payload }) => {
+      state.propiertyDetail = payload;
     },
     // [clearCreatedBroker.fulfilled]: (state, { payload }) => {
     //   state.createdBroker = payload;

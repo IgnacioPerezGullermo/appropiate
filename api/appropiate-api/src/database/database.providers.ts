@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { Appointment } from 'src/appointment/entities/appointment.entity';
 import { Broker } from 'src/brokers/entities/broker.entity';
 import { Client } from 'src/clients/entities/client.entity';
+import { Images } from 'src/propierties/entities/images.entity';
 import { Propierty } from '../propierties/entities/propierty.entity';
 import { User } from '../users/entities/user.entity';
 
@@ -49,7 +50,14 @@ export const databaseProviders = [
         //   },
         // },
       });
-      sequelize.addModels([Broker, Client, Appointment, User, Propierty]);
+      sequelize.addModels([
+        Broker,
+        Client,
+        Appointment,
+        User,
+        Propierty,
+        Images,
+      ]);
       await sequelize.sync();
       return sequelize;
     },
