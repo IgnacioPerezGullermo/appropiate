@@ -26,10 +26,12 @@ import {
   UilPercentage,
 } from '@iconscout/react-unicons';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const PropiertyCard = ({
   bedr,
   bath,
+  id,
   price,
   commune,
   region,
@@ -37,6 +39,7 @@ export const PropiertyCard = ({
   parking,
   caprate,
 }) => {
+  const navigate = useNavigate();
   const bg = useColorModeValue('white', 'black');
   const color = useColorModeValue('black', 'white');
   const bgButton = useColorModeValue('primary', 'transparent');
@@ -173,6 +176,9 @@ export const PropiertyCard = ({
             alignItems={'center'}
             borderRadius={'full'}
             _hover={{ bg: 'primary' }}
+            onClick={() => {
+              navigate(`/propierty/` + id);
+            }}
           >
             {' '}
             + información

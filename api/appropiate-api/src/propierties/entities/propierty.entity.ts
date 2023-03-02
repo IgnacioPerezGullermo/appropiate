@@ -7,6 +7,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
+import { Images } from './images.entity';
 //import { User } from 'src/users/entities/user.entity';
 
 @Table
@@ -56,4 +57,7 @@ export class Propierty extends Model {
 
   @Column
   stock: string;
+
+  @HasMany(() => Images)
+  images: Images[];
 }

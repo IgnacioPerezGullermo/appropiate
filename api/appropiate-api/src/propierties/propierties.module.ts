@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
+import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
 import { DatabaseModule } from 'src/database/database.module';
-import { PropiertiesService } from './propierties.service';
-import { propiertiesProviders } from './propierties.provider';
 import { PropiertiesController } from './propierties.controller';
+import { propiertiesProviders } from './propierties.provider';
+import { PropiertiesService } from './propierties.service';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, CloudinaryModule],
   providers: [PropiertiesService, ...propiertiesProviders],
   controllers: [PropiertiesController],
   exports: [PropiertiesService],

@@ -56,6 +56,24 @@ export const registerPropierty = createAsyncThunk(
   }
 );
 
+export const getPropiertyDetail = createAsyncThunk(
+  'propierty/detail',
+  async (id, { rejectWithValue }) => {
+    try {
+      const info = await axios.get(`/propierties/${id}`);
+      //console.log(info.data);
+      return info.data;
+    } catch (error) {
+      // return custom error message from backend if present
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
 // export const clearCreatedBroker = createAsyncThunk(
 //   'brokers/clear-created-broker',
 //   async ({ rejectWithValue }) => {

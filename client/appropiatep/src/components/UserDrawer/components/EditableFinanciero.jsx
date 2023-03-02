@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   ButtonGroup,
   Editable,
@@ -94,10 +95,8 @@ export const EditableFinanciero = ({
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   return (
-    <div class="card-body">
-      <FormLabel mt={'1rem'} color={'primary'}>
-        Sueldo
-      </FormLabel>
+    <Box className="card-body">
+      <FormLabel color={'primary'}>Sueldo</FormLabel>
       {EditAction === true ? (
         <Editable color={color} defaultValue={userInfo?.client?.basicIncome}>
           <EditablePreview />
@@ -150,6 +149,7 @@ export const EditableFinanciero = ({
         </Editable>
       ) : (
         <Text color={color}>
+          $
           {userInfo?.client?.currentSavings === null
             ? 'No especificado'
             : userInfo?.client?.currentSavings}
@@ -159,11 +159,7 @@ export const EditableFinanciero = ({
         Hipoteca Pre-Aprobada
       </FormLabel>
       {EditAction === true ? (
-        <Editable
-          mb={6}
-          color={color}
-          defaultValue={userInfo?.client?.bankCredit}
-        >
+        <Editable color={color} defaultValue={userInfo?.client?.bankCredit}>
           <EditablePreview />
           <InputGroup size="sm">
             <Input
@@ -187,7 +183,8 @@ export const EditableFinanciero = ({
           </InputGroup>
         </Editable>
       ) : (
-        <Text mb={6} color={color}>
+        <Text color={color}>
+          $
           {userInfo?.client?.bankCredit === null
             ? 'No especificado'
             : userInfo?.client?.bankCredit}
@@ -255,6 +252,6 @@ export const EditableFinanciero = ({
           Completar Info
         </Button>
       ) : null}
-    </div>
+    </Box>
   );
 };
