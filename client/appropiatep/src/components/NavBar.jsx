@@ -12,13 +12,13 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
-  Wrap
+  Wrap,
 } from '@chakra-ui/react';
 import {
   UilArrowLeft,
   UilMoon,
   UilSun,
-  UilUserCircle
+  UilUserCircle,
 } from '@iconscout/react-unicons';
 import jwt from 'jwt-decode';
 import React from 'react';
@@ -74,7 +74,6 @@ export const NavBar = ({
       h={'12vh'}
       pos={'absolute'}
       left={'0%'}
-      // display={Location === 'Ingresar' ? 'none' : null}
       top={'0%'}
       bg={
         Location === '/login' || Location === '/dashboard' ? 'transparent' : bg
@@ -138,11 +137,7 @@ export const NavBar = ({
         ) : null}
       </Wrap>
       <Box>
-        <Stat
-          right={'-1200'}
-          top={'4'}
-          justifyItems={'center'}
-        >
+        <Stat right={'-1200'} top={'4'} justifyItems={'center'}>
           <StatLabel>Valor UF</StatLabel>
           <StatNumber>$35420</StatNumber>
           <StatHelpText>02-03-2023</StatHelpText>
