@@ -5,16 +5,20 @@ import {
   Circle,
   color,
   Image,
+  Stat,
+  StatHelpText,
+  StatLabel,
+  StatNumber,
   Text,
   useColorMode,
   useColorModeValue,
-  Wrap,
+  Wrap
 } from '@chakra-ui/react';
 import {
   UilArrowLeft,
   UilMoon,
   UilSun,
-  UilUserCircle,
+  UilUserCircle
 } from '@iconscout/react-unicons';
 import jwt from 'jwt-decode';
 import React from 'react';
@@ -133,15 +137,26 @@ export const NavBar = ({
           </Circle>
         ) : null}
       </Wrap>
-      <Box
-        bg={'transparent'}
-        w={'12vw'}
-        h={'8vh'}
-        pos={'absolute'}
-        right={'12vw'}
-        top={'1vh'}
-      >
-        <Image src={logo} objectFit={'cover'} />
+      <Box>
+        <Stat
+          right={'-1200'}
+          top={'4'}
+          justifyItems={'center'}
+        >
+          <StatLabel>Valor UF</StatLabel>
+          <StatNumber>$35420</StatNumber>
+          <StatHelpText>02-03-2023</StatHelpText>
+        </Stat>
+        <Box
+          bg={'transparent'}
+          w={'12vw'}
+          h={'8vh'}
+          pos={'absolute'}
+          right={'12vw'}
+          top={'1vh'}
+        >
+          <Image src={logo} objectFit={'cover'} />
+        </Box>
       </Box>
       {Location === '/login' ? (
         <Button

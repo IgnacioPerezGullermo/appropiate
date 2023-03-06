@@ -8,8 +8,7 @@ import {
   IconButton,
   Input,
   InputGroup,
-  InputRightElement, Text,
-  useColorModeValue,
+  InputRightElement, Stack, Text, useColorModeValue,
   useEditableControls
 } from '@chakra-ui/react';
 
@@ -59,7 +58,7 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
         icon={<UilEdit />}
         mt={'-6.5vh'}
         {...getEditButtonProps()}
-      ></IconButton>
+      />
     );
   }
   let handleChange = (e) => {
@@ -86,12 +85,15 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
         Nombre de Usuario
       </FormLabel>
       {EditAction === true ? (
-        <Editable color={color} defaultValue={username}>
+        <Editable  
+          color={color} 
+          defaultValue={userInfo?.username}
+          isPreviewFocusable={true}
+        >
   
           <EditablePreview />
           <InputGroup size="sm">
             <Input
-              defaultValue={username}
               as={EditableInput}
               name="username"
               focusBorderColor={'transparent'}
@@ -108,13 +110,13 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
           </InputGroup>
         </Editable>
       ) : (
-        <Text>{username}</Text>
+        <Text>{userInfo?.username}</Text>
       )}
       <FormLabel mt={'1rem'} color={'primary'}>
         Correo electronico
       </FormLabel>
       {EditAction === true ? (
-        <Editable color={color} defaultValue={email}>
+        <Editable color={color} defaultValue={userInfo?.email} isPreviewFocusable={true}>
           <EditablePreview />
           <InputGroup size="sm">
             <Input
@@ -134,37 +136,39 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
           </InputGroup>
         </Editable>
       ) : (
-        <Text>{email}</Text>
+        <Text>{userInfo?.email}</Text>
       )}
       <FormLabel mt={'1rem'} color={'primary'}>
         Usuario desde:
       </FormLabel>
       <Text color={color}>{capitalizeFirstLetter(formatDate)}</Text>
-      <Button bg={'color'} left={'220px'}>
-        {' '}
-        {<UilBell />}{' '}
-      </Button>
-      <Button
-        bg={'primary'}
-        color={color}
-        h={'20px'}
-        onClick={() => {
-          handleSubmit();
-        }}
-      >
+      <Stack spacing={4} direction='row' align='center' marginTop={'2'}>
+        <Button
+          bg={'primary'}
+          color={color}
+          h={'20px'}
+          onClick={() => {
+            handleSubmit();
+          }}
+        >
         Save
-      </Button>
-
-      <Button 
-        bg={'primary'} 
-        color={color} 
-        h={'20px'}         
-        onClick={() => {
-          setEditAction(true);
-        }}
-      >
-        Editar Info
-      </Button>
+        </Button>
+        <Button 
+          bg={'primary'} 
+          color={color} 
+          h={'20px'}         
+          onClick={() => {
+            setEditAction(true);
+          }}
+        >
+          Editar Info
+        </Button>
+        <Button bg={'color'}>
+          {' '}
+          {<UilBell />}
+          {' '}
+        </Button>
+      </Stack>
       <Button bg={'primary'} color={color} h={'20px'}>
         Completar Info
       </Button>
