@@ -20,12 +20,14 @@ import {
   UilSun,
   UilUserCircle,
 } from '@iconscout/react-unicons';
+import axios from 'axios';
 import jwt from 'jwt-decode';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import DarkTitle from '../assets/AppDarkMode.png';
 import LightTitle from '../assets/AppLightMode.png';
+import fetchUf from '../hooks/fetchUF';
 import { refreshInfo } from '../redux/auth/authAction';
 
 const menuItems = [
@@ -59,7 +61,9 @@ export const NavBar = ({
       }
     }
   }, [Logged]);
+
   const { userToken } = useSelector((state) => state.auth);
+  let uf = fetchUf;
   const navigate = useNavigate();
   const { colorMode, toggleColorMode } = useColorMode();
   const bgMain = useColorModeValue('white', 'black');
@@ -67,7 +71,6 @@ export const NavBar = ({
   const bg = useColorModeValue('white', 'black');
   const bgToggle = useColorModeValue('gray.900', 'gray.200');
   const logo = useColorModeValue(LightTitle, DarkTitle);
-  console.log(localToken);
   return (
     <Box
       w={'full'}
@@ -139,8 +142,8 @@ export const NavBar = ({
       <Box>
         <Stat right={'-1200'} top={'4'} justifyItems={'center'}>
           <StatLabel>Valor UF</StatLabel>
-          <StatNumber>$35420</StatNumber>
-          <StatHelpText>02-03-2023</StatHelpText>
+          <StatNumber>{uf.Valor}</StatNumber>
+          <StatHelpText>{uf.Fecha}</StatHelpText>
         </Stat>
         <Box
           bg={'transparent'}

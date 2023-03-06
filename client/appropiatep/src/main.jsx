@@ -17,6 +17,7 @@ import { App } from './App';
 //dotenv.config();
 
 //axios.defaults.baseURL = process.env.BASE_URL || 'https://localhost:3001';
+
 axios.defaults.baseURL =
   import.meta.env.VITE_BASE_URL || 'http://localhost:3001';
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);

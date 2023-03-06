@@ -12,6 +12,7 @@ import { Formik, useFormik } from 'formik';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { registerPropierty } from '../../../redux/properties/propertiesAction';
+import { regiones } from '../../../data/comunas.json';
 
 export const CreateProperty = () => {
   const dispatch = useDispatch();
@@ -134,8 +135,9 @@ export const CreateProperty = () => {
             value={formik.values.region}
           >
             <option>Elige una opcion...</option>
-            <option>Metropolitana</option>
-            <option>Quinta</option>
+            {regiones.map((com) => {
+              return <option>{com.region}</option>;
+            })}
           </Select>
 
           <Select
@@ -154,10 +156,6 @@ export const CreateProperty = () => {
             value={formik.values.commune}
           >
             <option>Elige una opcion...</option>
-            <option>San Miguel</option>
-            <option>Viña del Mar</option>
-            <option>Santiago</option>
-            <option>Ñuño</option>
           </Select>
         </HStack>
         <HStack>

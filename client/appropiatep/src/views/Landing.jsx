@@ -31,6 +31,7 @@ import Logo from '../assets/logo.svg';
 import { PropiertyCards } from '../components/DisplayPropierty/Components/PropiertyCards';
 import { NavBar } from '../components/NavBar';
 import { UserDrawer } from '../components/UserDrawer/UserDrawer';
+import fetchComunas from '../hooks/fecthComunas';
 import { refreshInfo, registerUser, userLogin } from '../redux/auth/authAction';
 import numberWithCommas from '../utils/conversors';
 
@@ -38,7 +39,6 @@ export const Landing = ({ onOpen }) => {
   const [SliderValue, setSliderValue] = React.useState(1400000);
   const [FilterAction, setFilterAction] = React.useState(false);
   const [Logged, setLogged] = React.useState(false);
-
   const btnRef = React.useRef();
 
   const { loading, userInfo, error, success } = useSelector(
