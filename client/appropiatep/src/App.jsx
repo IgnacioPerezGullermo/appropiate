@@ -1,6 +1,7 @@
 import {
   ChakraProvider,
   ColorModeScript,
+  CSSReset,
   useDisclosure,
 } from '@chakra-ui/react';
 import '@fontsource/playfair-display';
@@ -36,19 +37,10 @@ export const App = () => {
     <React.StrictMode>
       <Provider store={store}>
         <ChakraProvider theme={theme}>
+          <CSSReset />
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <div className="App">
             <BrowserRouter>
-              <NavBar
-                btnref={btnRef}
-                onOpen={onOpen}
-                Location={Location}
-                setLocation={setLocation}
-                setLogged={setLogged}
-                Logged={Logged}
-                PreviousPath={PreviousPath}
-                setPreviousPath={setPreviousPath}
-              />
               <UserDrawer
                 isOpen={isOpen}
                 onClose={onClose}
@@ -58,14 +50,13 @@ export const App = () => {
                 <Route
                   path="/"
                   element={
-                    <Landing
-                      isOpen={isOpen}
-                      onClose={onClose}
-                      setLocation={setLocation}
-                    />
+                    <Landing onOpen={onOpen} setLocation={setLocation} />
                   }
                 />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route
+                  path="/dashboard"
+                  element={<Dashboard setLocation={setLocation} />}
+                />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/services" element={<Services />} />
@@ -89,7 +80,10 @@ export const App = () => {
                     <DisplayPropierty isOpen={isOpen} onClose={onClose} />
                   }
                 />
-                <Route path="/propierty/:id" element={<PropiertyDetail />} />
+                <Route
+                  path="/propierty/:id"
+                  element={<PropiertyDetail onOpen={onOpen} />}
+                />
               </Routes>
             </BrowserRouter>
           </div>

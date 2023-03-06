@@ -15,7 +15,7 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  useColorModeValue
+  useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -98,12 +98,14 @@ export const UserDrawer = ({ btnRef, isOpen, onClose, setLogged }) => {
             color={'white'}
             focusBorderColor={'whiteAlpha.900'}
           />
-          <DrawerHeader color={'primary'}>Informacion de Usuario </DrawerHeader>
+          {/* <DrawerHeader color={'primary'}>Informacion de Usuario </DrawerHeader> */}
 
           <Avatar
             size="xl"
             bg="primary"
             left={'100px'}
+            mt={'5vh'}
+            mb={'2vh'}
             src={userInfo?.client?.profilePicture}
           />
 
@@ -118,7 +120,10 @@ export const UserDrawer = ({ btnRef, isOpen, onClose, setLogged }) => {
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4}> <EditableInformacion /> </AccordionPanel>
+                <AccordionPanel pb={4}>
+                  {' '}
+                  <EditableInformacion />{' '}
+                </AccordionPanel>
               </AccordionItem>
 
               <AccordionItem>
@@ -142,7 +147,7 @@ export const UserDrawer = ({ btnRef, isOpen, onClose, setLogged }) => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  <EditableFinanciero />
+                  <EditableFinanciero onClose={onClose} />
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>

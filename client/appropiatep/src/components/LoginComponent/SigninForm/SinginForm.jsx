@@ -26,11 +26,6 @@ export const SigninForm = ({ Option, setOption, setLocation }) => {
   const { loading, userInfo, error, success } = useSelector(
     (state) => state.auth
   );
-  const successAction = (location) => {
-    setPreviousPath('/login');
-    setLocation(location);
-    navigate(location);
-  };
   const toast = useToast();
   React.useEffect(() => {
     if (success === true) {
@@ -40,7 +35,7 @@ export const SigninForm = ({ Option, setOption, setLocation }) => {
         status: 'success',
         duration: 5000,
         isClosable: false,
-        onCloseComplete: successAction(PreviousPath),
+        onCloseComplete: navigate('/'),
       });
     }
     if (success === false && error) {

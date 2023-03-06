@@ -34,7 +34,7 @@ import { UserDrawer } from '../components/UserDrawer/UserDrawer';
 import { refreshInfo, registerUser, userLogin } from '../redux/auth/authAction';
 import numberWithCommas from '../utils/conversors';
 
-export const Landing = ({ isOpen, onClose }) => {
+export const Landing = ({ onOpen }) => {
   const [SliderValue, setSliderValue] = React.useState(1400000);
   const [FilterAction, setFilterAction] = React.useState(false);
   const [Logged, setLogged] = React.useState(false);
@@ -68,6 +68,7 @@ export const Landing = ({ isOpen, onClose }) => {
       left={'0vw'}
       h={'container.md'}
     >
+      <NavBar onOpen={onOpen} />
       {FilterAction === false ? (
         <Box
           bg={bgBanner}

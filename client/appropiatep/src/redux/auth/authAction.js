@@ -11,6 +11,7 @@ export const registerUser = createAsyncThunk(
         },
       };
       const info = await axios.post('/auth/users/signup', user, config);
+      localStorage.setItem('userToken', info.data.token);
       return info.data;
     } catch (error) {
       // return custom error message from backend if present

@@ -29,7 +29,6 @@ const menuItems = [
   { title: 'Blog', endpoint: '/blog', index: 1 },
   { title: 'Asesorate', endpoint: '/appointment', index: 2 },
   { title: 'Oportunidades', endpoint: '/displaypropierty', index: 3 },
-  { title: 'Register', endpoint: '/register', index: 4 },
   { title: 'Ingresar', endpoint: '/login', index: 5 },
 ];
 
@@ -38,34 +37,33 @@ export const NavBar = ({
   onOpen,
   Location,
   setLocation,
-  setLogged,
   PreviousPath,
   setPreviousPath,
-  Logged,
   props,
 }) => {
   const dispatch = useDispatch();
+  const [Logged, setLogged] = React.useState(false);
   let localToken = localStorage.getItem('userToken');
   React.useEffect(() => {
     if (Logged === false && localToken !== null) {
-      localToken = jwt(localStorage.getItem('userToken'));
-      console.log(localToken);
-      if (localToken.id) {
-        dispatch(refreshInfo(localToken.id));
+      const decodedToken = jwt(localToken);
+      console.log(decodedToken);
+      if (decodedToken.id) {
+        console.log('me despache');
+        dispatch(refreshInfo(decodedToken.id));
         setLogged(true);
       }
     }
   }, [Logged]);
   const { userToken } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-
   const { colorMode, toggleColorMode } = useColorMode();
   const bgMain = useColorModeValue('white', 'black');
   const color = useColorModeValue('black', 'white');
   const bg = useColorModeValue('white', 'black');
   const bgToggle = useColorModeValue('gray.900', 'gray.200');
   const logo = useColorModeValue(LightTitle, DarkTitle);
-
+  console.log(localToken);
   return (
     <Box
       w={'full'}
@@ -74,10 +72,16 @@ export const NavBar = ({
       left={'0%'}
       // display={Location === 'Ingresar' ? 'none' : null}
       top={'0%'}
-      bg={Location === '/login' ? 'transparent' : bg}
+      bg={
+        Location === '/login' || Location === '/dashboard' ? 'transparent' : bg
+      }
       textAlign={'left'}
       borderBottom={'4px solid'}
-      borderColor={Location === '/login' ? 'transparent' : 'primary'}
+      borderColor={
+        Location === '/login' || Location === '/dashboard'
+          ? 'transparent'
+          : 'primary'
+      }
       overflow={'hidden'}
       zIndex={90}
     >
@@ -92,7 +96,7 @@ export const NavBar = ({
         {menuItems.map((item) => {
           if (localToken && item.title === 'Ingresar') {
             return null;
-          } else if (Location !== '/login') {
+          } else {
             return (
               <Button
                 variant={'ghost'}
@@ -104,8 +108,6 @@ export const NavBar = ({
                 scale={Location === item.endpoint ? '120%' : null}
                 key={item.index}
                 onClick={(e) => {
-                  setPreviousPath(Location);
-                  setLocation(item.endpoint);
                   navigate(item.endpoint);
                 }}
               >

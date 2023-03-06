@@ -28,6 +28,7 @@ export const DisplayPropierty = ({ onClose, isOpen }) => {
       left={'0vw'}
       h={'100vh'}
     >
+      <NavBar />
       <PropiertyCards />
       <Circle
         pos={'fixed'}

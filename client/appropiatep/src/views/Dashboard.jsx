@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { authAdminLogin } from '../redux/auth/authAction';
 import { AdminPanel } from './AdminPanel';
 
-export const Dashboard = () => {
+export const Dashboard = ({ setLocation }) => {
   const toast = useToast();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,6 +28,7 @@ export const Dashboard = () => {
         duration: 6000,
         isClosable: true,
       });
+      setLocation('/dashboard');
     }
     if (success === false) {
       toast({
