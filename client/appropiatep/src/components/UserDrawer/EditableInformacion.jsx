@@ -82,6 +82,7 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
   return (
     <div className="card-body">
       <FormLabel color={'primary'}>Nombre de Usuario</FormLabel>
@@ -101,7 +102,7 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
               _active={{ border: 'none' }}
               onChange={(e) => {
                 handleChange(e);
-                console.log(Info);
+                /*console.log(Info);*/
               }}
             />
             <InputRightElement>
@@ -131,7 +132,7 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
               _active={{ border: 'none' }}
               onChange={(e) => {
                 handleChange(e);
-                console.log(Info);
+                /*console.log(Info);*/
               }}
             />
             <InputRightElement>

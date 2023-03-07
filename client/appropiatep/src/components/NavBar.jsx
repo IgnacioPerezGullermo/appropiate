@@ -5,6 +5,7 @@ import {
   Circle,
   color,
   Image,
+  Input,
   Stat,
   StatHelpText,
   StatLabel,
@@ -12,13 +13,13 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
-  Wrap,
+  Wrap
 } from '@chakra-ui/react';
 import {
   UilArrowLeft,
   UilMoon,
   UilSun,
-  UilUserCircle,
+  UilUserCircle
 } from '@iconscout/react-unicons';
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -145,7 +146,8 @@ export const NavBar = ({
           <StatNumber>{uf.Valor}</StatNumber>
           <StatHelpText>{uf.Fecha}</StatHelpText>
         </Stat>
-        <Box
+      </Box>
+      <Box
           bg={'transparent'}
           w={'12vw'}
           h={'8vh'}
@@ -154,7 +156,6 @@ export const NavBar = ({
           top={'1vh'}
         >
           <Image src={logo} objectFit={'cover'} />
-        </Box>
       </Box>
       {Location === '/login' ? (
         <Button
