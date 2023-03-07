@@ -5,6 +5,7 @@ import {
   Circle,
   color,
   Image,
+  Input,
   Stat,
   StatHelpText,
   StatLabel,
@@ -29,6 +30,7 @@ import DarkTitle from '../assets/AppDarkMode.png';
 import LightTitle from '../assets/AppLightMode.png';
 import fetchUf from '../hooks/fetchUF';
 import { refreshInfo } from '../redux/auth/authAction';
+import { infoUF } from '../redux/auth/nav';
 
 const menuItems = [
   { title: 'Inicio', endpoint: '/', index: 0 },
@@ -145,7 +147,8 @@ export const NavBar = ({
           <StatNumber>{uf.Valor}</StatNumber>
           <StatHelpText>{uf.Fecha}</StatHelpText>
         </Stat>
-        <Box
+      </Box>
+      <Box
           bg={'transparent'}
           w={'12vw'}
           h={'8vh'}
@@ -154,7 +157,6 @@ export const NavBar = ({
           top={'1vh'}
         >
           <Image src={logo} objectFit={'cover'} />
-        </Box>
       </Box>
       {Location === '/login' ? (
         <Button
