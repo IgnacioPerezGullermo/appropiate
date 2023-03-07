@@ -13,13 +13,13 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
-  Wrap,
+  Wrap
 } from '@chakra-ui/react';
 import {
   UilArrowLeft,
   UilMoon,
   UilSun,
-  UilUserCircle,
+  UilUserCircle
 } from '@iconscout/react-unicons';
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -30,7 +30,6 @@ import DarkTitle from '../assets/AppDarkMode.png';
 import LightTitle from '../assets/AppLightMode.png';
 import fetchUf from '../hooks/fetchUF';
 import { refreshInfo } from '../redux/auth/authAction';
-import { infoUF } from '../redux/auth/nav';
 
 const menuItems = [
   { title: 'Inicio', endpoint: '/', index: 0 },
