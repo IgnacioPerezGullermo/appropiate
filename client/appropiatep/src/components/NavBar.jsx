@@ -5,6 +5,7 @@ import {
   Circle,
   color,
   Image,
+  Input,
   Stat,
   StatHelpText,
   StatLabel,
@@ -27,6 +28,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DarkTitle from '../assets/AppDarkMode.png';
 import LightTitle from '../assets/AppLightMode.png';
 import { refreshInfo } from '../redux/auth/authAction';
+import { infoUF } from '../redux/auth/nav';
 
 const menuItems = [
   { title: 'Inicio', endpoint: '/', index: 0 },
@@ -69,7 +71,15 @@ export const NavBar = ({
   const bg = useColorModeValue('white', 'black');
   const bgToggle = useColorModeValue('gray.900', 'gray.200');
   const logo = useColorModeValue(LightTitle, DarkTitle);
+  const fecha = new Date();
+  /*const AAAA = fecha.getFullYear();
+  const MM = fecha.getMonth() + 1;
+  const DD = fecha.getDate();
+  console.log(AAAA, MM, DD);*/
+  const date = Date.now();
+  const today = new Date(date);
 
+ 
   return (
     <Box
       w={'full'}
@@ -136,16 +146,18 @@ export const NavBar = ({
         ) : null}
       </Wrap>
       <Box>
-        <Stat
+      <Stat
           right={'-1200'}
           top={'4'}
           justifyItems={'center'}
+          width={'10%'}
         >
           <StatLabel>Valor UF</StatLabel>
-          <StatNumber>$35420</StatNumber>
-          <StatHelpText>02-03-2023</StatHelpText>
+          <StatNumber>{infoUF}</StatNumber>
+          <StatHelpText border={color}>{today.toDateString()}</StatHelpText>
         </Stat>
-        <Box
+      </Box>
+      <Box
           bg={'transparent'}
           w={'12vw'}
           h={'8vh'}
@@ -154,7 +166,6 @@ export const NavBar = ({
           top={'1vh'}
         >
           <Image src={logo} objectFit={'cover'} />
-        </Box>
       </Box>
       {Location === '/login' ? (
         <Button
