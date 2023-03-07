@@ -8,8 +8,11 @@ import {
   IconButton,
   Input,
   InputGroup,
-  InputRightElement, Stack, Text, useColorModeValue,
-  useEditableControls
+  InputRightElement,
+  Stack,
+  Text,
+  useColorModeValue,
+  useEditableControls,
 } from '@chakra-ui/react';
 
 import { UilBell, UilCheckCircle, UilEdit } from '@iconscout/react-unicons';
@@ -74,23 +77,20 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
     }, 500);
     setEditAction(false);
   };
-  let formatDate = new Date(createdAt);
+  let formatDate = new Date(userInfo?.createdAt);
   formatDate = formatDate.toLocaleDateString('es-CL', opciones);
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   return (
     <div className="card-body">
-      <FormLabel mt={'1rem'} color={'primary'}>
-        Nombre de Usuario
-      </FormLabel>
+      <FormLabel color={'primary'}>Nombre de Usuario</FormLabel>
       {EditAction === true ? (
-        <Editable  
-          color={color} 
+        <Editable
+          color={color}
           defaultValue={userInfo?.username}
           isPreviewFocusable={true}
         >
-  
           <EditablePreview />
           <InputGroup size="sm">
             <Input
@@ -116,7 +116,11 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
         Correo electronico
       </FormLabel>
       {EditAction === true ? (
-        <Editable color={color} defaultValue={userInfo?.email} isPreviewFocusable={true}>
+        <Editable
+          color={color}
+          defaultValue={userInfo?.email}
+          isPreviewFocusable={true}
+        >
           <EditablePreview />
           <InputGroup size="sm">
             <Input
@@ -142,36 +146,30 @@ export const EditableInformacion = ({ username, email, createdAt }) => {
         Usuario desde:
       </FormLabel>
       <Text color={color}>{capitalizeFirstLetter(formatDate)}</Text>
-      <Stack spacing={4} direction='row' align='center' marginTop={'2'}>
+      <Stack spacing={4} direction="row" align="center" marginTop={'2'}>
         <Button
           bg={'primary'}
           color={color}
-          h={'20px'}
+          width={'48%'}
           onClick={() => {
             handleSubmit();
           }}
         >
-        Save
+          Save
         </Button>
-        <Button 
-          bg={'primary'} 
-          color={color} 
-          h={'20px'}         
+
+        <Button
+          bg={'primary'}
+          color={color}
+          width={'48%'}
+          ml={'2%'}
           onClick={() => {
             setEditAction(true);
           }}
         >
           Editar Info
         </Button>
-        <Button bg={'color'}>
-          {' '}
-          {<UilBell />}
-          {' '}
-        </Button>
       </Stack>
-      <Button bg={'primary'} color={color} h={'20px'}>
-        Completar Info
-      </Button>
     </div>
   );
 };

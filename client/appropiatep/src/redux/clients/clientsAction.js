@@ -49,3 +49,30 @@ export const updateClient = createAsyncThunk(
     }
   }
 );
+
+export const updateProfilePicture = createAsyncThunk(
+  'clients/update',
+  async (client, { rejectWithValue }) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+      //console.log(client);
+      let info = await axios.patch(
+        `clients/image/${client.id}`,
+        client.info,
+        config
+      );
+      console.log(info.data);
+      return info.data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);

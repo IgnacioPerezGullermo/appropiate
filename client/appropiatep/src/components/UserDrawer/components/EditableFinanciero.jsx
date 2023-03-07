@@ -26,7 +26,12 @@ import { updateClient } from '../../../redux/clients/clientsAction';
 import { Register } from '../../../views/Register';
 import { UpgradeForm } from '../../LoginComponent/UpgradeFrom';
 
-export const EditableFinanciero = ({ onClose, createdAt }) => {
+export const EditableFinanciero = ({
+  onClose,
+  createdAt,
+  infoComplete,
+  infoCompleteSet,
+}) => {
   const opciones = {
     weekday: 'long',
     year: 'numeric',
@@ -38,7 +43,7 @@ export const EditableFinanciero = ({ onClose, createdAt }) => {
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [infoComplete, infoCompleteSet] = React.useState(false);
+
   const [EditAction, setEditAction] = React.useState(false);
   const [Info, setInfo] = React.useState({
     basicIncome: '',

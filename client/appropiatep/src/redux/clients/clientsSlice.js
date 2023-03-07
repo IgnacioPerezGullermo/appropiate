@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createClient, updateClient } from './clientsAction';
+import {
+  createClient,
+  updateClient,
+  updateProfilePicture,
+} from './clientsAction';
 
 const initialState = {
   clients: [],
@@ -40,6 +44,9 @@ const clientsSlice = createSlice({
     //   },
     [updateClient.fulfilled]: (state, { payload }) => {
       state.createdClient = payload;
+    },
+    [updateProfilePicture.fullfilled]: (state, { payload }) => {
+      state.success = true;
     },
   },
 });
