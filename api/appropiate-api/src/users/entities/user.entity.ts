@@ -28,6 +28,11 @@ export class User extends Model {
   @Column
   email: string;
 
+  @Column({
+    defaultValue: false,
+  })
+  verified: boolean;
+
   @HasOne(() => Client)
   client: Client[];
 

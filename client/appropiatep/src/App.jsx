@@ -10,8 +10,10 @@ import React from 'react';
 import { Provider, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { NavBar } from './components/NavBar';
+import { PasswordUpdate } from './components/PasswordUpdate/PasswordUpdate';
 import { PropiertyDetail } from './components/PropiertyDetail/PropiertyDetail';
 import { UserDrawer } from './components/UserDrawer/UserDrawer';
+import { VerifyAccount } from './components/VerifyAccount/VerifyAccount';
 import store from './redux/store';
 import './styles/main.css';
 import { theme } from './styles/theme';
@@ -84,6 +86,8 @@ export const App = () => {
                   path="/propierty/:id"
                   element={<PropiertyDetail onOpen={onOpen} />}
                 />
+                <Route path="/verification" element={<VerifyAccount />} />
+                <Route path="/resetpassword" element={<PasswordUpdate />} />
               </Routes>
             </BrowserRouter>
           </div>

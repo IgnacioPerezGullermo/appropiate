@@ -4,7 +4,6 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
-
 import { Op } from 'sequelize';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { PROPIERTY_REPOSITORY } from '../../core/constants';

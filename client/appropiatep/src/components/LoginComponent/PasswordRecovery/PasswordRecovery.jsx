@@ -7,6 +7,7 @@ import {
   Heading,
   Image,
   Input,
+  Spinner,
   Text,
   useColorModeValue,
   useToast,
@@ -17,38 +18,48 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import DarkTitle from '../../../assets/AppDarkMode.png';
 import LightTitle from '../../../assets/AppLightMode.png';
-import { userLogin } from '../../../redux/auth/authAction';
 
 import React from 'react';
+import {
+  resetPassword,
+  resetRecovery,
+  resetState,
+} from '../../../redux/users/usersAction';
 
-export const LoginForm = ({ Option, setOption }) => {
+export const PasswordRecovery = ({ Option, setOption }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, userInfo, error, success } = useSelector(
-    (state) => state.auth
-  );
   const toast = useToast();
+
+  const { passwordResetSucess, passwordResetLoading, passwordResetError } =
+    useSelector((state) => state.users);
+
   React.useEffect(() => {
-    if (success === true) {
+    if (passwordResetSucess) {
+      console.log(passwordResetSucess);
       toast({
-        title: `Bienvenido ${userInfo?.username}`,
-        description: 'En momentos te redirigiremos al inicio',
+        title: `Operacion Exitosa`,
+        description: passwordResetSucess,
         status: 'success',
         duration: 5000,
         isClosable: false,
-        onCloseComplete: navigate('/'),
       });
+      dispatch(resetState(null));
+      setTimeout(() => {
+        setOption('login');
+      }, 500);
     }
-    if (success === false && error) {
+    if (passwordResetSucess === false && passwordResetError) {
+      console.log(passwordResetError);
       toast({
         title: 'Algo ha salido mal',
-        description: error,
+        description: passwordResetError,
         status: 'error',
         duration: 9000,
         isClosable: true,
       });
     }
-  }, [navigate, userInfo, success, Option]);
+  }, [passwordResetSucess, passwordResetError]);
   const logo = useColorModeValue(LightTitle, DarkTitle);
   const bg = useColorModeValue('gray.100', 'gray.900');
   const bgMain = useColorModeValue('white', 'black');
@@ -57,17 +68,14 @@ export const LoginForm = ({ Option, setOption }) => {
   const hoverButton = useColorModeValue({ bg: 'teal.200' }, { bg: 'primary' });
   const bgButton = useColorModeValue('primary', 'transparent');
   const formik = useFormik({
-    initialValues: { username: '', password: '' },
+    initialValues: { email: '' },
     validate: (values) => {
       const errors = {};
       return errors;
     },
     onSubmit: (values, actions) => {
-      const client = {
-        username: values.username,
-        password: values.password,
-      };
-      dispatch(userLogin(client));
+      //console.log(values.email);
+      dispatch(resetPassword(values.email));
     },
   });
   return (
@@ -84,39 +92,23 @@ export const LoginForm = ({ Option, setOption }) => {
       <Box bg={'transparent'} w={'30vw'} h={'8vh'} mt={'10vh'} ml={'4vw'}>
         <Image src={logo} objectFit={'cover'} />
       </Box>
-      <Box paddingInline={16} mt={'12vh'} ml={'9vh'} w={'30vw'}>
+      <Box paddingInline={16} mt={'18vh'} ml={'9vh'} w={'30vw'}>
         <form onSubmit={formik.handleSubmit}>
-          <FormLabel color={'primary'}>Nombre de Usuario</FormLabel>
-          <Input
-            type="text"
-            name="username"
-            variant={'outline'}
-            borderColor={borderInput}
-            bg={bg}
-            color={color}
-            focusBorderColor={'primary'}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.usename}
-          />
-          <FormLabel color={'primary'} mt={'0.8em'}>
-            Password
+          <FormLabel color={'primary'}>
+            Ingresa el mail asociado a tu cuenta
           </FormLabel>
           <Input
-            type="password"
-            name="password"
+            type="text"
+            name="email"
             variant={'outline'}
             borderColor={borderInput}
             bg={bg}
-            focusBorderColor={'primary'}
             color={color}
+            focusBorderColor={'primary'}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.password}
+            value={formik.values.email}
           />
-          {formik.errors.password &&
-            formik.touched.password &&
-            formik.errors.password}
           <Button
             mt={'2em'}
             type="submit"
@@ -131,44 +123,28 @@ export const LoginForm = ({ Option, setOption }) => {
             ml={'5%'}
             size="md"
           >
-            Enviar
+            {passwordResetLoading === null || passwordResetLoading === false ? (
+              'Enviar'
+            ) : (
+              <Spinner />
+            )}
           </Button>
         </form>
         <Center>
           <VStack>
-            <Text mt={'12vh'} textAlign={'center'}>
-              ¿Aun no estas registrado? <br />
-            </Text>
             <Button
               variant={'ghost'}
               p={0}
+              mt={'8'}
               bg={'transparent'}
               color={'primary'}
               textAlign={'center'}
               _hover={{ bg: 'trasnparent' }}
               onClick={() => {
-                setOption('signin');
+                setOption('login');
               }}
             >
-              Crea tu cuenta{' '}
-            </Button>
-            <Divider />
-            <Text mt={'14vh'} textAlign={'center'}>
-              ¿Olvidaste tu contraseña?
-            </Text>
-            <Button
-              variant={'ghost'}
-              p={0}
-              bg={'transparent'}
-              ml={'13vh'}
-              color={'primary'}
-              textAlign={'center'}
-              _hover={{ bg: 'trasnparent' }}
-              onClick={() => {
-                setOption('password');
-              }}
-            >
-              Haz click aquí
+              Regresar{' '}
             </Button>
           </VStack>
         </Center>

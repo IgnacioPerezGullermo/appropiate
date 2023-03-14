@@ -1,11 +1,14 @@
+import { MailerService } from '@nestjs-modules/mailer';
 import {
   BadRequestException,
   Inject,
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import { USER_REPOSITORY } from 'core/constants';
 import { Op } from 'sequelize';
+import { AuthService } from 'src/auth/auth.service';
 import { Broker } from 'src/brokers/entities/broker.entity';
 import { Client } from 'src/clients/entities/client.entity';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -17,6 +20,7 @@ export class UsersService {
   constructor(
     @Inject(USER_REPOSITORY)
     private readonly usersRepository: typeof User,
+    private mailerService: MailerService,
   ) {}
   async create(createUserDto: CreateUserDto) {
     try {
@@ -26,6 +30,12 @@ export class UsersService {
       user.password = createUserDto.password;
       const userData = await user.save();
       //console.log(clientData);
+      const verificationMail = await this.mailerService.sendMail({
+        to: userData.email,
+        from: 'nacho71197@gmail.com',
+        subject: 'Verifica tu cuenta',
+        text: `Para proceder, ingresa al siguiente link para verificar tu cuenta: http://localhost:5173/verification?id=${userData.id}`,
+      });
       return userData;
     } catch (error) {
       console.log(error);
@@ -112,5 +122,65 @@ export class UsersService {
 
   async remove(id: string) {
     return await this.usersRepository.destroy({ where: { id } });
+  }
+
+  async verifyUser(id: string) {
+    const user = await this.usersRepository.findByPk<User>(id);
+    if (!user) {
+      throw new BadRequestException(`User does not exist in db `);
+    }
+    user.verified = true;
+    console.log(user);
+    try {
+      console.log('Me ejecute');
+      const data = await user.save();
+      return data;
+    } catch (err) {
+      throw new InternalServerErrorException(
+        `Can't update Client - check server logs`,
+      );
+    }
+  }
+
+  async resetPassword(email: string) {
+    const user = await this.usersRepository.findOne<User>({
+      where: {
+        email,
+      },
+    });
+    if (!user) {
+      throw new BadRequestException(`Usuario inexistente en la base de datos`);
+    }
+    console.log(user);
+    try {
+      const email = await this.mailerService.sendMail({
+        to: user.email,
+        from: 'nacho71197@gmail.com',
+        subject: 'Recuperación de contraseña',
+        text: `Ingresa al siguiente link para cambiar tu contraseña: http://localhost:5173/resetpassword?id=${user.id}`,
+      });
+    } catch (err) {
+      throw new InternalServerErrorException(
+        `Can't update Client - check server logs`,
+      );
+    }
+  }
+
+  async updatePassword(id: string, password: string) {
+    const user = await this.usersRepository.findByPk<User>(id);
+    if (!user) {
+      throw new BadRequestException(`Usuario inexistente en la base de datos`);
+    }
+    //console.log(user);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.password = hashedPassword;
+    try {
+      const data = await user.save();
+      return data;
+    } catch (err) {
+      throw new InternalServerErrorException(
+        `Can't update Client - check server logs`,
+      );
+    }
   }
 }

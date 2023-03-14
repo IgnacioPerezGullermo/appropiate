@@ -64,10 +64,10 @@ export const NavBar = ({
       }
     }
   }, [Logged]);
-  const { UFDate, UFValue } = useSelector((state) => state.propierties);
   const { userToken } = useSelector((state) => state.auth);
   let uf = fetchUf;
   console.log(uf);
+  const ufValue = uf.Valor.slice(0, uf.Valor.length - 3);
   const navigate = useNavigate();
   const { colorMode, toggleColorMode } = useColorMode();
   const bgMain = useColorModeValue('white', 'black');
@@ -75,19 +75,23 @@ export const NavBar = ({
   const bg = useColorModeValue('white', 'black');
   const bgToggle = useColorModeValue('gray.900', 'gray.200');
   const logo = useColorModeValue(LightTitle, DarkTitle);
-  console.log({ UFDate, UFValue });
+  console.log(ufValue);
   return (
     <Box
       w={'full'}
       h={'12vh'}
       pos={'absolute'}
+      display={'flex'}
+      flexDirection={'row'}
+      px={'10'}
+      justifyContent={'space-around'}
       left={'0%'}
       top={'0%'}
       bg={
         Location === '/login' || Location === '/dashboard' ? 'transparent' : bg
       }
       textAlign={'left'}
-      borderBottom={'4px solid'}
+      borderBottom={'3px solid'}
       borderColor={
         Location === '/login' || Location === '/dashboard'
           ? 'transparent'
@@ -97,12 +101,11 @@ export const NavBar = ({
       zIndex={90}
     >
       <Wrap
-        pos={'absolute'}
         left={'5%'}
         h={'10.7vh'}
         top={'0%'}
-        p={3}
-        justifyContent={'center'}
+        py={3}
+        justifyContent={'flex-start '}
       >
         {menuItems.map((item) => {
           if (localToken && item.title === 'Ingresar') {
@@ -113,7 +116,7 @@ export const NavBar = ({
                 variant={'ghost'}
                 color={Location === item.endpoint ? 'primary' : color}
                 fontWeight={'medium'}
-                fontSize={Location === item.endpoint ? 17 : 16}
+                fontSize={18}
                 _hover={{ bg: 'transparent', color: 'blue.400' }}
                 size={'lg'}
                 scale={Location === item.endpoint ? '120%' : null}
@@ -145,20 +148,12 @@ export const NavBar = ({
         ) : null}
       </Wrap>
       <Box>
-        <Stat right={'-1200'} top={'4'} justifyItems={'center'}>
-          <StatLabel>Valor UF</StatLabel>
-          <StatNumber>{uf.Valor}</StatNumber>
-          <StatHelpText>{uf.Fecha}</StatHelpText>
+        <Stat justifyItems={'center'} py={4}>
+          <StatLabel color={'primary'}>Valor UF ({uf.Fecha})</StatLabel>
+          <StatNumber fontSize={20}>{Number(ufValue)} CLP$</StatNumber>
         </Stat>
       </Box>
-      <Box
-        bg={'transparent'}
-        w={'12vw'}
-        h={'8vh'}
-        pos={'absolute'}
-        right={'12vw'}
-        top={'1vh'}
-      >
+      <Box bg={'transparent'} w={'12vw'} h={'8vh'}>
         <Image src={logo} objectFit={'cover'} />
       </Box>
       {Location === '/login' ? (

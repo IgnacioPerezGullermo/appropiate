@@ -65,4 +65,19 @@ export class UsersController {
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
   }
+
+  @Patch('verify/:id')
+  verify(@Param('id') id: string) {
+    return this.usersService.verifyUser(id);
+  }
+
+  @Get('password/reset/:email')
+  reset(@Param('email') email: string) {
+    return this.usersService.resetPassword(email);
+  }
+
+  @Patch('password/update/:id')
+  updatePass(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.updatePassword(id, updateUserDto.password);
+  }
 }

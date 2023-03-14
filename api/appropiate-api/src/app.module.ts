@@ -4,7 +4,7 @@ import { AuthModule } from './auth/auth.module';
 import { BrokersModule } from './brokers/brokers.module';
 import { ClientModule } from './clients/clients.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
-import { databaseProviders } from './database/database.providers';
+import { MailModule } from './mail/mail.module';
 import { PostsModule } from './posts/posts.module';
 import { PropiertiesModule } from './propierties/propierties.module';
 import { UsersModule } from './users/users.module';
@@ -19,6 +19,7 @@ import { UsersModule } from './users/users.module';
     AuthModule,
     UsersModule,
     CloudinaryModule,
+    MailModule,
   ],
   controllers: [],
   providers: [],
