@@ -13,13 +13,13 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
-  Wrap
+  Wrap,
 } from '@chakra-ui/react';
 import {
   UilArrowLeft,
   UilMoon,
   UilSun,
-  UilUserCircle
+  UilUserCircle,
 } from '@iconscout/react-unicons';
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -30,6 +30,7 @@ import DarkTitle from '../assets/AppDarkMode.png';
 import LightTitle from '../assets/AppLightMode.png';
 import fetchUf from '../hooks/fetchUF';
 import { refreshInfo } from '../redux/auth/authAction';
+import { getUFData } from '../redux/properties/propertiesAction';
 
 const menuItems = [
   { title: 'Inicio', endpoint: '/', index: 0 },
@@ -53,6 +54,7 @@ export const NavBar = ({
   let localToken = localStorage.getItem('userToken');
   React.useEffect(() => {
     if (Logged === false && localToken !== null) {
+      dispatch(getUFData());
       const decodedToken = jwt(localToken);
       console.log(decodedToken);
       if (decodedToken.id) {
@@ -62,9 +64,10 @@ export const NavBar = ({
       }
     }
   }, [Logged]);
-
+  const { UFDate, UFValue } = useSelector((state) => state.propierties);
   const { userToken } = useSelector((state) => state.auth);
   let uf = fetchUf;
+  console.log(uf);
   const navigate = useNavigate();
   const { colorMode, toggleColorMode } = useColorMode();
   const bgMain = useColorModeValue('white', 'black');
@@ -72,6 +75,7 @@ export const NavBar = ({
   const bg = useColorModeValue('white', 'black');
   const bgToggle = useColorModeValue('gray.900', 'gray.200');
   const logo = useColorModeValue(LightTitle, DarkTitle);
+  console.log({ UFDate, UFValue });
   return (
     <Box
       w={'full'}
@@ -148,14 +152,14 @@ export const NavBar = ({
         </Stat>
       </Box>
       <Box
-          bg={'transparent'}
-          w={'12vw'}
-          h={'8vh'}
-          pos={'absolute'}
-          right={'12vw'}
-          top={'1vh'}
-        >
-          <Image src={logo} objectFit={'cover'} />
+        bg={'transparent'}
+        w={'12vw'}
+        h={'8vh'}
+        pos={'absolute'}
+        right={'12vw'}
+        top={'1vh'}
+      >
+        <Image src={logo} objectFit={'cover'} />
       </Box>
       {Location === '/login' ? (
         <Button

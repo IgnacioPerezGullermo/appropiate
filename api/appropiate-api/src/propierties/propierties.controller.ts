@@ -19,6 +19,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import axios from 'axios';
 import { CreatePropiertyDto } from './dto/create-propierty.dto';
 import { FilesUploadDto } from './dto/files-upload.dto';
 import { UpdatePropiertyDto } from './dto/update-propierty.dto';

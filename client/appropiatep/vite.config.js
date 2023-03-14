@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,5 +8,8 @@ export default defineConfig({
     watch: {
       usePolling: true,
     },
+  },
+  build: {
+    target: 'esnext',
   },
 });

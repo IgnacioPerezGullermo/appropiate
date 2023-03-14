@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  getSearchedPropierties,
-  registerPropierty,
   getPropiertyDetail,
+  getSearchedPropierties,
+  getUFData,
+  registerPropierty,
 } from './propertiesAction';
 
 const initialState = {
@@ -10,6 +11,8 @@ const initialState = {
   propiertyDetail: {},
   error: null,
   createdPropierty: {},
+  UFValue: '',
+  UFDate: '',
   loading: false,
   success: false,
 };
@@ -40,12 +43,10 @@ const propiertiesSlice = createSlice({
     [getPropiertyDetail.fulfilled]: (state, { payload }) => {
       state.propiertyDetail = payload;
     },
-    // [clearCreatedBroker.fulfilled]: (state, { payload }) => {
-    //   state.createdBroker = payload;
-    // },
-    // [clearCreatedBroker.rejected]: (state, { payload }) => {
-    //   state.createdBroker = payload;
-    // },
+    [getUFData.fulfilled]: (state, { payload }) => {
+      state.UFValue = payload.Valor;
+      state.UFDate = payload.Fecha;
+    },
   },
 });
 
