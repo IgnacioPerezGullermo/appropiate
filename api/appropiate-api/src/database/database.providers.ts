@@ -36,33 +36,57 @@ export const databaseProviders = [
   {
     provide: 'SEQUELIZE',
     useFactory: async () => {
-      const sequelize = new Sequelize({
-        dialect: 'postgres',
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT), // $ExpectType number,
-        username: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
-        {proceess.env.NODE_ENV === 'production' ? (
-        dialectOptions: {
-          ssl: {
-            require: true, // This will help you. But you will see nwe error
-            rejectUnauthorized: false, // This line will fix new error
+      if (process.env.NODE_ENV === 'production node dist/src/main') {
+        const sequelize = new Sequelize({
+          dialect: 'postgres',
+          host: process.env.DB_HOST,
+          port: Number(process.env.DB_PORT), // $ExpectType number,
+          username: process.env.DB_USER,
+          password: process.env.DB_PASSWORD,
+          database: process.env.DB_NAME,
+          dialectOptions: {
+            ssl: {
+              require: true, // This will help you. But you will see nwe error
+              rejectUnauthorized: false, // This line will fix new error
+            },
           },
-        },) :
-        null
+        });
+        sequelize.addModels([
+          Broker,
+          Client,
+          Appointment,
+          User,
+          Propierty,
+          Images,
+        ]);
+        await sequelize.sync();
+        return sequelize;
+      } else {
+        const sequelize = new Sequelize({
+          dialect: 'postgres',
+          host: process.env.DB_HOST,
+          port: Number(process.env.DB_PORT), // $ExpectType number,
+          username: process.env.DB_USER,
+          password: process.env.DB_PASSWORD,
+          database: process.env.DB_NAME,
+          // dialectOptions: {
+          //   ssl: {
+          //     require: true, // This will help you. But you will see nwe error
+          //     rejectUnauthorized: false, // This line will fix new error
+          //   },
+          // },
+        });
+        sequelize.addModels([
+          Broker,
+          Client,
+          Appointment,
+          User,
+          Propierty,
+          Images,
+        ]);
+        await sequelize.sync();
+        return sequelize;
       }
-      });
-      sequelize.addModels([
-        Broker,
-        Client,
-        Appointment,
-        User,
-        Propierty,
-        Images,
-      ]);
-      await sequelize.sync();
-      return sequelize;
     },
   },
 ];
