@@ -43,12 +43,15 @@ export const databaseProviders = [
         username: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
-        // dialectOptions: {
-        //   ssl: {
-        //     require: true, // This will help you. But you will see nwe error
-        //     rejectUnauthorized: false, // This line will fix new error
-        //   },
-        // },
+        {proceess.env.NODE_ENV === 'production' ? (
+        dialectOptions: {
+          ssl: {
+            require: true, // This will help you. But you will see nwe error
+            rejectUnauthorized: false, // This line will fix new error
+          },
+        },) :
+        null
+      }
       });
       sequelize.addModels([
         Broker,
