@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSearchedPropierties } from '../../../redux/properties/propertiesAction';
 import { matchFilter } from '../../../utils/matchFilter';
+import { upUserMatchFilter } from '../../../utils/upUserMatch';
 import { Pagination } from '../../Pagination/Pagination';
 import { PropiertyCard } from './PropiertyCard';
 
@@ -42,6 +43,51 @@ export const PropiertyCards = ({ salary }) => {
                 //deliverytype={prop.deliverytype}
               />
             );
+          })}
+        </SimpleGrid>
+        {propierties?.total > PageSize && (
+          <Pagination
+            page={Page}
+            pageSize={PageSize}
+            setPage={setPage}
+            total={propierties?.total}
+          />
+        )}
+      </Box>
+    );
+  } else if (userInfo?.client.basicIncome) {
+    return (
+      <Box w={'90vw'} ml={'4vw'} mt={'14vh'} h={'container.sm'} p={1}>
+        <SimpleGrid columns={'3'} p={0} gap={6} ml={5}>
+          {propierties?.data?.map((prop) => {
+            if (
+                upUserMatchFilter(
+                    userInfo?.client.basicIncome,
+                    userInfo?.client.currentSavings, 
+                    userInfo?.client.bankCredit, 
+                    userInfo?.client.age, 
+                    4.3, 
+                    prop.price, 
+                    15
+                ) === true
+            ) {
+              return (
+                <PropiertyCard
+                  key={prop.id}
+                  id={prop.id}
+                  bedr={prop.bedr}
+                  bath={prop.bath}
+                  price={prop.price}
+                  commune={prop.commune}
+                  region={prop.region}
+                  /*storage={prop.storage}
+          parking={prop.parking}*/
+                  caprate={prop.caprate}
+                  //totalarea={prop.totalarea}
+                  //deliverytype={prop.deliverytype}
+                />
+              );
+            }
           })}
         </SimpleGrid>
         {propierties?.total > PageSize && (
