@@ -30,12 +30,12 @@ export class UsersService {
       user.password = createUserDto.password;
       const userData = await user.save();
       //console.log(clientData);
-      const verificationMail = await this.mailerService.sendMail({
-        to: userData.email,
-        from: 'nacho71197@gmail.com',
-        subject: 'Verifica tu cuenta',
-        text: `Para proceder, ingresa al siguiente link para verificar tu cuenta: http://localhost:5173/verification?id=${userData.id}`,
-      });
+      //const verificationMail = await this.mailerService.sendMail({
+      //  to: userData.email,
+      //  from: 'nacho71197@gmail.com',
+      //  subject: 'Verifica tu cuenta',
+      //  text: `Para proceder, ingresa al siguiente link para verificar tu cuenta: http://localhost:5173/verification?id=${userData.id}`,
+      //});
       return userData;
     } catch (error) {
       console.log(error);
