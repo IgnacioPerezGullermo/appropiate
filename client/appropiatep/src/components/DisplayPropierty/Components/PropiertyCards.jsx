@@ -65,8 +65,7 @@ export const PropiertyCards = ({ salary }) => {
                 30,
                 35500,
                 0.043,
-                prop.price,
-                15
+                prop.price
               ) === true
             ) {
               return (

@@ -2,7 +2,6 @@
   "name": "appropiatep",
   "private": true,
   "version": "0.0.0",
-
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -29,7 +28,8 @@
     "react-router-dom": "^6.6.1",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

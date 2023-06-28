@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  clearPropiertyDetail,
   getPropiertyDetail,
   getSearchedPropierties,
   getUFData,
@@ -41,6 +42,9 @@ const propiertiesSlice = createSlice({
       state.error = payload;
     },
     [getPropiertyDetail.fulfilled]: (state, { payload }) => {
+      state.propiertyDetail = payload;
+    },
+    [clearPropiertyDetail.fulfilled]: (state, { payload }) => {
       state.propiertyDetail = payload;
     },
     [getUFData.fulfilled]: (state, { payload }) => {
