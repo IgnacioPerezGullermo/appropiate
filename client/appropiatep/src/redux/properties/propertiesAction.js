@@ -78,6 +78,13 @@ export const getPropiertyDetail = createAsyncThunk(
   }
 );
 
+export const clearPropiertyDetail = createAsyncThunk(
+  'propierty/clearDetail',
+  async ({ rejectWithValue }) => {
+    return '';
+  }
+);
+
 export const getUFData = createAsyncThunk(
   'propierty/Uf',
   async ({ rejectWithValue }) => {

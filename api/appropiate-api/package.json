@@ -44,6 +44,7 @@
     "formik": "^2.2.9",
     "fs": "^0.0.1-security",
     "googleapis": "^105.0.0",
+    "handlebars": "^4.7.7",
     "io-ts-types": "^0.5.19",
     "multer": "^1.4.5-lts.1",
     "node": "^18.13.0",

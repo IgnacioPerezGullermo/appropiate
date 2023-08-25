@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Center,
   Divider,
   Grid,
@@ -19,24 +20,33 @@ import {
   Tr,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { UilPlus } from '@iconscout/react-unicons';
+import { UilArrowLeft, UilFastMail, UilPlus } from '@iconscout/react-unicons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getPropiertyDetail } from '../../redux/properties/propertiesAction';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  clearPropiertyDetail,
+  getPropiertyDetail,
+} from '../../redux/properties/propertiesAction';
 import { NavBar } from '../NavBar';
+import { PropiertyForm } from './PropiertyForm';
 
 export const PropiertyDetail = ({ onOpen }) => {
   const params = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { propiertyDetail } = useSelector((state) => state.propierties);
+  const { userToken } = useSelector((state) => state.auth);
   React.useEffect(() => {
     dispatch(getPropiertyDetail(params.id));
   }, [dispatch]);
-
+  console.log(userToken);
   const bg = useColorModeValue('white', 'black');
   const color = useColorModeValue('black', 'white');
-  console.log(propiertyDetail);
+  const handleGoBack = () => {
+    dispatch(clearPropiertyDetail());
+    navigate(-1);
+  };
   return (
     <Box
       pos={'absolute'}
@@ -45,9 +55,24 @@ export const PropiertyDetail = ({ onOpen }) => {
       bg={bg}
       w={'100%'}
       borderRadius={'xl'}
-      h={'container.xl'}
+      h={'auto'}
+      pb={4}
     >
       <NavBar onOpen={onOpen} />
+      <Button
+        bg={'black'}
+        border={'1px'}
+        borderColor={'primary'}
+        rounded={'full'}
+        pos={'absolute'}
+        top={'13vh'}
+        left={'5%'}
+        color={'white'}
+        leftIcon={<UilArrowLeft />}
+        onClick={handleGoBack}
+      >
+        Regresar
+      </Button>
       <Grid
         w={'90%'}
         h={'45%'}
@@ -140,6 +165,19 @@ export const PropiertyDetail = ({ onOpen }) => {
             </Tbody>
           </Table>
         </TableContainer>
+        <Box width={'full'} mt={8} mb={6}>
+          {!userToken ? (
+            <Center>
+              <PropiertyForm />
+            </Center>
+          ) : (
+            <Center>
+              <Button h={10} leftIcon={<UilFastMail />}>
+                Me interesa esta propiedad
+              </Button>
+            </Center>
+          )}
+        </Box>
       </Box>
     </Box>
   );

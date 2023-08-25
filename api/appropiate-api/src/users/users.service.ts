@@ -11,6 +11,8 @@ import { Op } from 'sequelize';
 import { AuthService } from 'src/auth/auth.service';
 import { Broker } from 'src/brokers/entities/broker.entity';
 import { Client } from 'src/clients/entities/client.entity';
+import { PropiertiesService } from 'src/propierties/propierties.service';
+import { Propierty } from '../propierties/entities/propierty.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -21,6 +23,7 @@ export class UsersService {
     @Inject(USER_REPOSITORY)
     private readonly usersRepository: typeof User,
     private mailerService: MailerService,
+    private propiertiesService: PropiertiesService,
   ) {}
   async create(createUserDto: CreateUserDto) {
     try {
@@ -180,6 +183,44 @@ export class UsersService {
     } catch (err) {
       throw new InternalServerErrorException(
         `Can't update Client - check server logs`,
+      );
+    }
+  }
+
+  async sendConsulta(userId: string, propiertyId: string) {
+    const user = await this.usersRepository.findByPk<User>(userId);
+    console.log(user);
+    // if (!user) {
+    //   throw new BadRequestException(`Usuario inexistente en la base de datos`);
+    // }
+    const propierty = await this.propiertiesService.findOne(propiertyId);
+    try {
+      console.log(propierty);
+      const email = await this.mailerService.sendMail({
+        to: 'nacho71197@gmail.com',
+        from: 'nacho71197@gmail.com',
+        subject: `Consulta por proyecto ${propierty.projectname}`,
+        template: './consulta',
+        context: {
+          username: user.username,
+          projectname: propierty.projectname,
+          region: propierty.region,
+          commune: propierty.commune,
+          inmob: propierty.inmob,
+          totalarea: propierty.totalarea,
+          bedr: propierty.bedr,
+          bath: propierty.bath,
+          storage: propierty.storage,
+          parking: propierty.parking,
+          deliverytype: propierty.deliverytype,
+          email: user.email,
+        },
+      });
+      console.log(email);
+    } catch (err) {
+      console.log(err);
+      throw new InternalServerErrorException(
+        `Can't send email - check server logs`,
       );
     }
   }

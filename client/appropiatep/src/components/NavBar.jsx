@@ -34,9 +34,10 @@ import { getUFData } from '../redux/properties/propertiesAction';
 
 const menuItems = [
   { title: 'Inicio', endpoint: '/', index: 0 },
-  { title: 'Blog', endpoint: '/blog', index: 1 },
-  { title: 'Asesorate', endpoint: '/appointment', index: 2 },
+  { title: 'Nosotros', endpoint: '/about-us', index: 1 },
+  { title: 'Contacto', endpoint: '/contact', index: 2 },
   { title: 'Oportunidades', endpoint: '/displaypropierty', index: 3 },
+  { title: 'Blog', endpoint: '/blog', index: 4 },
   { title: 'Ingresar', endpoint: '/login', index: 5 },
 ];
 
@@ -52,13 +53,12 @@ export const NavBar = ({
   const dispatch = useDispatch();
   const [Logged, setLogged] = React.useState(false);
   let localToken = localStorage.getItem('userToken');
+  let location = useLocation();
   React.useEffect(() => {
     if (Logged === false && localToken !== null) {
       dispatch(getUFData());
       const decodedToken = jwt(localToken);
-      console.log(decodedToken);
       if (decodedToken.id) {
-        console.log('me despache');
         dispatch(refreshInfo(decodedToken.id));
         setLogged(true);
       }
@@ -66,7 +66,6 @@ export const NavBar = ({
   }, [Logged]);
   const { userToken } = useSelector((state) => state.auth);
   let uf = fetchUf;
-  console.log(uf);
   const ufValue = uf.Valor.slice(0, uf.Valor.length - 3);
   const navigate = useNavigate();
   const { colorMode, toggleColorMode } = useColorMode();
@@ -75,20 +74,19 @@ export const NavBar = ({
   const bg = useColorModeValue('white', 'black');
   const bgToggle = useColorModeValue('gray.900', 'gray.200');
   const logo = useColorModeValue(LightTitle, DarkTitle);
-  console.log(ufValue);
   return (
     <Box
       w={'full'}
       h={'12vh'}
-      pos={'absolute'}
+      pos={'fixed'}
       display={'flex'}
       flexDirection={'row'}
-      px={'10'}
+      pr={'10'}
       justifyContent={'space-around'}
       left={'0%'}
       top={'0%'}
       bg={
-        Location === '/login' || Location === '/dashboard' ? 'transparent' : bg
+        location === '/login' || Location === '/dashboard' ? 'transparent' : bg
       }
       textAlign={'left'}
       borderBottom={'3px solid'}
@@ -100,6 +98,9 @@ export const NavBar = ({
       overflow={'hidden'}
       zIndex={90}
     >
+      <Box bg={'transparent'} w={'12vw'} h={'8vh'}>
+        <Image src={logo} objectFit={'cover'} />
+      </Box>
       <Wrap
         left={'5%'}
         h={'10.7vh'}
@@ -110,16 +111,19 @@ export const NavBar = ({
         {menuItems.map((item) => {
           if (localToken && item.title === 'Ingresar') {
             return null;
+          }
+          if (!localToken && item.title === 'Oportunidades') {
+            return null;
           } else {
             return (
               <Button
                 variant={'ghost'}
-                color={Location === item.endpoint ? 'primary' : color}
+                color={location.pathname === item.endpoint ? 'primary' : color}
                 fontWeight={'medium'}
                 fontSize={18}
                 _hover={{ bg: 'transparent', color: 'blue.400' }}
                 size={'lg'}
-                scale={Location === item.endpoint ? '120%' : null}
+                scale={location.pathname === item.endpoint ? '120%' : null}
                 key={item.index}
                 onClick={(e) => {
                   navigate(item.endpoint);
@@ -152,9 +156,6 @@ export const NavBar = ({
           <StatLabel color={'primary'}>Valor UF ({uf.Fecha})</StatLabel>
           <StatNumber fontSize={20}>{Number(ufValue)} CLP$</StatNumber>
         </Stat>
-      </Box>
-      <Box bg={'transparent'} w={'12vw'} h={'8vh'}>
-        <Image src={logo} objectFit={'cover'} />
       </Box>
       {Location === '/login' ? (
         <Button
