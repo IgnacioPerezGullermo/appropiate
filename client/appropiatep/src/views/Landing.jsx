@@ -7,7 +7,9 @@ import {
   HStack,
   Heading,
   Highlight,
+  IconButton,
   Image,
+  InputRightAddon,
   Slider,
   SliderFilledTrack,
   SliderMark,
@@ -21,6 +23,8 @@ import {
 } from '@chakra-ui/react';
 import {
   UilArrowLeft,
+  UilArrowRight,
+  UilCheck,
   UilDollarAlt,
   UilMoon,
   UilSun,
@@ -157,11 +161,17 @@ export const Landing = ({ onOpen }) => {
             <Center cursor={'pointer'}>
               <Button
                 cursor={'pointer'}
+                rounded={'full'}
+                bg={'primary'}
+                color={bgButton}
                 onClick={() => {
                   setFilterAction(true);
                 }}
               >
                 Buscar
+                <Box rounded={'full'} bg={'white'}>
+                  <UilCheck color={'#19C8C4'}></UilCheck>
+                </Box>
               </Button>
             </Center>
           </Box>
@@ -519,7 +529,7 @@ export const Landing = ({ onOpen }) => {
             </Box>
           </Box>
         </Box>
-        <Box w={'full'} h={'xl'} py={'4'} mt={8}>
+        <Box w={'full'} h={'160vh'} py={'4'} mt={8}>
           <Heading color={color} textAlign={'center'} mb={'7'}>
             <Highlight query={'un plan para ti'} styles={{ color: 'primary' }}>
               Creamos un plan para ti
@@ -551,10 +561,46 @@ export const Landing = ({ onOpen }) => {
               borderTopLeftRadius={'3xl'}
               borderBottomRightRadius={'3xl'}
             ></Box>
+            <Heading color={color} textAlign={'center'} mb={'7'} mt={12}>
+              <Highlight query={'tienes dudas'} styles={{ color: 'primary' }}>
+                ¿Aun tienes dudas?
+              </Highlight>
+            </Heading>
+            <Box
+              w={'full'}
+              h={'40%'}
+              display={'flex'}
+              flexDir={'column'}
+              px={28}
+              alignItems={'center'}
+            >
+              <Text fontSize={'2xl'} px={'44'} mb={8} textAlign={'center'}>
+                <Highlight
+                  query={['asesoría', 'gratuita']}
+                  styles={{ color: 'primary' }}
+                >
+                  Nuestra asesoría es totalmente gratuita asi que no te
+                  compliques, estamos aquí para ayudarte, simplemente debes
+                  rellenar el formulario y uno de nuestros ejecutivos se
+                  contactará a la brevedad para solucionar tus inquietudes, ya
+                  sea por videollamada, e-mail o llamada telefonica, tú eliges.
+                </Highlight>
+              </Text>
+              <Button
+                bg={'primary'}
+                color={bgButton}
+                w={32}
+                rounded={'full'}
+                _hover={{ bg: 'primary' }}
+              >
+                Contacto <UilArrowRight />
+              </Button>
+            </Box>
           </Box>
         </Box>
+        <Footer position={'200vh'} />
       </Box>
-      <Box
+      {/* <Box
         pos={'absolute'}
         top={'500vh'}
         bg={'red.300'}
@@ -562,10 +608,8 @@ export const Landing = ({ onOpen }) => {
         bgSize={'cover'}
         w={'full'}
         left={'0vw'}
-        h={'container.sm'}
-      >
-        <Footer position={'160vh'} />
-      </Box>
+        h={'40vh'}
+      ></Box> */}
     </>
   );
 };

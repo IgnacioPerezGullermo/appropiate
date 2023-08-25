@@ -20,14 +20,15 @@ import { theme } from './styles/theme';
 import { Appointment } from './views/Appointment';
 import { Blog } from './views/Blog';
 import { BrokerDashboard } from './views/BrokerDashboard';
+import { Contacto } from './views/Contacto';
 import { Dashboard } from './views/Dashboard';
 import { DisplayPropierty } from './views/DisplayPropierty';
 import { Home } from './views/Home';
 import { Landing } from './views/Landing';
 import { LogIn } from './views/LogIn';
+import { Nosotros } from './views/Nosotros';
 import { Profile } from './views/Profile';
 import { Register } from './views/Register';
-import { Services } from './views/Services';
 
 export const App = () => {
   const [Logged, setLogged] = React.useState(false);
@@ -61,7 +62,10 @@ export const App = () => {
                 />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/home" element={<Home />} />
-                <Route path="/services" element={<Services />} />
+                <Route
+                  path="/about-us"
+                  element={<Nosotros onOpen={onOpen} />}
+                />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/appointment" element={<Appointment />} />
                 <Route
@@ -88,6 +92,7 @@ export const App = () => {
                 />
                 <Route path="/verification" element={<VerifyAccount />} />
                 <Route path="/resetpassword" element={<PasswordUpdate />} />
+                <Route path="/contact" element={<Contacto onOpen={onOpen} />} />
               </Routes>
             </BrowserRouter>
           </div>

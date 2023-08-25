@@ -2,15 +2,15 @@ import { Box, SimpleGrid } from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSearchedPropierties } from '../../../redux/properties/propertiesAction';
+import { upUserMatchFilter } from '../../../utils/upUserMatch';
 import { Pagination } from '../../Pagination/Pagination';
 import { PropiertyCard } from './PropiertyCard';
-import { upUserMatchFilter } from '../../../utils/upUserMatch';
 
 export const PropiertyCards = ({ salary }) => {
-    const { loading, userInfo, error, success } = useSelector(
+  const { loading, userInfo, error, success } = useSelector(
     (state) => state.auth
-    );
-    const dispatch = useDispatch();
+  );
+  const dispatch = useDispatch();
   const { propierties } = useSelector((state) => state.propierties);
   const [Page, setPage] = React.useState(0);
   const [PageSize, setPageSize] = React.useState(6);
@@ -38,6 +38,7 @@ export const PropiertyCards = ({ salary }) => {
                 price={prop.price}
                 commune={prop.commune}
                 region={prop.region}
+                projectname={prop.projectname}
                 /*storage={prop.storage}
         parking={prop.parking}*/
                 caprate={prop.caprate}
@@ -63,15 +64,15 @@ export const PropiertyCards = ({ salary }) => {
         <SimpleGrid columns={'3'} p={0} gap={6} ml={5}>
           {propierties?.data?.map((prop) => {
             if (
-                upUserMatchFilter(
-                    userInfo?.client.basicIncome,
-                    userInfo?.client.currentSavings, 
-                    userInfo?.client.bankCredit, 
-                    userInfo?.client.age, 
-                    4.3, 
-                    prop.price, 
-                    15
-                ) === true
+              upUserMatchFilter(
+                userInfo?.client.basicIncome,
+                userInfo?.client.currentSavings,
+                userInfo?.client.bankCredit,
+                userInfo?.client.age,
+                4.3,
+                prop.price,
+                15
+              ) === true
             ) {
               return (
                 <PropiertyCard

@@ -35,6 +35,7 @@ export const PropiertyCards = ({ salary }) => {
                 price={prop.price}
                 commune={prop.commune}
                 region={prop.region}
+                projectname={prop.projectname}
                 /*storage={prop.storage}
         parking={prop.parking}*/
                 caprate={prop.caprate}
@@ -77,6 +78,8 @@ export const PropiertyCards = ({ salary }) => {
                   price={prop.price}
                   commune={prop.commune}
                   region={prop.region}
+                  name={prop.projectname}
+                  projectname={prop.projectname}
                   /*storage={prop.storage}
           parking={prop.parking}*/
                   caprate={prop.caprate}

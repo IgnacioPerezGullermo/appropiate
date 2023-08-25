@@ -40,6 +40,7 @@ export const PropiertyCard = ({
   parking,
   caprate,
   match,
+  projectname,
 }) => {
   const navigate = useNavigate();
   const bg = useColorModeValue('white', 'black');
@@ -69,7 +70,10 @@ export const PropiertyCard = ({
         />
       </GridItem>
       <GridItem gridArea={'info'} pl={3} pt={2}>
-        <Text mt={1} color={'white'} fontWeight={'light'}>
+        <Heading fontSize={'1.5vw'} mt={1} color={'white'} fontWeight={'light'}>
+          {projectname}
+        </Heading>
+        <Text mt={1} fontWeight={'light'} color={'primary'}>
           {commune}, {region}
         </Text>
         <Divider mt={1} w={'96%'} bg={'blue.800'} />

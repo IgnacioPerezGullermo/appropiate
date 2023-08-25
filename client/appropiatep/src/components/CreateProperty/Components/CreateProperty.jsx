@@ -9,12 +9,13 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { Formik, useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { registerPropierty } from '../../../redux/properties/propertiesAction';
 import { regiones } from '../../../data/comunas.json';
+import { registerPropierty } from '../../../redux/properties/propertiesAction';
 
 export const CreateProperty = () => {
+  const [Comunas, setComunas] = useState([]);
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -55,6 +56,10 @@ export const CreateProperty = () => {
       dispatch(registerPropierty(property));
     },
   });
+  useEffect(() => {
+    let comunas = regiones?.find((com) => com.region === formik.values.region);
+    setComunas(comunas?.comunas);
+  }, [formik]);
   const color = useColorModeValue('black', 'white');
   const bgBox = useColorModeValue('gray.200', 'gray.800');
   return (
@@ -130,13 +135,19 @@ export const CreateProperty = () => {
             mb={'1vh'}
             mt={2}
             onReset={formik.handleReset}
-            onChange={formik.handleChange}
+            onChange={
+              formik.handleChange
+              // const comunas = regiones.find(
+              //   (com) => com.region === formik.values.region
+              // );
+              // setComunas(comunas);
+            }
             onBlur={formik.handleBlur}
             value={formik.values.region}
           >
             <option>Elige una opcion...</option>
             {regiones.map((com) => {
-              return <option>{com.region}</option>;
+              return <option value={com.region}>{com.region}</option>;
             })}
           </Select>
 
@@ -156,6 +167,10 @@ export const CreateProperty = () => {
             value={formik.values.commune}
           >
             <option>Elige una opcion...</option>
+            {Comunas?.length &&
+              Comunas?.map((com) => {
+                return <option value={com}>{com}</option>;
+              })}
           </Select>
         </HStack>
         <HStack>

@@ -9,6 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Propierty } from 'src/propierties/entities/propierty.entity';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -79,5 +80,13 @@ export class UsersController {
   @Patch('password/update/:id')
   updatePass(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.updatePassword(id, updateUserDto.password);
+  }
+
+  @Post('propierty/consults')
+  consult(
+    @Query('userId') userId: string,
+    @Query('propiertyId') propiertyId: string,
+  ) {
+    return this.usersService.sendConsulta(userId, propiertyId);
   }
 }
